@@ -85,6 +85,7 @@ class CategoryController extends Controller
 		  ], 200);
 
 		} catch(\Exception $e){
+			echo $e->getmessage();
 			return response()->json(['success' => false,
 				'message' => 'something went wrong'], 200);
 		}  
