@@ -35,14 +35,11 @@ class AppServiceProvider extends ServiceProvider
 		 */
 		  
 
-		// $category = Category::getCategoriesList();
-		// $allFeature = FeatureAttribute::get();
-		// $occasions = Occasions::orderBy('created_at','desc')->get();
-		// $contact = ContactUs::pluck('phone')->first();
-		 $category = [];
-		 $allFeature = [];
-		 $occasions = [];
-		 $contact = [];
+		$category = Category::getCategoriesList();
+		$allFeature = FeatureAttribute::get();
+		$occasions = Occasions::orderBy('created_at','desc')->get();
+		$contact = ContactUs::pluck('phone')->first();
+		
 		\View::share('category', $category);
 		\View::share('allFeature', $allFeature);
 		\View::share('occasions', $occasions);
