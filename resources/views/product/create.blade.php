@@ -24,7 +24,7 @@
 								<form  data-parsley-validate="" name="productCreate" method="POST" id="productCreate" enctype="multipart/form-data">
 									@csrf
 									@if(@$product)
-										<input type="hidden" name="id" value="{{@$product['id']}}">
+										<input type="hidden" name="id" value="{{@$product['id']}}" id="product_id">
 										<input type="hidden" name="old_image" value="{{@$product['image']}}">
 									@endif
 									<div class="row row-sm">
@@ -225,26 +225,31 @@
 		 		 $('#category_id').val(cat_id);
 		 		 var sub_category_id = '{{@$product["sub_category_id"]}}';
 		 		 $('#sub_category_id').val(sub_category_id);
+		 		 getFeatures(sub_category_id);
 		 		 var feature_attribute_id = '{{@$product["feature_attribute_id"]}}';
 		 		 $('#feature_attribute_id').val(feature_attribute_id);
 
 		 }
 		 $('#sub_category_id').change(function(e){
 		 		var id = $("#sub_category_id").val();
-		 		$.ajax({
-	      	url: '{{url("$url/product/subCategoryFeatures")}}',
-	        type: "POST",
-	        data: {
-	        	subcategory_id: id,
-	          _token: '{{ csrf_token() }}'
-	        },
-	        dataType: 'html',
-	      
-       }).done(function(result){
-       		   $(".featuresdiv").html(result);
-
-       });
+		 		getFeatures(id);
 		 });
+		 function getFeatures(id){
+			 	$.ajax({
+		      	url: '{{url("$url/product/subCategoryFeatures")}}',
+		        type: "POST",
+		        data: {
+		        	subcategory_id: id,
+		          _token: '{{ csrf_token() }}',
+		          product_id : $("#product_id").val()
+		        },
+		        dataType: 'html',
+		      
+	       }).done(function(result){
+	       		   $(".featuresdiv").html(result);
+
+	       });
+		 } 
 		 $('#productCreate').on('submit', function(e) {
 			e.preventDefault()
 			let formValue = new FormData(this);

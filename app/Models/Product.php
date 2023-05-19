@@ -65,6 +65,8 @@ class Product extends Model
         if(@$post['multiplefaetures']){
         	$multiplefaetures = $post['multiplefaetures'];
         	foreach($multiplefaetures as $key=>$value){
+            
+
         		$products_feature = [
         			  'product_id' => $product->id,
         			  'category_id' => $post['category_id'],
@@ -73,7 +75,19 @@ class Product extends Model
         			  'feature_attribute_id' => $value,
         		];
 
-        		ProductFeture::Create($products_feature);
+                if($id == 0){
+                    ProductFeture::updateOrCreate($products_feature,$products_feature);
+                }else{
+                    $matche = [
+                    'product_id' => $id,
+                    'category_id' => $post['category_id'],
+                    'sub_category_id' => $post['sub_category_id'],
+                    'features_id'=> $key,
+                    ];
+                    ProductFeture::where($matche)->update(['feature_attribute_id'=>$value]);
+                }
+
+        		
         		
         	}
         }
@@ -88,8 +102,17 @@ class Product extends Model
         			  'features_id'=> $key,
         			  'value' => $value,
         		];
-
-        		ProductFeture::Create($products_feature);
+                if($id == 0){
+        		  ProductFeture::updateOrCreate($products_feature,$products_feature);
+                }else{
+                    $matche = [
+                    'product_id' => $id,
+                    'category_id' => $post['category_id'],
+                    'sub_category_id' => $post['sub_category_id'],
+                    'features_id'=> $key,
+                    ];
+                    ProductFeture::where($matche)->update(['value'=>$value]);
+                }
         		
         	}
         }

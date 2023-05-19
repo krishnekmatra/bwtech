@@ -4,13 +4,31 @@
 			<div class="form-group mg-b-0">
 					<label class="form-label">{{@$features['featureName']['name']}}: <span class="tx-danger">*</span></label>
 					@if(@$features['featureName']['feature_type'] == 'text')
-							<input type="text" name="multiplefaeturesText[{{$features['featureName']['id']}}]" class="form-control"/>
+								
+								@if(@$product_feature_text)
+								@foreach($product_feature_text as $value)
+								@if($value['features_id'] == $features['featureName']['id'])
+								<input type="text" name="multiplefaeturesText[{{$features['featureName']['id']}}]" class="form-control" value="{{$value['value']}}"/>
+								@endif
+								@endforeach
+								@else
+								<input type="text" name="multiplefaeturesText[{{$features['featureName']['id']}}]" class="form-control"/>
+								@endif
+								
+
 							@else
 
 							<select class="form-control" name="multiplefaetures[{{$features['featureName']['id']}}]">
 								<option>Select</option>
 								@foreach($features['featureName']['FeatureAttributes'] as $attribute)
-										<option value="{{$attribute['id']}}">{{$attribute['name']}}</option>
+										@if(in_array($attribute['id'],$product_feature))
+										@php $selected = 'selected';
+										 @endphp
+
+										@else
+										@php $selected = '' @endphp
+										@endif
+										<option value="{{$attribute['id']}}" {{$selected}}>{{$attribute['name']}}</option>
 								@endforeach
 							</select>
 					@endif

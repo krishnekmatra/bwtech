@@ -15,6 +15,7 @@ use App\Models\UploadImage;
 use Response;
 use App\Imports\ImportProducts;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\ProductFeture;
 
 
 use DataTables;
@@ -211,10 +212,18 @@ class ProductController extends Controller
 	}
 
 	public function subCategoryFeatures(Request $request){
+		if(@$request['product_id']){
+			$product_feature = ProductFeture::where('product_id',$request['product_id'])->where('value','=',null)->pluck('feature_attribute_id')->toArray();
+
+			$product_feature_text = ProductFeture::where('product_id',$request['product_id'])->where('value','!=',null)->select('features_id','value')->get()->toArray();
+		}else{
+			$product_feature = [];
+			$product_feature_text = [];
+		}
 		$features = SubCategory::with('features.featureName.FeatureAttributes')->where('id',$request['subcategory_id'])->get();
 
 
-		return view ('product.subcat-feature',compact('features'));
+		return view ('product.subcat-feature',compact('features','product_feature','product_feature_text'));
 	}
 
 	public function getBrand(Request $request){
