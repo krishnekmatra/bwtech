@@ -18,6 +18,7 @@ $backurl = url('admin/category')."/".$subCat['category_id']."/"."sub-cat";
 									@csrf
 									<input type="hidden" name="id" value="{{@$subCat['id']}}">
 									<input type="hidden" name="category_id" value="{{@$subCat['category_id']}}">
+									<input type="hidden" name="uncheck_feature_id" id="uncheck_feature_id">
 									<div class="row row-sm">
 										<div class="col-6">
 											<div class="form-group mg-b-0">
@@ -26,6 +27,19 @@ $backurl = url('admin/category')."/".$subCat['category_id']."/"."sub-cat";
 												<span class="text-danger" id="name_error"></span>
 											</div>
 										</div>
+									</div>
+										<div class="row row-sm mt-3">
+										@foreach($features as $feature_val)
+											@if(in_array($feature_val['id'],$SubCategoryFeature))
+											@php 
+											$checked = 'checked' @endphp
+											@else
+												@php $checked = '' @endphp
+											@endif
+											<div class="col-lg-3 mb-3">
+												<label class="ckbox"><input type="checkbox" name="feature_id[]" value="{{$feature_val['id']}}" {{$checked}}><span>{{$feature_val['name']}}</span></label>
+												</div>
+										@endforeach
 									</div>
 
 									<div class="col-12">
@@ -45,7 +59,19 @@ $backurl = url('admin/category')."/".$subCat['category_id']."/"."sub-cat";
 <script>
 	
 $(document).ready(function() {
+	var unchecked = []
+
+	$("input[type='checkbox']").change(function(e){
 	
+	 	var ischecked= $(this).is(':checked');
+   	 	if(!ischecked){
+    		unchecked.push( $(this).val());
+     	}
+     	implodedArray = unchecked.join(',');
+     	$("#uncheck_feature_id").val(implodedArray);
+
+	});
+
 		$('.products').addClass('is-expanded');
 		$('.category').addClass('active');
 		$('#subCategoryCreate').on('submit', function(e) {

@@ -63,8 +63,20 @@
 												<span class="text-danger" id="name_error"></span>
 											</div>
 										</div>
+										<div class="col-6">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Type: <span class="tx-danger">*</span></label>
+												<select class="form-control" name="feature_type" required="required" id="feature_type">
+													<option value="">Select Type</option>
+													    <option value="text" {{ $feature->feature_type == 'text' ? 'selected' : '' }}>Text</option>
+													      <option value="select" {{ $feature->feature_type == 'select' ? 'selected' : '' }}>Select</option>
 
-										<div class="col-12">
+												</select>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+
+										<div class="col-12 mt-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Attribute: <span class="tx-danger">*</span></label>
 													<?php
@@ -83,7 +95,7 @@
 															}
 															
 													?>
-													<input  name="feature_value[]" placeholder="Enter Name" required="required" id="feature_value" type="text" data-parsley-required-message="Please enter feature value" value="{{json_encode($fetureValue)}}">
+													<input  name="feature_value[]" placeholder="Enter Name"  id="feature_value" type="text" data-parsley-required-message="Please enter feature value" value="{{json_encode($fetureValue)}}">
 												<span class="text-danger" id="feature_value">
 												<span class="text-danger" id="feature_value"></span>
 											</div>

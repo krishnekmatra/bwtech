@@ -50,9 +50,9 @@ class SubCategoryController extends Controller
 	public function create($id)
 	{
 		//
-	
+		$features = Feature::getFeatures();
 		$cat_id = $id;
-		return view('admin.sub-category.create',compact('cat_id'));
+		return view('admin.sub-category.create',compact('cat_id','features'));
 	}
 
 	/**
@@ -71,6 +71,7 @@ class SubCategoryController extends Controller
 		  ], 200);
 
 		} catch(\Exception $e){
+			echo $e->getmessage();
 			return response()->json(['success' => false,
 				'message' => 'something went wrong'], 200);
 		}  
@@ -100,10 +101,13 @@ class SubCategoryController extends Controller
 	public function edit($id)
 	{
 		//
+	   $features = Feature::getFeatures();
+	   $SubCategoryFeature = SubCategoryFeature::where('sub_category_id',$id)->pluck('feature_id')->toArray();
+	   
 	   $subCat= SubCategory::find($id);
 	   $cat_id = $subCat['category_id'];
 	 
-		return view('admin.sub-category.edit',compact('subCat','cat_id'));
+		return view('admin.sub-category.edit',compact('subCat','cat_id','features','SubCategoryFeature'));
 	}
 
 	/**

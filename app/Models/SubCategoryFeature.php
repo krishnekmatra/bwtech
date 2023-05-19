@@ -11,7 +11,6 @@ class SubCategoryFeature extends Model
 		 protected $table = 'sub_category_features';
 		 protected $fillable = [
 				'id',
-				'name',
 				'category_id',
 				'sub_category_id',
 				'feature_id'

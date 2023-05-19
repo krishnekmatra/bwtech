@@ -27,7 +27,13 @@ $backurl = url('admin/category')."/".$cat_id."/"."sub-cat";
 											</div>
 										</div>
 									</div>
-
+									<div class="row row-sm mt-3">
+										@foreach($features as $feature_val)
+											<div class="col-lg-3 mb-3">
+												<label class="ckbox"><input type="checkbox" name="feature_id[]" value="{{$feature_val['id']}}"><span>{{$feature_val['name']}}</span></label>
+												</div>
+										@endforeach
+									</div>
 								
 										
 									<div class="col-12">

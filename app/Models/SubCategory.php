@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
+use App\Models\SubCategoryFeature;
 
 class SubCategory extends Model
 {
@@ -35,6 +35,32 @@ class SubCategory extends Model
         }
         $matchThese = ['id'=>$id];
         $subcat = SubCategory::updateOrCreate($matchThese,$request);
+        if($request['feature_id']){
+        	foreach($request['feature_id'] as $val){
+        		$matchThese = [
+        			'category_id'=> $request['category_id'],
+        			'sub_category_id' => $subcat->id,
+        			'feature_id' => $val
+        		];
+        		SubCategoryFeature::updateOrCreate($matchThese,[
+        			'category_id'=> $request['category_id'],
+        			'sub_category_id' => $subcat->id,
+        			'feature_id' => $val
+        		]);
+        	}
+        }
+
+        if($request['uncheck_feature_id']){
+        	$explode = explode(',',$request['uncheck_feature_id']);
+        	foreach($explode as $val){
+        		$matchThese = [
+        			'category_id'=> $request['category_id'],
+        			'sub_category_id' => $subcat->id,
+        			'feature_id' => $val
+        		];
+        		SubCategoryFeature::where($matchThese)->delete();
+        	}
+        }
 		return $subcat;  
 	}
     
