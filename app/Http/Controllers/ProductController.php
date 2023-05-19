@@ -107,7 +107,6 @@ class ProductController extends Controller
 	public function store(Request $request)
 	{
 		try {
-			
 			if($request->file('image')){
 				if($request['id']){
 
@@ -209,6 +208,13 @@ class ProductController extends Controller
 		$category_id = $request->input('category_id');
 		$sub_cat = SubCategory::where('category_id',$category_id)->select(['name','id'])->get();
 		return response()->json($sub_cat);
+	}
+
+	public function subCategoryFeatures(Request $request){
+		$features = SubCategory::with('features.featureName.FeatureAttributes')->where('id',$request['subcategory_id'])->get();
+
+
+		return view ('product.subcat-feature',compact('features'));
 	}
 
 	public function getBrand(Request $request){

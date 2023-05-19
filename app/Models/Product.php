@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-
+use App\Models\ProductFeture;
 class Product extends Model
 {
 	use HasFactory;
@@ -62,6 +62,37 @@ class Product extends Model
         $matchThese = ['id'=>$id];
 
         $product = Product::updateOrCreate($matchThese,$post);
+        if(@$post['multiplefaetures']){
+        	$multiplefaetures = $post['multiplefaetures'];
+        	foreach($multiplefaetures as $key=>$value){
+        		$products_feature = [
+        			  'product_id' => $product->id,
+        			  'category_id' => $post['category_id'],
+        			  'sub_category_id' => $post['sub_category_id'],
+        			  'features_id'=> $key,
+        			  'feature_attribute_id' => $value,
+        		];
+
+        		ProductFeture::Create($products_feature);
+        		
+        	}
+        }
+
+         if(@$post['multiplefaeturesText']){
+        	$multiplefaeturesText = $post['multiplefaeturesText'];
+        	foreach($multiplefaeturesText as $key=>$value){
+        		$products_feature = [
+        			  'product_id' => $product->id,
+        			  'category_id' => $post['category_id'],
+        			  'sub_category_id' => $post['sub_category_id'],
+        			  'features_id'=> $key,
+        			  'value' => $value,
+        		];
+
+        		ProductFeture::Create($products_feature);
+        		
+        	}
+        }
        
        
 

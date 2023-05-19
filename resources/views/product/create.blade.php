@@ -166,10 +166,12 @@
 												<span class="text-danger" id="sub_category_feature_id_error"></span>
 											</div>
 										</div>
-
-										
-										<div class="col-12"><button type="submit" class="btn btn-main-primary pd-x-20 mg-t-10 addproduct"><span class="submit">Submit </span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
 										</div>
+										<div class="row row-sm featuresdiv">
+										</div>
+
+										<div class="col-12"><button type="submit" class="btn btn-main-primary pd-x-20 mg-t-10 addproduct"><span class="submit">Submit </span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
+										
 									</div>
 								</form>
 							</div>
@@ -227,6 +229,22 @@
 		 		 $('#feature_attribute_id').val(feature_attribute_id);
 
 		 }
+		 $('#sub_category_id').change(function(e){
+		 		var id = $("#sub_category_id").val();
+		 		$.ajax({
+	      	url: '{{url("$url/product/subCategoryFeatures")}}',
+	        type: "POST",
+	        data: {
+	        	subcategory_id: id,
+	          _token: '{{ csrf_token() }}'
+	        },
+	        dataType: 'html',
+	      
+       }).done(function(result){
+       		   $(".featuresdiv").html(result);
+
+       });
+		 });
 		 $('#productCreate').on('submit', function(e) {
 			e.preventDefault()
 			let formValue = new FormData(this);

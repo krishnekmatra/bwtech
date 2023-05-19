@@ -47,4 +47,8 @@ class Feature extends Model
          $feature = Feature::orderBy('created_at','desc')->get();
          return $feature;
     }
+
+    public function FeatureAttributes(){
+          return $this->hasMany('App\Models\FeatureAttribute');
+    }
 }
