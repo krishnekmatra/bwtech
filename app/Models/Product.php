@@ -166,4 +166,8 @@ class Product extends Model
 		return $this->belongsTo('App\Models\FeatureAttribute', 'feature_attribute_id','id');
 	}
 
+    public function productFeatures() {
+        return $this->hasMany('App\Models\ProductFeture');
+    }
+
 }

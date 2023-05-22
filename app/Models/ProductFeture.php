@@ -16,4 +16,11 @@ class ProductFeture extends Model
         'feature_attribute_id',
         'value'
     ];
+    public function feature_name(){
+        return $this->belongsTo('App\Models\Feature', 'features_id','id');
+    }
+
+    public function feature_attribute_name(){
+        return $this->belongsTo('App\Models\FeatureAttribute', 'feature_attribute_id','id');
+    }
 }

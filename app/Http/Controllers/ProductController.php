@@ -249,10 +249,9 @@ class ProductController extends Controller
 	}
 	public function getProductDetail($id){
 
-    $user = \Auth()->user();
-		$product = Product::with('category','subCategory','getBrands')->where('slug',$id)->first();
+		$user = \Auth()->user();
+		$product = Product::with('category','subCategory','getBrands','productFeatures.feature_attribute_name','productFeatures.feature_name')->where('slug',$id)->first();
 		return view('product.detail',compact('product','user'));
-
 	}
 
 	public function productImage(Request $request){
