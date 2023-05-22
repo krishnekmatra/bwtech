@@ -36,7 +36,7 @@ class FeatureRule implements Rule
          $feature_id =  Feature::where('name',$explode_type[0])->first();
          if(isset($feature_id) && $feature_id['feature_type'] == 'select'){
          		  $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->pluck('id')->first();
-         		  if(isset($feature_attibut_id)){
+         		  if($feature_attibut_id){
          		  	return true;
          		  }else{
          		  	return false;
