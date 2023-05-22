@@ -93,13 +93,7 @@ class Product extends Model
                     if($productAvilable){
                          ProductFeture::where($matche)->update(['feature_attribute_id'=>$value]);
                      }else{
-                        $products_feature = [
-                            'product_id' => $product->id,
-                            'category_id' => $post['category_id'],
-                            'sub_category_id' => $post['sub_category_id'],
-                            'features_id'=> $key,
-                            'feature_attribute_id' => $value,
-                        ];
+                        
                         
                           ProductFeture::updateOrCreate($products_feature);
                       }
@@ -130,7 +124,11 @@ class Product extends Model
                     'sub_category_id' => $post['sub_category_id'],
                     'features_id'=> $key,
                     ];
-                    ProductFeture::where($matche)->update(['value'=>$value]);
+                    if($productAvilable){
+                            $productAvilable =  ProductFeture::where($matche)->first();
+                    }else{
+                        ProductFeture::updateOrCreate($products_feature,$products_feature);
+                    }
                 }
         		
         	}
