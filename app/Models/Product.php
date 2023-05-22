@@ -50,6 +50,10 @@ class Product extends Model
 	public static function saveProduct($post){
 		 if(isset($post['id'])){
             $id = $post['id'];
+            $findproduct = product::where('id',$id)->first();
+            if($findproduct['sub_category_id'] != $post['sub_category_id']){
+                ProductFeture::where('product_id',$post['id'])->delete();
+            }
         }else{
             $id = 0;
         }
@@ -78,13 +82,28 @@ class Product extends Model
                 if($id == 0){
                     ProductFeture::updateOrCreate($products_feature,$products_feature);
                 }else{
+
                     $matche = [
                     'product_id' => $id,
                     'category_id' => $post['category_id'],
                     'sub_category_id' => $post['sub_category_id'],
                     'features_id'=> $key,
                     ];
-                    ProductFeture::where($matche)->update(['feature_attribute_id'=>$value]);
+                    $productAvilable =  ProductFeture::where($matche)->first();
+                    if($productAvilable){
+                         ProductFeture::where($matche)->update(['feature_attribute_id'=>$value]);
+                     }else{
+                        $products_feature = [
+                            'product_id' => $product->id,
+                            'category_id' => $post['category_id'],
+                            'sub_category_id' => $post['sub_category_id'],
+                            'features_id'=> $key,
+                            'feature_attribute_id' => $value,
+                        ];
+                        
+                          ProductFeture::updateOrCreate($products_feature);
+                      }
+                   
                 }
 
         		

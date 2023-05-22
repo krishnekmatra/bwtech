@@ -16,7 +16,7 @@ $backurl = url('admin/category')."/".$cat_id."/"."sub-cat";
 							  
 								<form  data-parsley-validate="" name="subCategoryCreate" method="POST" id="subCategoryCreate" enctype="multipart/form-data">
 									@csrf
-									<input type="hidden" name="id" value="{{@$cat_id}}">
+									<input type="hidden" name="id" value="">
 									<input type="hidden" name="category_id" value="{{@$cat_id}}">
 									<div class="row row-sm">
 										<div class="col-6">

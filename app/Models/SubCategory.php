@@ -50,7 +50,7 @@ class SubCategory extends Model
         	}
         }
 
-        if($request['uncheck_feature_id']){
+        if(isset($request['uncheck_feature_id'])){
         	$explode = explode(',',$request['uncheck_feature_id']);
         	foreach($explode as $val){
         		$matchThese = [

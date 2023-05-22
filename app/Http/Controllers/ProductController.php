@@ -216,6 +216,7 @@ class ProductController extends Controller
 			$product_feature = ProductFeture::where('product_id',$request['product_id'])->where('value','=',null)->pluck('feature_attribute_id')->toArray();
 
 			$product_feature_text = ProductFeture::where('product_id',$request['product_id'])->where('value','!=',null)->select('features_id','value')->get()->toArray();
+
 		}else{
 			$product_feature = [];
 			$product_feature_text = [];

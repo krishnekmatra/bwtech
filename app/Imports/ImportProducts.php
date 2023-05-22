@@ -5,6 +5,8 @@ namespace App\Imports;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\FeatureAttribute;
+use App\Models\Feature;
+use App\Models\ProductFeture;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
@@ -35,12 +37,13 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
      public function rules(): array
     {
         return [
-                '*.name' => 'required|unique:products,name',
+                 '*.name' => 'required|unique:products,name',
                 '*.category' => ['required',new CategoryRule],
-                '*.subcategory' => ['required',new SubCategoryRule],
-                '*.brand' => ['required',new FeatureRule],
-                '*.image' => ['required',new ImageRule],
-                '*.warrenty' => 'required|numeric'
+                 '*.subcategory' => ['required',new SubCategoryRule],
+               //  '*.brand' => ['required',new FeatureRule],
+                 '*.image' => ['required',new ImageRule],
+                 '*.warrenty' => 'required|numeric',
+                '*.specification' => ['required',new FeatureRule]
             ];
     }
      public function batchSize(): int
@@ -85,8 +88,10 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
         }else{
             $status = 0;
         }
-
-          Product::create([
+        $specification = $row['specification'];
+        $explode = explode(',', $specification);
+       
+        $product = Product::create([
             //
             'category_id' => $category_id,
             'sub_category_id' => $subCategory_id,
@@ -101,6 +106,22 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
             'status' => $status,
             'created_by' => \Auth::guard(getAuthGaurd())->user()->id
            ]);
+            foreach($explode as $value){
+                $explode_type = explode(':',$value);
+                $feature_id =  Feature::where('name', $explode_type[0])->pluck('id')->first();
+                $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->pluck('id')->first();
+                
+                $products_feature = [
+                      'product_id' => $product->id,
+                      'category_id' => $category_id,
+                      'sub_category_id' => $subCategory_id,
+                      'features_id'=> $feature_id,
+                      'feature_attribute_id' => ($feature_attibut_id ? $feature_attibut_id : NULL),
+                      'value' => ($feature_attibut_id ? NULL : $explode_type[1])
+                ];
+                ProductFeture::updateOrCreate($products_feature);
+            }
+            
           
         }
 

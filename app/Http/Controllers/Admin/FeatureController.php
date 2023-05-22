@@ -104,7 +104,10 @@ class FeatureController extends Controller
 	{
 		//
 		$post = $request->input();
-				Feature::where('id',$post['id'])->update(['name' => $post['name']]);
+				Feature::where('id',$post['id'])->update([
+					'name' => $post['name'],
+					'feature_type'=> $post['feature_type']
+				]);
 				foreach($post['feature_value'] as $key=>$value){
 						
 						$decode = json_decode($value,true);
