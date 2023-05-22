@@ -17,6 +17,7 @@ class FeatureRule implements Rule
 	public function __construct()
 	{
 		//
+		 $this->messagepass = '';
 	}
 
 	/**
@@ -39,9 +40,11 @@ class FeatureRule implements Rule
          		  if($feature_attibut_id){
          		  	return true;
          		  }else{
+         		  	$this->messagepass = $explode_type[0]."This Feature Attribute Does not exist";
          		  	return false;
          		  }
          }else{
+         	$this->messagepass = $explode_type[0]."This Feature Does not exist";
         	return false;
          }
 		}
@@ -60,6 +63,6 @@ class FeatureRule implements Rule
 	 */
 	public function message()
 	{
-		return 'Feturen name or Attribute name not exists in records..';
+		return $this->messagepass ;
 	}
 }
