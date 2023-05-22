@@ -32,13 +32,11 @@ class FeatureRule implements Rule
 		$specification = $value;
 		$explode = explode(',', $specification);
 		foreach($explode as $valuefeature){
-				$explode_type = explode(':',$valuefeature);
-
+		 $explode_type = explode(':',$valuefeature);
          $feature_id =  Feature::where('name',$explode_type[0])->first();
-       
-         if($feature_id['feature_type'] == 'select'){
+         if(isset($feature_id) && $feature_id['feature_type'] == 'select'){
          		  $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->pluck('id')->first();
-         		  if($feature_attibut_id){
+         		  if(isset($feature_attibut_id)){
          		  	return true;
          		  }else{
          		  	return false;
