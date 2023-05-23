@@ -14,7 +14,8 @@ class ProductFeture extends Model
         'sub_category_id',
         'features_id',
         'feature_attribute_id',
-        'value'
+        'value',
+        'type'
     ];
     public function feature_name(){
         return $this->belongsTo('App\Models\Feature', 'features_id','id');

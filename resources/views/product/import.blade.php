@@ -14,7 +14,17 @@ $url = getAuthGaurd();
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
 									<h4 class="card-title mg-b-0 mt-2 mb-2">Product Export</h4>
-									<a href='{{url("$url/product-sample-download")}}' class="btn btn-primary">Download Sample</a>
+                                    <div class="row">
+                                        <select class="form-control col-6" name="subcat" id="subcat">
+                                            <option value="">Select Sub Category</option>
+                                            @foreach($subcategory as $value)
+                                                <option value="{{$value['id']}}">{{$value['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                        &nbsp;
+    									<a href='javascript:void(0)' class="btn btn-primary col-5 download">Download</a>
+                                    </div>
+
 
 								</div>
 								
@@ -90,5 +100,12 @@ $url = getAuthGaurd();
             },
         });
     })  
+    $('.download').click(function(){
+        var subcat = $("#subcat").val();
+        if(subcat === ''){
+             notifyMsg("Please Select Subcategory",'error');
+        }
+        window.location.href = '{{url("$url/product-sample-download-subcat")}}'+'/'+subcat;
+    })
 
 	</script>

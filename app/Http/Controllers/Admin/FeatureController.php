@@ -8,6 +8,7 @@ use App\Models\FeatureAttribute;
 use Illuminate\Http\Request;
 use App\Http\Requests\admin\CreateFeatureRequest;
 use DataTables;
+use Illuminate\Support\Str;
 
 class FeatureController extends Controller
 {
@@ -104,9 +105,14 @@ class FeatureController extends Controller
 	{
 		//
 		$post = $request->input();
+		$trimmed = trim($post['name']); // Trims both ends
+
+		$res =  str_replace('', '_', $trimmed);
+      	$post['slug'] = Str::slug($res);
 				Feature::where('id',$post['id'])->update([
 					'name' => $post['name'],
-					'feature_type'=> $post['feature_type']
+					'feature_type'=> $post['feature_type'],
+					'slug' => $post['slug']
 				]);
 				foreach($post['feature_value'] as $key=>$value){
 						

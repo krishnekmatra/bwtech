@@ -43,6 +43,8 @@ class ShopController extends Controller
 		
 		$subCategory = $category['subCategory'];
 		//$brand = $category['brands'];
+
+		
 		
 		$brand = Product::with('feature_attributes')
 		->where('category_id',$cat_id)->where('status',1)->groupBy('feature_attribute_id')->get();

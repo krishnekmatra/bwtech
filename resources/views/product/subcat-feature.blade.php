@@ -10,6 +10,7 @@
 								@if($value['features_id'] == $features['featureName']['id'])
 								<input type="text" name="multiplefaeturesText[{{$features['featureName']['id']}}]" class="form-control" value="{{$value['value']}}"/>
 								@endif
+
 								@endforeach
 								@else
 								<input type="text" name="multiplefaeturesText[{{$features['featureName']['id']}}]" class="form-control"/>

@@ -21,12 +21,16 @@ use App\Rules\SubCategoryRule;
 use App\Rules\FeatureRule;
 use App\Rules\ImageRule;
 use App\Models\Category;
+use App\Models\SubCategoryFeature;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Illuminate\Support\Collection;
+
+use Maatwebsite\Excel\Concerns\ToCollection;
 
 
 
-class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsOnError, SkipsOnFailure, WithBatchInserts, WithChunkReading
+class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsOnError, SkipsOnFailure, WithBatchInserts, WithChunkReading,ToCollection
 {
     use SkipsErrors, Importable, SkipsFailures;
     /**
@@ -34,16 +38,17 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+   
      public function rules(): array
+    
     {
         return [
                  '*.name' => 'required|unique:products,name',
                 '*.category' => ['required',new CategoryRule],
                  '*.subcategory' => ['required',new SubCategoryRule],
-               //  '*.brand' => ['required',new FeatureRule],
-                 '*.image' => ['required',new ImageRule],
+                // '*.image' => ['required',new ImageRule],
                  '*.warrenty' => 'required|numeric',
-                '*.specification' => ['required',new FeatureRule]
+               // '*.specification' => ['required',new FeatureRule]
             ];
     }
      public function batchSize(): int
@@ -72,7 +77,11 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
         
         $subCategory_id =  SubCategory::where('name',$row['subcategory'])->pluck('id')->first(); 
 
-        $feature_attribute_id =  FeatureAttribute::where('name',$row['brand'])->pluck('id')->first(); 
+         $feature_attribute_id =  FeatureAttribute::where('name','EVM')->pluck('id')->first(); 
+
+        $SubCategoryFeature = SubCategoryFeature::with('featureName')->where('sub_category_id',$subCategory_id)->get();
+    
+
 
         $explode_image = explode('product/',$row['image']);
         if(isset($explode_image[1])){
@@ -88,8 +97,6 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
         }else{
             $status = 0;
         }
-        $specification = $row['specification'];
-        $explode = explode(',', $specification);
        
         $product = Product::create([
             //
@@ -106,21 +113,25 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
             'status' => $status,
             'created_by' => \Auth::guard(getAuthGaurd())->user()->id
            ]);
-            foreach($explode as $value){
-                $explode_type = explode(':',$value);
-                $feature_id =  Feature::where('name', $explode_type[0])->pluck('id')->first();
-                $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->pluck('id')->first();
-                
-                $products_feature = [
+         foreach($SubCategoryFeature as $value){
+            $feature_name = $value['featureName']['slug'];
+            $str = str_replace("-" , "_", $feature_name);
+            $feature_id =  Feature::where('name', $value['featureName']['name'])->first();
+            $feature_attibut_id = FeatureAttribute::where('name', $row[$str])->pluck('id')->first();
+            
+            $products_feature = [
                       'product_id' => $product->id,
                       'category_id' => $category_id,
                       'sub_category_id' => $subCategory_id,
-                      'features_id'=> $feature_id,
+                      'features_id'=> $feature_id['id'],
+
                       'feature_attribute_id' => ($feature_attibut_id ? $feature_attibut_id : NULL),
-                      'value' => ($feature_attibut_id ? NULL : $explode_type[1])
-                ];
-                ProductFeture::updateOrCreate($products_feature);
-            }
+                      'value' => ($feature_attibut_id ? NULL : $row[$str]),
+                      'type' => $feature_id['feature_type']
+            ];
+            ProductFeture::Create($products_feature);
+            
+        }
             
           
         }

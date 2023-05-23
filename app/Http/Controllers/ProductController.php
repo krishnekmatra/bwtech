@@ -14,6 +14,8 @@ use App\Models\Feature;
 use App\Models\UploadImage;
 use Response;
 use App\Imports\ImportProducts;
+use App\Exports\ExportSubcategoryFeature;
+
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\ProductFeture;
 
@@ -213,9 +215,9 @@ class ProductController extends Controller
 
 	public function subCategoryFeatures(Request $request){
 		if(@$request['product_id']){
-			$product_feature = ProductFeture::where('product_id',$request['product_id'])->where('value','=',null)->pluck('feature_attribute_id')->toArray();
+			$product_feature = ProductFeture::where('product_id',$request['product_id'])->where('type','select')->pluck('feature_attribute_id')->toArray();
 
-			$product_feature_text = ProductFeture::where('product_id',$request['product_id'])->where('value','!=',null)->select('features_id','value')->get()->toArray();
+			$product_feature_text = ProductFeture::where('product_id',$request['product_id'])->where('type','text')->select('features_id','value')->get()->toArray();
 
 		}else{
 			$product_feature = [];
@@ -311,14 +313,19 @@ class ProductController extends Controller
     }
 
 	}
-	public function ProductSampleDownload(Request $request){
-		$filename = 'product_upload.xlsx';
-		$filepath = public_path('downloads/' . $filename);
-		return Response::download($filepath);
+	public function ProductSampleDownload($id){
+		 $subcat = SubCategory::where('id',$id)->pluck('name')->first();
+		 return Excel::download(new ExportSubcategoryFeature($id), $subcat.'.xlsx');
+		// $SubCategoryFeature = SubCategoryFeature::where('SubCategoryFeature',$id)->get();
+		// print_r(SubCategoryFeature)
+		// $filename = 'product_upload.xlsx';
+		// $filepath = public_path('downloads/' . $filename);
+		// return Response::download($filepath);
 	}
 
 	public function ProductImport(){
-		  return view('product.import');
+		  $subcategory = SubCategory::get();
+		  return view('product.import',compact('subcategory'));
 	}
 
 	public function import(Request $request){

@@ -5,13 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\FeatureAttribute;
+use Illuminate\Support\Str;
+
 class Feature extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
-        'feature_type'
+        'feature_type',
+        'slug'
+
     ];
+    public function setNameAttribute($value){
+     $trimmed = trim($value); // Trims both ends
+
+        $res =  str_replace('', '_', $trimmed);
+      $this->attributes['name'] = $value;
+      $this->attributes['slug'] = Str::slug($res);
+    }
 
     //save feature
     public static function saveFeature($request) {
