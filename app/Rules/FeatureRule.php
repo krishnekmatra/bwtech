@@ -17,7 +17,7 @@ class FeatureRule implements Rule
 	public function __construct()
 	{
 		//
-		 $this->messagepass = '';
+		 $this->messagepass = [];
 	}
 
 	/**
@@ -36,17 +36,19 @@ class FeatureRule implements Rule
 		 $explode_type = explode(':',$valuefeature);
          $feature_id =  Feature::where('name',$explode_type[0])->first();
          if(isset($feature_id) && $feature_id['feature_type'] == 'select'){
-         		  $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->pluck('id')->first();
-         		  if($feature_attibut_id){
-         		  	return true;
-         		  }else{
-         		  	$this->messagepass = $explode_type[0]."This Feature Attribute Does not exist";
-         		  	return false;
+         		  $feature_attibut_id = FeatureAttribute::where('name', $explode_type[1])->first();
+         		  if($feature_attibut_id === null){
+         		  	$this->messagepass[] = $explode_type[1]."This Feature Attribute Does not exist";
          		  }
          }else{
-         	$this->messagepass = $explode_type[0]."This Feature Does not exist";
-        	return false;
+         	$this->messagepass[] = $explode_type[0]."This Feature Does not exist";
+        	//return false;
          }
+		}
+		if(!empty($this->messagepass)){
+			return false;
+		}else{
+			return true;
 		}
 		// $brand = FeatureAttribute::where('name',$value)->first();
 
