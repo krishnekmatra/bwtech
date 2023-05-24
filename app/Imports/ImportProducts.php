@@ -26,125 +26,122 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Support\Collection;
 
-use Maatwebsite\Excel\Concerns\ToCollection;
 
 
 
-class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsOnError, SkipsOnFailure, WithBatchInserts, WithChunkReading,ToCollection
+class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsOnError, SkipsOnFailure, WithBatchInserts, WithChunkReading
 {
-    use SkipsErrors, Importable, SkipsFailures;
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+	use SkipsErrors, Importable, SkipsFailures;
+	/**
+	* @param array $row
+	*
+	* @return \Illuminate\Database\Eloquent\Model|null
+	*/
    
-     public function rules(): array
-    
-    {
-        return [
-                 '*.name' => 'required|unique:products,name',
-                '*.category' => ['required',new CategoryRule],
-                 '*.subcategory' => ['required',new SubCategoryRule],
-                // '*.image' => ['required',new ImageRule],
-                 '*.warrenty' => 'required|numeric',
-               // '*.specification' => ['required',new FeatureRule]
-            ];
-    }
-     public function batchSize(): int
-    {
-        return 5;
-    }
-    
-    public function chunkSize(): int
-    {
-        return 5;
-    }
-     public function model(array $row)
-    {
-        return new Product([
-           'id' => $row[0]
-        ]);
-    }
+	 public function rules(): array
+	
+	{
+		return [
+				 '*.model_name' => 'required|unique:products,name',
+				'*.category' => ['required',new SubCategoryRule],
+				 '*.model_image' => ['required',new ImageRule],
+				 '*.warrenty' => 'required|numeric'
+			];
+	}
+	 public function batchSize(): int
+	{
+		return 2;
+	}
+	
+	public function chunkSize(): int
+	{
+		return 2;
+	}
+	 public function model(array $row)
+	{
+		return new Product([
+		   'id' => $row[0]
+		]);
+	}
    
-     public function onRow(Row $row)
-    {
-        $rowIndex = $row->getIndex();
-        $row      = $row->toArray();
-        if ($rowIndex != 1) {
-           
-        $category_id = Category::where('name',$row['category'])->pluck('id')->first();
-        
-        $subCategory_id =  SubCategory::where('name',$row['subcategory'])->pluck('id')->first(); 
+	 public function onRow(Row $row)
+	{
+		$rowIndex = $row->getIndex();
+		$row      = $row->toArray();
+		if ($rowIndex != 1) {
+		   
+		   $subCategory =  SubCategory::where('name',$row['category'])->first();
 
-         $feature_attribute_id =  FeatureAttribute::where('name','EVM')->pluck('id')->first(); 
+		  $category_id = $subCategory['category_id'];
+		  $subCategory_id = $subCategory['id'];
 
-        $SubCategoryFeature = SubCategoryFeature::with('featureName')->where('sub_category_id',$subCategory_id)->get();
-    
+		  $feature_attribute_id =  FeatureAttribute::where('name','EVM')->pluck('id')->first(); 
+		  $SubCategoryFeature = SubCategoryFeature::with('featureName')->where('sub_category_id',$subCategory_id)->get();
+	
 
 
-        $explode_image = explode('product/',$row['image']);
-        if(isset($explode_image[1])){
-          if (file_exists(public_path('product',$explode_image[1]))){
-            $image_name =  $explode_image[1];
-           
-          }else{
-            $image_name = '';
-          }
-        }
-        if(getAuthGaurd() == 'admin'){
-            $status = 1;
-        }else{
-            $status = 0;
-        }
-       
-        $product = Product::create([
-            //
-            'category_id' => $category_id,
-            'sub_category_id' => $subCategory_id,
-            'feature_attribute_id' => $feature_attribute_id,
-            'name'     => $row['name'],
-            'image'    => $image_name,
-            'price'    => $row['price'],
-            'mrp'      => $row['mrp'],
-            'maq'      => $row['moq'],
-            'warrenty' => $row['warrenty'],
-            'description' => $row['description'],
-            'status' => $status,
-            'created_by' => \Auth::guard(getAuthGaurd())->user()->id
-           ]);
-         foreach($SubCategoryFeature as $value){
-            $feature_name = $value['featureName']['slug'];
-            $str = str_replace("-" , "_", $feature_name);
-            $feature_id =  Feature::where('name', $value['featureName']['name'])->first();
-            $feature_attibut_id = FeatureAttribute::where('name', $row[$str])->pluck('id')->first();
-            
-            $products_feature = [
-                      'product_id' => $product->id,
-                      'category_id' => $category_id,
-                      'sub_category_id' => $subCategory_id,
-                      'features_id'=> $feature_id['id'],
+		$explode_image = explode('product/',$row['model_image']);
+		if(isset($explode_image[1])){
+		  if (file_exists(public_path('product',$explode_image[1]))){
+			$image_name =  $explode_image[1];
+		   
+		  }else{
+			$image_name = '';
+		  }
+		}
+		if(getAuthGaurd() == 'admin'){
+			$status = 1;
+		}else{
+			$status = 0;
+		}
+	   
+		$product = Product::create([
+			//
+			'category_id' => $category_id,
+			'sub_category_id' => $subCategory_id,
+			'feature_attribute_id' => $feature_attribute_id,
+			'name'     => $row['model_name'],
+			'image'    => $image_name,
+			'price'    => $row['price'],
+			'mrp'      => $row['mrp'],
+			'maq'      => $row['moq'],
+			'warrenty' => $row['warrenty'],
+			'description' => $row['description'],
+			'status' => $status,
+			'created_by' => \Auth::guard(getAuthGaurd())->user()->id
+		]);
+		
+		foreach($SubCategoryFeature as $value){
+			$feature_name = $value['featureName']['slug'];
+			$str = str_replace("-" , "_", $feature_name);
+			$feature_id =  Feature::where('name', $value['featureName']['name'])->first();
+			$feature_attibut_id = FeatureAttribute::where('name', $row[$str])->pluck('id')->first();
+			
+			$products_feature = [
+					  'product_id' => $product->id,
+					  'category_id' => $category_id,
+					  'sub_category_id' => $subCategory_id,
+					  'features_id'=> $feature_id['id'],
 
-                      'feature_attribute_id' => ($feature_attibut_id ? $feature_attibut_id : NULL),
-                      'value' => ($feature_attibut_id ? NULL : $row[$str]),
-                      'type' => $feature_id['feature_type']
-            ];
-            ProductFeture::Create($products_feature);
-            
-        }
-            
-          
-        }
+					  'feature_attribute_id' => ($feature_attibut_id ? $feature_attibut_id : NULL),
+					  'value' => ($feature_attibut_id ? NULL : $row[$str]),
+					  'type' => $feature_id['feature_type']
+			];
+			ProductFeture::Create($products_feature);
+			
+		}
+			
+		  
+		}
 
-        return;
-        //return response()->json(['success' => $rec_id]); 
+		return;
 
-        
-    }
+		
+	}
 
-    public function startRow(): int
-    {
-        return 2;
-    }
+	public function startRow(): int
+	{
+		return 2;
+	}
 }
-    
+	

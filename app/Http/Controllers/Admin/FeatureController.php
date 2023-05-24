@@ -19,6 +19,7 @@ class FeatureController extends Controller
 	 */
 	public function index(Request $request)
 	{
+		
 			if ($request->ajax()) {
 					$data = Feature::getFeatures();
 					return Datatables::of($data)

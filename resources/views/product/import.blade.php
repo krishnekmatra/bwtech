@@ -39,7 +39,7 @@ $url = getAuthGaurd();
 			<input id="file" type="file" name="file" class="form-control">
 		</div>
 		
-		<button class="btn btn-success" type="submit">Import File</button>
+		<button class="btn btn-success" type="submit">Import File</span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
 	</form>
 							</div>
 						</div>
@@ -53,7 +53,7 @@ $url = getAuthGaurd();
         $('.error').text('');
         e.preventDefault()
         let formValue = new FormData(this);
-
+         $(".loading").show();
         $.ajax({
            
             type: "post",
@@ -71,6 +71,7 @@ $url = getAuthGaurd();
                     },2500);
                 } else {
                    if(response.type == 'bulk_upload'){
+                     $(".loading").hide();
                         $("#validation-errors").show();
                         let errorLi = '<ul>';
 
@@ -86,6 +87,7 @@ $url = getAuthGaurd();
 
 
                      }else{
+                         $(".loading").hide();
                         $("#validation-errors").hide();
                         notifyMsg(response.message,'error');
                      }
@@ -104,6 +106,7 @@ $url = getAuthGaurd();
         var subcat = $("#subcat").val();
         if(subcat === ''){
              notifyMsg("Please Select Subcategory",'error');
+             return false;
         }
         window.location.href = '{{url("$url/product-sample-download-subcat")}}'+'/'+subcat;
     })
