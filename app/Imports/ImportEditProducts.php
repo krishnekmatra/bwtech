@@ -53,7 +53,7 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
         return [
                 '*.product_id' => 'required',
                  '*.model_name' => 'required',
-                // '*.model_image' => ['required',new ImageRule],
+                 '*.model_image' => ['required',new ImageRule],
                  '*.warrenty' => 'required|numeric'
             ];
     }

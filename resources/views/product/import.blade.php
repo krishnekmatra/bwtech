@@ -55,7 +55,7 @@ $url = getAuthGaurd();
 									<div class="col-6 mt-2 showCategory" style="display:none">
 										<div class="form-group mg-b-0">
 											<label for="file">Category:</label>
-											<select name="product_subcategory_id" id="product_subcategory_id" class="form-control" required data-parsley-required-message="Please select subcategory">
+											<select name="product_subcategory_id" id="product_subcategory_id" class="form-control"  data-parsley-required-message="Please select subcategory">
 												<option value="">Select  Category</option>
 											@foreach($subcategory as $value)
 												<option value="{{$value['id']}}">{{$value['name']}}</option>
