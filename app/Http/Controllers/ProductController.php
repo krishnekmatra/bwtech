@@ -122,8 +122,42 @@ class ProductController extends Controller
 					}
 				}
 			 	$image = uploadImage('product',$request->image);
-		    $request['image'] = $image;
+		    	$request['image'] = $image;
 			}
+			if($request->file('image1')){
+				if($request['id']){
+
+				$image_path = public_path("product/".$request['old_image1']);  // Value is not URL but directory file path
+					if(\File::exists($image_path)) {
+    					\File::delete($image_path);
+					}
+				}
+			 	$image = uploadImage('product',$request->image1);
+		    	$request['image1'] = $image;
+			}
+			if($request->file('image2')){
+				if($request['id']){
+
+				$image_path = public_path("product/".$request['old_image2']);  // Value is not URL but directory file path
+					if(\File::exists($image_path)) {
+    					\File::delete($image_path);
+					}
+				}
+			 	$image = uploadImage('product',$request->image2);
+		    	$request['image2'] = $image;
+			}
+			if($request->file('image3')){
+				if($request['id']){
+
+				$image_path = public_path("product/".$request['old_image3']);  // Value is not URL but directory file path
+					if(\File::exists($image_path)) {
+    					\File::delete($image_path);
+					}
+				}
+			 	$image = uploadImage('product',$request->image3);
+		    	$request['image3'] = $image;
+			}
+
 		 	if($request['id']){
 		 		if($request['image_url']){
 		 			$explode_image = explode('product/',$request['image_url']);
@@ -296,8 +330,8 @@ class ProductController extends Controller
 	public function saveImage(Request $request){
 		 if ($request->hasfile('files')) {
 		 	$image = $request->file('files');
-     	$imageName = time() . rand(11111, 99999) . '.' . $image->getClientOriginalExtension();
-  		$destination = public_path() . '/'.'product';
+     	    $imageName = time() . rand(11111, 99999) . '.' . $image->getClientOriginalExtension();
+  			$destination = public_path() . '/'.'product';
 
 		  //check directory avilable
 		  if (!is_dir($destination)) {

@@ -26,6 +26,13 @@
 									@if(@$product)
 										<input type="hidden" name="id" value="{{@$product['id']}}" id="product_id">
 										<input type="hidden" name="old_image" value="{{@$product['image']}}">
+
+										<input type="hidden" name="old_image1" value="{{@$product['image1']}}">
+
+										<input type="hidden" name="old_image2" value="{{@$product['image1']}}">
+
+										<input type="hidden" name="old_image3" value="{{@$product['image3']}}">
+
 									@endif
 									<div class="row row-sm">
 										<div class="col-6">
@@ -42,6 +49,39 @@
 												<div class="custom-file">
 
 													<input class="custom-file-input" id="customFile" type="file" name="image" {{@$required}} data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
+												</div>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Image1: <span class="tx-danger">*</span></label>
+												<div class="custom-file">
+
+													<input class="custom-file-input" id="customFile" type="file" name="image1"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
+												</div>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Image2: <span class="tx-danger">*</span></label>
+												<div class="custom-file">
+
+													<input class="custom-file-input" id="customFile" type="file" name="image2"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
+												</div>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+										
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Image3: <span class="tx-danger">*</span></label>
+												<div class="custom-file">
+
+													<input class="custom-file-input" id="customFile" type="file" name="image3"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
 												</div>
 												<span class="text-danger" id="name_error"></span>
 											</div>
