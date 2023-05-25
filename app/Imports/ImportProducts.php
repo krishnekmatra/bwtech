@@ -115,7 +115,7 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 			$feature_name = $value['featureName']['slug'];
 			$str = str_replace("-" , "_", $feature_name);
 			$feature_id =  Feature::where('name', $value['featureName']['name'])->first();
-			$feature_attibut_id = FeatureAttribute::where('name', $row[$str])->pluck('id')->first();
+			$feature_attibut_id = FeatureAttribute::where('name', $row[$str])->where('feature_id',$feature_id['id'])->pluck('id')->first();
 			
 			$products_feature = [
 					  'product_id' => $product->id,

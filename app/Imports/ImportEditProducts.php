@@ -116,7 +116,7 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
             $str = str_replace("-" , "_", $feature_name);
 
             $feature_id =  Feature::where('name', $value['featureName']['name'])->first();
-            $feature_attibut_id = FeatureAttribute::where('name', $row[$str])->pluck('id')->first();
+            $feature_attibut_id = FeatureAttribute::where('name', $row[$str])->where('feature_id',$feature_id['id'])->pluck('id')->first();
              $matche = [
                     'product_id' => $product_id,
                     'category_id' => $value['category_id'],
