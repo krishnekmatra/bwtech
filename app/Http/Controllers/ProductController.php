@@ -338,7 +338,7 @@ class ProductController extends Controller
      \DB::beginTransaction();
 		try{
 			if($request->type == 'edit' ){
-				$import = new ImportEditProducts;
+				$import = new ImportEditProducts($request->product_subcategory_id);
 			}else{
 				$import = new ImportProducts;
 			}

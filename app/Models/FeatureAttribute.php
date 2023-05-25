@@ -13,7 +13,7 @@ class FeatureAttribute extends Model
         'feature_id'
     ];
      public function featuresName(){
-        return $this->belongsTo('App\Models\Feature', 'features_id','id');
+        return $this->belongsTo('App\Models\Feature', 'feature_id','id');
     }
 
 }
