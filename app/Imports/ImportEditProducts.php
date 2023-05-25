@@ -25,8 +25,6 @@ use App\Models\SubCategoryFeature;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Support\Collection;
-use InvalidInputException;
-use Illuminate\Validation\Factory as Validator;
 
 
 
@@ -41,16 +39,15 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
     */
     protected  $product_subcategory_id;
     protected $SubCategoryFeature ;
-    protected $validator;
     
-    public function __construct($id,Validator $validator)
+    public function __construct($id)
     {
         $this->product_subcategory_id = $id;
         $this->SubCategoryFeature = SubCategoryFeature::with('featureName')->where('sub_category_id',$this->product_subcategory_id)->get();
     
     }
     
-     public function rules($id): array
+     public function rules(): array
     
     {
         return [
@@ -60,12 +57,7 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
                  '*.warrenty' => 'required|numeric'
             ];
     }
-    public function validate(array $input, $id = 0)
-    {
-        $validator = $this->validator->make($input, $this->rules($id));
-        
-        if($validator->fails()) throw new InvalidInputException();
-    }
+    
      public function batchSize(): int
     {
         return 2;
