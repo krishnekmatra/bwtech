@@ -81,8 +81,16 @@ input:checked + .slider:before {
 										<a href='javascript:void(0)' class="btn btn-danger inactivebtn">InActive</a>
 									</span>
 									<a href='{{url("$url/product-import")}}' class="btn btn-primary">Product Import</a>
+
 									<a href='{{url("$url/product/add")}}' class="btn btn-primary">Add Product</a>
 									<a href='{{url("$url/product/image")}}' class="btn btn-primary">Upload Image</a>
+									<a class="export btn  btn-primary"  style="display:none" onclick="submitForm()">Export
+									<form id="editProductExport"  method="POST" action='{{url("$url/ProductEditExport")}}'  style="display: none;">
+										@csrf
+										<input type="hidden" name="product_export_id" id="product_export_id">
+										<input type="hidden" name="product_subcategory_id" id="product_subcategory_id">
+								</form>
+								</a>
 								</div>
 								</div>
 								
@@ -112,7 +120,7 @@ input:checked + .slider:before {
 	$(function() {
 		getTable();
 	});
-	
+
 		$(".activeinactive").on('click',".activebtn",function(e){
 			setActiveInactiveProduct(1,'Active');
 		});
@@ -137,6 +145,7 @@ input:checked + .slider:before {
 			        if (response.success) {
 			        	notifyMsg(response.message,'success');
 			        	 $(".activeinactive").hide();
+
 			            table.ajax.reload(null, false);
 
 			        } else {
@@ -174,24 +183,48 @@ input:checked + .slider:before {
     		if(!ischecked){
     			   	if(($('activeinactive')).length == 0){
 	 							$('.activeinactive').hide();
+	 							 $(".export").hide();
 	 						}
     		} else{
     			checkedVal.push($(this).val());
     					if(!$('.activeinactive').show()){
     						$('.activeinactive').show();
+    						$('.export').show();
     					}
     		}
+    		var array = checkedVal.join(',');
+    		$("#product_export_id").val(array);
     		
 	});
-
+	function submitForm(){
+		let product_subcategory_id = $("#product_subcategory_id").val();
+		if(product_subcategory_id === ''){
+			notifyMsg("Please select Category",'error');
+			return false;
+		}
+		var productCheckedVal = []
+		$('input:checkbox.activeproducts:checked').each(function () {
+			productCheckedVal.push(this.value);
+		});
+		var array = productCheckedVal.join(',');
+		if(array === ''){
+			notifyMsg("Please select at least one product",'error');
+			return false;
+		}
+	 	$("#product_export_id").val(array);
+	 	document.getElementById('editProductExport').submit();
+ }
 $("#product-list").on('change',".allCheckbox",function(e){
 	
 	 if (!$(this).prop("checked")) {
 	 	$('.activeinactive').hide();
+	 	$('.export').hide();
 	 }else{
 	 	$('.activeinactive').show();
+	 		$('.export').show();
 	 }
 	$(".activeproducts").attr('checked', this.checked);
+
 
 });
 
@@ -259,6 +292,8 @@ $('#product-list').on('click', '.changestaus', function(){
 	
 	});
    $('#category').on('change', function() {
+   	var cat_id =  $('#category').val();
+   	$("#product_subcategory_id").val(cat_id);
    		table.ajax.reload(null, false);
    });
 	function getTable() {

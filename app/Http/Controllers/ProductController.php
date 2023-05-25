@@ -14,6 +14,9 @@ use App\Models\Feature;
 use App\Models\UploadImage;
 use Response;
 use App\Imports\ImportProducts;
+use App\Imports\ImportEditProducts;
+
+use App\Exports\ProductEditExport;
 use App\Exports\ExportSubcategoryFeature;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -316,11 +319,12 @@ class ProductController extends Controller
 	public function ProductSampleDownload($id){
 		 $subcat = SubCategory::where('id',$id)->pluck('name')->first();
 		 return Excel::download(new ExportSubcategoryFeature($id), $subcat.'.xlsx');
-		// $SubCategoryFeature = SubCategoryFeature::where('SubCategoryFeature',$id)->get();
-		// print_r(SubCategoryFeature)
-		// $filename = 'product_upload.xlsx';
-		// $filepath = public_path('downloads/' . $filename);
-		// return Response::download($filepath);
+	}
+
+	public function ProductEditExport(Request $request){
+
+		 return Excel::download(new ProductEditExport($request->input()),'test.xlsx');
+
 	}
 
 	public function ProductImport(){
@@ -330,9 +334,15 @@ class ProductController extends Controller
 
 	public function import(Request $request){
 	//	Excel::import(new ImportProducts, request()->file('file'));
+		
      \DB::beginTransaction();
 		try{
-			$import = new ImportProducts;
+			if($request->type == 'edit' ){
+				$import = new ImportEditProducts;
+			}else{
+				$import = new ImportProducts;
+			}
+
 			$import->import($request->file);
 
 			if ($import->failures()->isNotEmpty()) {
@@ -360,6 +370,8 @@ class ProductController extends Controller
 		}
       // return back();
 	}
+
+
 
 	public function productImageRemove(Request $request){
 		$UploadImage = UploadImage::find($request->id);

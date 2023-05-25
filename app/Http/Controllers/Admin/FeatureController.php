@@ -26,7 +26,7 @@ class FeatureController extends Controller
 						->addColumn('action', function($row){
 							$url = url('admin/feature/edit/'.$row->id);
 							$btn = '<a href="'.$url.'" class="edit btn btn-danger btn-sm text-white">Edit</a>&nbsp;&nbsp;';
-							$btn.= '<a href="javascript:void(0)" class="delete btn btn-danger btn-sm text-white" data-id="'.$row->id.'">Delete</a>';
+							$btn.= '<a href="javascript:void(0)" class="deleteFeature btn btn-danger btn-sm text-white" data-id="'.$row->id.'">Delete</a>';
 
 							return $btn;
 					 })

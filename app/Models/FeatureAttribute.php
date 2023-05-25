@@ -12,5 +12,8 @@ class FeatureAttribute extends Model
         'name',
         'feature_id'
     ];
+     public function featuresName(){
+        return $this->belongsTo('App\Models\Feature', 'features_id','id');
+    }
 
 }

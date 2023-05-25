@@ -91,6 +91,9 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 		//exportdata
+		Route::post('ProductEditExport',[ProductController::class,'ProductEditExport'])->name(
+			'ProductEditExport');
+
 		Route::get('product-sample-download-subcat/{id}',[ProductController::class,'ProductSampleDownload'])->name('Productsamplesownload');
 		Route::get('product-import',[ProductController::class,'ProductImport'])->name('Productimport"');
 		Route::post('product/changeStatus',[ProductController::class,'changeStatus'])->name('product.changeStatus');
