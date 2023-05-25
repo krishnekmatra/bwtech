@@ -89,6 +89,42 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 			$image_name = '';
 		  }
 		}
+
+		$explode_image1 = explode('product/',$row['model_imag1']);
+        if(isset($explode_image1[1])){
+          if (file_exists(public_path('product',$explode_image1[1]))){
+            $image_name1 =  $explode_image1[1];
+           
+          }else{
+            $image_name1 = '';
+          }
+        }else{
+           $image_name1 = '';	
+        }
+
+        $explode_image2 = explode('product/',$row['model_imag2']);
+        if(isset($explode_image1[1])){
+          if (file_exists(public_path('product',$explode_image2[1]))){
+            $image_name2 =  $explode_image2[1];
+           
+          }else{
+            $image_name2 = '';
+          }
+        }else{
+        	$image_name2 = '';
+        }
+
+        $explode_image3 = explode('product/',$row['model_imag3']);
+        if(isset($explode_image3[1])){
+          if (file_exists(public_path('product',$explode_image3[1]))){
+            $image_name3 =  $explode_image3[1];
+           
+          }else{
+            $image_name3 = '';
+          }
+        }else{
+        	$image_name3 = '';
+        }
 		if(getAuthGaurd() == 'admin'){
 			$status = 1;
 		}else{
@@ -102,6 +138,9 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 			'feature_attribute_id' => $feature_attribute_id,
 			'name'     => $row['model_name'],
 			'image'    => $image_name,
+			'image1'    => $image_name1,
+            'image2'    => $image_name2,
+            'image3'    => $image_name3,
 			'price'    => $row['price'],
 			'mrp'      => $row['mrp'],
 			'maq'      => $row['moq'],
