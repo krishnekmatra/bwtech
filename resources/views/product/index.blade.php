@@ -76,6 +76,13 @@ input:checked + .slider:before {
 									<h4 class="card-title mg-b-0 mt-2 mb-2">Product</h4>
 									<div style="float: right;">
 									<span class="activeinactive" style="display:none">
+										<a class="export btn  btn-primary"  style="display:none;color:#fff" onclick="submitForm()">Export
+											<form id="editProductExport"  method="POST" action='{{url("$url/ProductEditExport")}}'  style="display: none;">
+												@csrf
+												<input type="hidden" name="product_export_id" id="product_export_id">
+												<input type="hidden" name="product_subcategory_id" id="product_subcategory_id">
+										</form>
+										</a>
 										<a href='javascript:void(0)' class="btn btn-success activebtn">Active</a>
 
 										<a href='javascript:void(0)' class="btn btn-danger inactivebtn">InActive</a>
@@ -84,13 +91,7 @@ input:checked + .slider:before {
 
 									<a href='{{url("$url/product/add")}}' class="btn btn-primary">Add Product</a>
 									<a href='{{url("$url/product/image")}}' class="btn btn-primary">Upload Image</a>
-									<a class="export btn  btn-primary"  style="display:none" onclick="submitForm()">Export
-									<form id="editProductExport"  method="POST" action='{{url("$url/ProductEditExport")}}'  style="display: none;">
-										@csrf
-										<input type="hidden" name="product_export_id" id="product_export_id">
-										<input type="hidden" name="product_subcategory_id" id="product_subcategory_id">
-								</form>
-								</a>
+									
 								</div>
 								</div>
 								
@@ -180,22 +181,23 @@ input:checked + .slider:before {
 
 		$("#product-list").on('change',".activeproducts",function(e){
     	 var ischecked= $(this).is(':checked');
-    		if(!ischecked){
-    			   	if(($('activeinactive')).length == 0){
-	 							$('.activeinactive').hide();
-	 							 $(".export").hide();
-	 						}
-    		} else{
-    			checkedVal.push($(this).val());
-    					if(!$('.activeinactive').show()){
-    						$('.activeinactive').show();
-    						$('.export').show();
-    					}
+    		if(ischecked){
+    			   checkedVal.push($(this).val());
+    		}else{
+    			    var index = checkedVal.indexOf($(this).val());
+							checkedVal.splice(index, 1);
     		}
     		var array = checkedVal.join(',');
     		$("#product_export_id").val(array);
     		
 	});
+	if(checkedVal.length == 0){
+    				$('.activeinactive').hide();
+    				$('.export').hide();
+  }else{
+    				$('.activeinactive').show();
+    				$('.export').show();
+  }	
 	function submitForm(){
 		let product_subcategory_id = $("#product_subcategory_id").val();
 		if(product_subcategory_id === ''){
@@ -292,9 +294,12 @@ $('#product-list').on('click', '.changestaus', function(){
 	
 	});
    $('#category').on('change', function() {
+$("#product-list .allCheckbox").prop("checked",true);
+
    	var cat_id =  $('#category').val();
    	$("#product_subcategory_id").val(cat_id);
    		table.ajax.reload(null, false);
+
    });
 	function getTable() {
 		table = $('#product-list').DataTable({
