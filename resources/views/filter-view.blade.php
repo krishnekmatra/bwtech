@@ -60,44 +60,10 @@
 									</div>
 								</div>
 								<!-- End of Collapsible Widget -->
-
-
-								<!-- Start of Collapsible Widget -->
-								@if(@$brand)
-								<div class="widget widget-collapsible">
-									<h3 class="widget-title"><label>Brand</label></h3>
-									<ul class="widget-body filter-items item-check mt-1 brand-item">
-										@foreach($brand as $val)
-										@if(@$val['feature_attributes'])
-												<li data-id="{{$val['feature_attributes']['id']}}"><a href="javascript:void(0)">{{$val['feature_attributes']['name']}}</a></li>
-										@endif
-										@endforeach
-									</ul>
-								</div>
-								@endif
-								<!-- End of Collapsible Widget -->
-								<div class="widget widget-collapsible">
-									<h3 class="widget-title"><label>Minimum qty</label></h3>
-									<ul class="widget-body filter-items item-check qty-item">
-										<li data-minqty="1" data-maxqty="50"><a href="#">Under 50</a></li>
-										<li data-minqty="50" data-maxqty="100"><a href="#">50-100</a></li>
-										<li data-minqty="100" data-maxqty="150"><a href="#">100-150</a></li>
-										<li data-maxqty="150" data-minqty="0" data-maxqty="100"><a href="#">150 & up</a></li>
-									</ul>
-								</div>
-
-								<!-- Start of Collapsible Widget -->
-								<div class="widget widget-collapsible">
-									<h3 class="widget-title"><label>Warranty</label></h3>
-									<ul class="widget-body filter-items item-check warranty-item">
-										<li data-value="0"><a href="#">No Warranty</a></li>
-										<li data-value="1"><a href="#">1 year</a></li>
-										<li data-value="2"><a href="#">2 years</a></li>
-										<li data-value="3"><a href="#">3 years</a></li>
-										<li data-value="4"><a href="#">4 years</a></li>
-										<li data-value="5"><a href="#">5 years</a></li>
-									</ul>
-								</div>
+								
+							
+								
+								
 								<!-- End of Collapsible Widget -->
 							</div>
 							<!-- End of Sidebar Content -->

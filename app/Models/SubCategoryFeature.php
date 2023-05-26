@@ -26,4 +26,5 @@ class SubCategoryFeature extends Model
 	  public function featuresAttribute(){
 			return $this->hasMany('App\Models\FeatureAttribute');
 	 }
+	
 }

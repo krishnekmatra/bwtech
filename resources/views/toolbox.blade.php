@@ -12,6 +12,14 @@
                                         <option value="mrp" data-order="desc">Sort by price: high to low</option>
                                     </select>
                                 </div>
+                                <div class="toolbox-item toolbox-sort select-box text-dark ml-2">
+                                    <select name="filterBy" class="form-control" id="filterBy">
+                                        <option value="" selected>Select Filter</option>
+                                        <option value="basic" data-hide="advance"   >Basic Filter</option>
+                                        <option value="advance"  data-hide="bascic">Advance Filter</option>
+                                        
+                                    </select>
+                                </div>
                             </div>
                             <div class="toolbox-right">
                                 <div class="toolbox-item toolbox-show select-box mr-0">
@@ -24,3 +32,54 @@
                                 
                             </div>
                         </nav>
+                        <div class="row mb-4 basicDiv" style="display:none">
+                            @if(@$features)
+                                @foreach($features as $val)
+                                @if($val['featureName']['search_type'] == 'basic')
+                                <div class="col-md-3">
+                                    <h6>{{$val['featureName']['name']}}</h6>
+                                    @if($val['featureName']['FeatureAttributes'])
+                                    <ul class="widget-body filter-items item-check mt-1 feature-item">
+                                            @foreach($val['featureName']['FeatureAttributes'] as $attribute)
+                                            <li data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            @endforeach
+                                    </ul>
+                                    @endif
+                                </div>
+                                @endif
+                                @endforeach
+                                @endif
+
+                        </div>
+                        <div class="row mt-3 advanceDiv" style="display:none">
+                            @if(@$features)
+                                @foreach($features as $val)
+                                @if($val['featureName']['search_type'] == 'advance')
+                                <div class="col-md-3">
+                                    <h6>{{$val['featureName']['name']}}</h6>
+                                    @if($val['featureName']['FeatureAttributes'])
+                                    <ul class="widget-body filter-items item-check mt-1 feature-item">
+                                            @foreach($val['featureName']['FeatureAttributes'] as $attribute)
+                                            <li data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            @endforeach
+                                    </ul>
+                                    @endif
+                                </div>
+                                @endif
+                                @endforeach
+                                @endif
+
+                        </div>
+                        <hr/>
+<script type="text/javascript">
+    $("#filterBy").change(function(){
+        var id = $("#filterBy").val();
+        if(id == 'advance'){
+            $(".advanceDiv").show();
+             $(".basicDiv").hide();
+        }else{
+             $(".advanceDiv").hide();
+             $(".basicDiv").show();
+        }
+    })
+</script>

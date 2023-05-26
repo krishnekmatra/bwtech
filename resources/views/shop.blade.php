@@ -21,6 +21,12 @@
 
 					<!-- Start of Main Content -->
 					<div class="main-content">
+						<!-- Start of Collapsible Widget -->
+								<div class="widget widget-collapsible">
+									<h3 class="widget-title"><label>Price</label></h3>
+									<div class="widget-body">
+									
+
 						  @include('toolbox')
 						<div id="tag_container">
 							@include('presult')
@@ -53,7 +59,7 @@
   var sort_by = 'created_at';
   var order_by = 'desc';
   var cat_id  = $("#cat_id").val();
-	$('.brand-item li').click(function(e){
+	$('.feature-item li').click(function(e){
 		event.preventDefault();
       
 		var id = $(this).attr('data-id');
@@ -65,6 +71,7 @@
 		}else{
 				brand_array.push(id);		
 		}
+		console.log(brand_array);
 		getData(page_count);
   });
 

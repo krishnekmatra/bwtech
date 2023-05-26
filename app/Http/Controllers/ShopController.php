@@ -45,16 +45,18 @@ class ShopController extends Controller
 		//$brand = $category['brands'];
 
 		
+		// $features = SubCategoryFeature::with('featureName.FeatureAttributes')->whereHas('featureName',function($q){
+		// 	$q->where('search_type','basic');
+		// })
+		$features = SubCategoryFeature::with('featureName.FeatureAttributes')->where('category_id',$cat_id)->groupBy('feature_id')->get();
 		
-		$brand = Product::with('feature_attributes')
-		->where('category_id',$cat_id)->where('status',1)->groupBy('feature_attribute_id')->get();
 
     	
 		$product = Product::where('category_id',$cat_id)->where('status',1);
 		$product=$product->orderBy('created_at','desc')->paginate(12);
 		
 		
-		return view ('shop',compact('cat_id','subCategory','brand','cat_name','product','cat_slug','select_cat_id'));
+		return view ('shop',compact('cat_id','subCategory','features','cat_name','product','cat_slug','select_cat_id'));
 	}
     
     public function filterResult(Request $request){
@@ -69,25 +71,26 @@ class ShopController extends Controller
     		$product->where('sub_category_id',$request['sub_cat_id']);
     	}
 
+    
     	if($request['brand_array']){
-    		$product->whereIn('feature_attribute_id',$request['brand_array']);
+    		$array = $request['brand_array'];
+    		$product->where(function($q) use($array) {
+				$q->whereHas('productFeatures', function ($query) use ($array) {
+					$query->whereIn('feature_attribute_id',$array);
+				 });
+			});
+		
+    		//$product->whereIn('feature_attribute_id',$request['brand_array']);
     	}
 
-    	if($request['warranty']){
-    		$product->where('warrenty',$request['warranty']);
-    	}
+
+    
 
     	if($request['min_price'] > 0 && $request['max_price']  > 0)
         {
             $product->whereBetween('price', [$request['min_price'] , $request['max_price'] ]);
         }
-        if($request['min_qty'] > 0 && $request['max_qty']  > 0)
-        {
-            $product->whereBetween('maq', [$request['min_qty'] , $request['max_qty'] ]);
-        }
-        if($request['max_qty'] == 150) {
-        	 $product->where('maq','>=',$request['max_qty']);
-        }
+       
         if($request['max_price'] == 5000){
         	$product->where('price','>=',$request['max_price']);
         }
