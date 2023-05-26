@@ -13,7 +13,8 @@ class Feature extends Model
     protected $fillable = [
         'name',
         'feature_type',
-        'slug'
+        'slug',
+        'search_type'
 
     ];
     public function setNameAttribute($value){
@@ -34,7 +35,8 @@ class Feature extends Model
         }
         $feature = Feature::create([
             'name' => $request['name'],
-            'feature_type' => $request['feature_type']
+            'feature_type' => $request['feature_type'],
+            'search_type' => $request['search_type']
         ]);
         if($request['feature_value']){
             foreach($request['feature_value'] as $key=>$value){

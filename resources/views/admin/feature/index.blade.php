@@ -55,7 +55,8 @@ $url = getAuthGaurd();
         			}
         	},
             {data: 'name', name: 'name','title' : 'Name'},
-             {data: 'feature_type', name: 'feature_type','title' : 'Type'},
+            {data: 'feature_type', name: 'feature_type','title' : 'Type'},
+            {data: 'search_type', name: 'search_type','title' : 'Search Type'},
             {data: 'action', name: 'action', orderable: false, searchable: false,title:'action'},
      ]
 	});

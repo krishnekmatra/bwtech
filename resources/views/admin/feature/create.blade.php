@@ -64,13 +64,24 @@
 											</div>
 										</div>
 
-										<div class="col-6">
+										<div class="col-3">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Type: <span class="tx-danger">*</span></label>
 												<select class="form-control" name="feature_type" required="required" id="feature_type">
 													<option value="">Select Type</option>
-													<option value="text" {{(@$feature->name == 'text' ? 'selected':'')}}>Text</option>
-													<option value="select"  {{(@$feature->name == 'select' ? 'selected':'')}}>select</option>
+													<option value="text">Text</option>
+													<option value="select">select</option>
+												</select>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+										<div class="col-3">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Search Type: <span class="tx-danger">*</span></label>
+												<select class="form-control" name="feature_type" required="required" id="search_type">
+													<option value="">Select Search Type</option>
+													<option value="basic">Basic</option>
+													<option value="advance">Advance</option>
 												</select>
 												<span class="text-danger" id="name_error"></span>
 											</div>

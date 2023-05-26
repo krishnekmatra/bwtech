@@ -56,14 +56,14 @@
                   	<input name="id" type="hidden" value="{{@$feature->id}}">
                   @endif
 									<div class="row row-sm">
-										<div class="col-6">
+										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Name: <span class="tx-danger">*</span></label>
 												<input class="form-control" name="name" placeholder="Enter Name" required="required" id="name" type="text" data-parsley-required-message="Please enter your name" value="{{@$feature['name']}}">
 												<span class="text-danger" id="name_error"></span>
 											</div>
 										</div>
-										<div class="col-6">
+										<div class="col-4">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Type: <span class="tx-danger">*</span></label>
 												<select class="form-control" name="feature_type" required="required" id="feature_type">
@@ -71,6 +71,18 @@
 													    <option value="text" {{ $feature->feature_type == 'text' ? 'selected' : '' }}>Text</option>
 													      <option value="select" {{ $feature->feature_type == 'select' ? 'selected' : '' }}>Select</option>
 
+												</select>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+
+											<div class="col-4">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Search Type: <span class="tx-danger">*</span></label>
+												<select class="form-control" name="search_type" required="required" id="search_type">
+													<option value="">Select Search Type</option>
+													<option value="basic" {{ $feature->search_type == 'basic' ? 'selected' : '' }}>Basic</option>
+													<option value="advance" {{ $feature->search_type == 'advance' ? 'selected' : '' }}>Advance</option>
 												</select>
 												<span class="text-danger" id="name_error"></span>
 											</div>

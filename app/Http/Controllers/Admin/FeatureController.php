@@ -113,7 +113,8 @@ class FeatureController extends Controller
 				Feature::where('id',$post['id'])->update([
 					'name' => $post['name'],
 					'feature_type'=> $post['feature_type'],
-					'slug' => $post['slug']
+					'slug' => $post['slug'],
+					'search_type' => $post['search_type']
 				]);
 				foreach($post['feature_value'] as $key=>$value){
 						
