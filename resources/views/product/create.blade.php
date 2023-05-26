@@ -112,6 +112,20 @@
 										@endif
 										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
+												<label class="form-label">Supplier Model: <span class="tx-danger">*</span></label>
+												<input class="form-control" name="supplier_model" placeholder="Enter Supplier Model" required="required" id="supplier_model" type="text" data-parsley-required-message="Please enter your price" value="{{@$product['supplier_model']}}">
+												<span class="text-danger" id="price_error"></span>
+											</div>
+										</div>
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Bw Model: <span class="tx-danger">*</span></label>
+												<input class="form-control" name="bw_model" placeholder="Enter Bw Model" required="required" id="bw_model" type="text" data-parsley-required-message="Please enter your price" value="{{@$product['bw_model']}}">
+												<span class="text-danger" id="price_error"></span>
+											</div>
+										</div>
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
 												<label class="form-label">Price: <span class="tx-danger">*</span></label>
 												<input class="form-control" name="price" placeholder="Enter Price" required="required" id="price" type="text" data-parsley-required-message="Please enter your price" value="{{@$product['price']}}">
 												<span class="text-danger" id="price_error"></span>

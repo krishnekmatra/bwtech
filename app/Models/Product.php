@@ -26,7 +26,9 @@ class Product extends Model
 		'created_by',
 		'feature_attribute_id',
 		'status',
-		'slug'
+		'slug',
+        'supplier_model',
+        'bw_model'
 	];
 	 public function setNameAttribute($value){
       $res = str_replace( array( '\'', '"',

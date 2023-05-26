@@ -144,6 +144,8 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
             'image2'    => $image_name2,
             'image3'    => $image_name3,
             'price'    => $row['price'],
+            'supplier_model' => $row['supplier_model'],
+            'bw_model' => $row['bw_model'],
             'mrp'      => $row['mrp'],
             'maq'      => $row['moq'],
             'warrenty' => $row['warrenty'],

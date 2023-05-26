@@ -45,7 +45,9 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 				 '*.model_name' => 'required|unique:products,name',
 				'*.category' => ['required',new SubCategoryRule],
 				 '*.model_image' => ['required',new ImageRule],
-				 '*.warrenty' => 'required|numeric'
+				 '*.warrenty' => 'required|numeric',
+				 '*.supplier_model' => 'required',
+				 '*.bw_model' => 'required'
 			];
 	}
 	 public function batchSize(): int
@@ -139,8 +141,10 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 			'name'     => $row['model_name'],
 			'image'    => $image_name,
 			'image1'    => $image_name1,
-            'image2'    => $image_name2,
-            'image3'    => $image_name3,
+      'image2'    => $image_name2,
+      'image3'    => $image_name3,
+      'supplier_model' => $row['supplier_model'],
+      'bw_model' => $row['bw_model'],
 			'price'    => $row['price'],
 			'mrp'      => $row['mrp'],
 			'maq'      => $row['moq'],
