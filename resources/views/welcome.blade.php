@@ -140,7 +140,7 @@
                        										 <a href="#" class="rating-reviews">Min Qty : {{$product_val['maq'] ? $product_val['maq'] :  $product_val['maq']}}</a>
                													 </div>
                                         <div class="product-price">
-                                            <ins class="new-price">MRP : {{$product_val['mrp']}}</ins>
+                                            <ins class="new-price">Price : {{$product_val['price']}}</ins>
                                         </div>
                                         
                                     </div>
@@ -261,7 +261,7 @@
                        										 <a href="#" class="rating-reviews">Min Qty : {{$product_deals['getProduct']['maq'] ? $product_deals['getProduct']['maq'] :  $product_deals['getProduct']['maq']}}</a>
                													 </div>
                                         <div class="product-price">
-                                            <ins class="new-price">MRP : {{$product_deals['getProduct']['mrp']}}</ins>
+                                            <ins class="new-price">Price : {{$product_deals['getProduct']['price']}}</ins>
                                         </div>
                                       
                                     </div>
