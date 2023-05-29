@@ -120,7 +120,20 @@
     order_by = 'desc';
     getData(page_count);
 	});
+ $("#filterBy").change(function(){
+        var id = $("#filterBy").val();
+        $('.features').removeClass('active');
+		page_count = 1;
 
+        if(id == 'advance'){
+            $(".advanceDiv").show();
+             $(".basicDiv").hide();
+        }else{
+             $(".advanceDiv").hide();
+             $(".basicDiv").show();
+        }
+        getData(page_count);
+    })
 	$('.qty-item li').click(function(){
 		page_count = 1;
 

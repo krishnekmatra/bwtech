@@ -82,6 +82,7 @@
 													<option value="">Select Search Type</option>
 													<option value="basic">Basic</option>
 													<option value="advance">Advance</option>
+													<option value="dontshow">Dont'show</option>
 												</select>
 												<span class="text-danger" id="name_error"></span>
 											</div>

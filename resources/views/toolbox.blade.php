@@ -41,7 +41,7 @@
                                     @if($val['featureName']['FeatureAttributes'])
                                     <ul class="widget-body filter-items item-check mt-1 feature-item">
                                             @foreach($val['featureName']['FeatureAttributes'] as $attribute)
-                                            <li data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            <li class="features" data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
                                             @endforeach
                                     </ul>
                                     @endif
@@ -72,14 +72,5 @@
                         </div>
                         <hr/>
 <script type="text/javascript">
-    $("#filterBy").change(function(){
-        var id = $("#filterBy").val();
-        if(id == 'advance'){
-            $(".advanceDiv").show();
-             $(".basicDiv").hide();
-        }else{
-             $(".advanceDiv").hide();
-             $(".basicDiv").show();
-        }
-    })
+   
 </script>

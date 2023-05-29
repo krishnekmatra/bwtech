@@ -83,6 +83,7 @@
 													<option value="">Select Search Type</option>
 													<option value="basic" {{ $feature->search_type == 'basic' ? 'selected' : '' }}>Basic</option>
 													<option value="advance" {{ $feature->search_type == 'advance' ? 'selected' : '' }}>Advance</option>
+													<option value="dontshow" {{ $feature->search_type == 'dontshow' ? 'selected' : '' }}>Dont'show</option>
 												</select>
 												<span class="text-danger" id="name_error"></span>
 											</div>
