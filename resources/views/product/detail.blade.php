@@ -70,26 +70,7 @@
 
 										<hr class="product-divider">
 
-										@if($product['productFeatures'])
-											<div class="product-short-desc">
-                                            
-                                            <ul class="list-type-check list-style-none mb-5">
-											@foreach($product['productFeatures'] as $pro_value)
-												<li>
-													{{$pro_value['feature_name']['name']}} : 
-												
-													
-													 	 		@if($pro_value['feature_attribute_name'])
-													 	 			{{$pro_value['feature_attribute_name']['name']}}
-													 	 		@else
-													 	 			{{$pro_value['value']}}
-													 	 		@endif
-												
-												</li>
-											@endforeach
-										</ul>
-										</div>
-										@endif
+										
 										
 
 								
@@ -183,7 +164,7 @@
 							<div class="tab tab-nav-boxed tab-nav-underline product-tabs">
 								<ul class="nav nav-tabs" role="tablist">
 									<li class="nav-item">
-										<a href="#product-tab-description" class="nav-link active">Description</a>
+										<a href="#product-tab-description" class="nav-link active">Specification</a>
 									</li>
 								
 									
@@ -192,12 +173,20 @@
 								<div class="tab-content">
 									<div class="tab-pane active" id="product-tab-description">
 										<div class="row mb-4">
-											<div class="col-md-6 mb-5">
-												<h4 class="title tab-pane-title font-weight-bold mb-2">Detail</h4>
-											
-												<div class="mb-4 descriptProduct">{!!html_entity_decode($product['description'])!!}</div>
+											@if($product['productFeatures'])
+											@foreach($product['productFeatures'] as $pro_value)
+												<div class="col-md-3 mb-2">
+													{{$pro_value['feature_name']['name']}} : 
 												
-											</div>
+													
+													 	 		@if($pro_value['feature_attribute_name'])
+													 	 			{{$pro_value['feature_attribute_name']['name']}}
+													 	 		@else
+													 	 			{{$pro_value['value']}}
+													 	 		@endif
+												</div>
+											@endforeach
+											@endif
 											
 										</div>
 										
