@@ -5,9 +5,9 @@
 						<li class="nav-item">
 								<a href="#sign-in" class="nav-link sign-in active">Sign In</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 								<a href="#sign-up" class="nav-link  sign-up">Sign Up</a>
-						</li>
+						</li> -->
 				</ul>
 				<div class="tab-content">
 						<div class="tab-pane active" id="sign-in">
@@ -30,7 +30,7 @@
 									<a href="#" class="btn btn-primary" onClick="signin()">Sign In</a>
 								</form>
 						</div>
-						<div class="tab-pane" id="sign-up">
+						<!-- <div class="tab-pane" id="sign-up">
 								<form  name="registerForm" method="POST" id="registerForm">
 									@csrf
 								<div class="form-group">
@@ -56,7 +56,7 @@
 								
 							
 								<a href="#" class="btn btn-primary" onClick="signup()">Sign Up</a>
-						</div>
+						</div> -->
 				</div>
 				
 		</div>

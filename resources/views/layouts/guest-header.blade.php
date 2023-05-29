@@ -16,9 +16,6 @@
 							
 							@else
 								<a href="{{url('login')}}" class="d-lg-show login sign-in"><i class="w-icon-account"></i>Sign In</a>
-
-								<span class="delimiter d-lg-show">/</span>
-									<a href="{{url('login')}}" class="ml-0 d-lg-show login register">Register</a>
 							@endauth
 					</div>
 				</div>
