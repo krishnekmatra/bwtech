@@ -24,7 +24,6 @@ class Product extends Model
 		'category_id',
 		'sub_category_id',
 		'created_by',
-		'feature_attribute_id',
 		'status',
 		'slug',
         'supplier_model',
@@ -81,12 +80,12 @@ class Product extends Model
         			  'category_id' => $post['category_id'],
         			  'sub_category_id' => $post['sub_category_id'],
         			  'features_id'=> $key,
-        			  'feature_attribute_id' => $value,
+        			  'feature_attribute_id' => ($value) ? $value : NULL,
                       'type' => 'select'
         		];
 
                 if($id == 0){
-                    ProductFeture::updateOrCreate($products_feature,$products_feature);
+                    ProductFeture::Create($products_feature);
                 }else{
 
                     $matche = [
@@ -101,7 +100,7 @@ class Product extends Model
                      }else{
                         
                         
-                          ProductFeture::updateOrCreate($products_feature);
+                          ProductFeture::Create($products_feature);
                       }
                    
                 }

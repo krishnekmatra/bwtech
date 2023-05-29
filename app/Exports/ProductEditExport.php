@@ -71,12 +71,7 @@ class ProductEditExport implements FromCollection,WithHeadings,WithEvents
             'Model Imag2',
             'Model Imag3',
             'Supplier Model',
-            'BW Model',
             'Price',
-            'Mrp',
-            'MOQ',
-            'Warrenty',
-            'Description'
         ];
         foreach($this->fetures_name as $value){
           $this->array[] = $value['name'];
@@ -100,12 +95,7 @@ class ProductEditExport implements FromCollection,WithHeadings,WithEvents
                     'model_image2' => ($v['image2'] == null ) ? '' : url('public/product')."/".$v['image2'],
                     'model_image3' =>  ($v['image3'] == null ) ? '' : url('public/product')."/".$v['image3'],
                     'supplier_model' => (empty($v['supplier_model']) ? '' : $v['supplier_model']),
-                    'bw_model' => (empty($v['bw_model']) ? '' : $v['bw_model']),
                     'price' => $v['price'],
-                    'mrp' => $v['mrp'],
-                    'moq' => $v['maq'],
-                    'warrenty'=> $v['warrenty'],
-                    'description' => $v['description']
                    
                 ];
                 $product_feature_id = Collect($v['productFeatures'])->pluck('features_id')->toArray();
@@ -122,8 +112,16 @@ class ProductEditExport implements FromCollection,WithHeadings,WithEvents
                         $key = $features['feature_name']['name'];
                         $product_array[$k][$key] = $features['value'];
                     }else{
-                         $key = $features['feature_attribute_name']['featuresName']['name'];
-                         $product_array[$k][$key] = $features['feature_attribute_name']['name'];
+                        
+                         if(@$features['feature_attribute_name']['featuresName']['name']){
+                             $key = $features['feature_attribute_name']['featuresName']['name'];
+                             if(@$features['feature_attribute_name']['name']){
+                                $product_array[$k][$key] = $features['feature_attribute_name']['name'];
+                            }else{
+                                 $product_array[$k][$key] = '';
+                            }
+                         }
+                         
                     }
                 }
                

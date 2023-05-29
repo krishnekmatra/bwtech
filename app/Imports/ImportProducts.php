@@ -45,9 +45,7 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 				 '*.model_name' => 'required|unique:products,name',
 				'*.category' => ['required',new SubCategoryRule],
 				 '*.model_image' => ['required',new ImageRule],
-				 '*.warrenty' => 'required|numeric',
 				 '*.supplier_model' => 'required',
-				 '*.bw_model' => 'required'
 			];
 	}
 	 public function batchSize(): int
@@ -77,7 +75,6 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 		  $category_id = $subCategory['category_id'];
 		  $subCategory_id = $subCategory['id'];
 
-		  $feature_attribute_id =  FeatureAttribute::where('name','EVM')->pluck('id')->first(); 
 		  $SubCategoryFeature = SubCategoryFeature::with('featureName')->where('sub_category_id',$subCategory_id)->get();
 	
 
@@ -137,19 +134,13 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 			//
 			'category_id' => $category_id,
 			'sub_category_id' => $subCategory_id,
-			'feature_attribute_id' => $feature_attribute_id,
 			'name'     => $row['model_name'],
 			'image'    => $image_name,
 			'image1'    => $image_name1,
       'image2'    => $image_name2,
       'image3'    => $image_name3,
       'supplier_model' => $row['supplier_model'],
-      'bw_model' => $row['bw_model'],
 			'price'    => $row['price'],
-			'mrp'      => $row['mrp'],
-			'maq'      => $row['moq'],
-			'warrenty' => $row['warrenty'],
-			'description' => $row['description'],
 			'status' => $status,
 			'created_by' => \Auth::guard(getAuthGaurd())->user()->id
 		]);

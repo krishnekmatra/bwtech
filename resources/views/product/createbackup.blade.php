@@ -45,33 +45,21 @@
 
 										<div class="col-6">
 											<div class="form-group mg-b-0">
+												<label class="form-label">Image: <span class="tx-danger">*</span></label>
+												<div class="custom-file">
+
+													<input class="custom-file-input" id="customFile" type="file" name="image" {{@$required}} data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
+												</div>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
 												<label class="form-label">Image1: <span class="tx-danger">*</span></label>
 												<div class="custom-file">
 
-													<input class="custom-file-input" id="customFile" type="file" name="image" {{@$required}} data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"  data-file="image1-label"><label class="custom-file-label image1-label" for="customFile">Choose file</label>
-												</div>
-												<span class="text-danger" id="name_error"></span>
-											</div>
-										</div>
-										@if(isset($product['image']))
-										<div class="col-6 mt-2">
-											<div class="form-group mg-b-0">
-												<label class="form-label">Preview: <span class="tx-danger">*</span></label>
-												<div class="custom-file">
-
-													<img src="{{url('product/'.$product['image'])}}"/ width="40" height="40px;">
-												</div>
-												<span class="text-danger" id="name_error"></span>
-											</div>
-										</div>
-										@endif
-
-										<div class="col-6 mt-2">
-											<div class="form-group mg-b-0">
-												<label class="form-label">Image2:</label>
-												<div class="custom-file">
-
-													<input class="custom-file-input" id="customFile" type="file" name="image1"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"  data-file="image2-label" ><label class="custom-file-label image2-label" for="customFile">Choose file</label>
+													<input class="custom-file-input" id="customFile" type="file" name="image1"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
 												</div>
 												<span class="text-danger" id="name_error"></span>
 											</div>
@@ -79,10 +67,10 @@
 
 										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
-												<label class="form-label">Image3:</label>
+												<label class="form-label">Image2: <span class="tx-danger">*</span></label>
 												<div class="custom-file">
 
-													<input class="custom-file-input" id="customFile" type="file" name="image2"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"  data-file="image3-label" ><label class="custom-file-label image3-label" for="customFile">Choose file</label>
+													<input class="custom-file-input" id="customFile" type="file" name="image2"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
 												</div>
 												<span class="text-danger" id="name_error"></span>
 											</div>
@@ -90,10 +78,10 @@
 										
 										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
-												<label class="form-label">Image4:</label>
+												<label class="form-label">Image3: <span class="tx-danger">*</span></label>
 												<div class="custom-file">
 
-													<input class="custom-file-input" id="customFile" type="file" name="image3" data-file="image4-label" data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label image4-label" for="customFile">Choose file</label>
+													<input class="custom-file-input" id="customFile" type="file" name="image3"  data-parsley-required-message="Please choose file" data-parsley-fileextension='jpg,png,jpeg'  data-parsley-mime-type-message="Image should be in png,jpeg,jpg formet"><label class="custom-file-label" for="customFile">Choose file</label>
 												</div>
 												<span class="text-danger" id="name_error"></span>
 											</div>
@@ -110,14 +98,32 @@
 											</div>
 										</div>
 										@endif
-																				<div class="col-6 mt-2">
+										@if(isset($product['image']))
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Preview: <span class="tx-danger">*</span></label>
+												<div class="custom-file">
+
+													<img src="{{url('product/'.$product['image'])}}"/ width="40" height="40px;">
+												</div>
+												<span class="text-danger" id="name_error"></span>
+											</div>
+										</div>
+										@endif
+										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Supplier Model: <span class="tx-danger">*</span></label>
 												<input class="form-control" name="supplier_model" placeholder="Enter Supplier Model" required="required" id="supplier_model" type="text" data-parsley-required-message="Please enter your price" value="{{@$product['supplier_model']}}">
 												<span class="text-danger" id="price_error"></span>
 											</div>
 										</div>
-										
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Bw Model: <span class="tx-danger">*</span></label>
+												<input class="form-control" name="bw_model" placeholder="Enter Bw Model" required="required" id="bw_model" type="text" data-parsley-required-message="Please enter your price" value="{{@$product['bw_model']}}">
+												<span class="text-danger" id="price_error"></span>
+											</div>
+										</div>
 										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Price: <span class="tx-danger">*</span></label>
@@ -126,12 +132,49 @@
 											</div>
 										</div>
 
-									
-									
-										
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">MRP: <span class="tx-danger">*</span></label>
+												<input class="form-control" name="mrp" placeholder="Enter MRP" required="required" id="mrp" type="text" data-parsley-required-message="Please enter your mrp" value="{{@$product['mrp']}}">
+												<span class="text-danger" id="mrp_error"></span>
+											</div>
+										</div>
+
+
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">MOQ: <span class="tx-danger">*</span></label>
+												<input class="form-control" name="maq" placeholder="Enter MOQ" required="required" id="maq" type="text" data-parsley-required-message="Please enter your maq" value="{{@$product['maq']}}">
+												<span class="text-danger" id="maq_error"></span>
+											</div>
+										</div>
+
+										<div class="col-12 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Description: <span class="tx-danger">*</span></label>
+												<textarea class="form-control mg-t-20" placeholder="Enter Description" required="" rows="3" name="description" id="myeditorinstance">{{@$product['description']}}</textarea>
+												<span class="text-danger" id="description_error"></span>
+											</div>
+										</div>
 
 
 
+										<div class="col-6 mt-2">
+											<div class="form-group mg-b-0">
+												<label class="form-label">Warranty: <span class="tx-danger">*</span></label>
+												<select class="form-control" name="warrenty" id="warrenty">
+													<option>Select Warranty</option>
+													<option value="0">No Warranty</option>
+													<option value="1">1 Years</option>
+													<option value="2">2 Years</option>
+													<option value="3">3 Years</option>
+													<option value="4">4 Years</option>
+													<option value="5">5 Years</option>
+												</select>
+												
+												<span class="text-danger" id="warrenty_error"></span>
+											</div>
+										</div>
 
 										<div class="col-6 mt-2">
 											<div class="form-group mg-b-0">
@@ -181,14 +224,16 @@
 
 
 </x-app-layout>
-
+<script src="https://cdn.tiny.cloud/1/jt3z58u40lxaj1gi0twobfw8nvzfru0jajan8pdr61moyggc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+   tinymce.init({
+   	 height: 200,
+     selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+     plugins: 'powerpaste advcode table lists checklist',
+     toolbar: 'undo redo | blocks| bold italic | bullist numlist checklist | code | table'
+   });
+</script>
 <script type="text/javascript">
-
-	 $('input[type="file"]').change(function(e) {
-   	var fileName = e.target.files[0].name;
-    var label = $(this).attr('data-file');
-    $('.'+label).text(fileName);
-  });
 	$(document).ready(function() {
 		$('.products').addClass('is-expanded');
 		$('.product').addClass('active');

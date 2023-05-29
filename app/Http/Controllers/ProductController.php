@@ -21,6 +21,7 @@ use App\Exports\ExportSubcategoryFeature;
 
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\ProductFeture;
+use Carbon\Carbon;
 
 
 use DataTables;
@@ -100,8 +101,7 @@ class ProductController extends Controller
 	{
 		//
 		$category =  Category::getCategoriesList();
-		$feature_attribute = FeatureAttribute::get();
-		return view('product.create',compact('category','feature_attribute'));
+		return view('product.create',compact('category'));
 	}
 
 	/**
@@ -210,11 +210,10 @@ class ProductController extends Controller
 	{
 		//
 		$product = Product::find($id);
-		$feature_attribute = FeatureAttribute::get();
 		$category =  Category::get();
 		$subCategory = SubCategory::where('category_id',$product['category_id'])->get();
 		$brand = SubCategoryFeature::where('sub_category_id',$product['sub_category_id'])->get();
-		return view('product.create',compact('category','product','subCategory','feature_attribute'));
+		return view('product.create',compact('category','product','subCategory'));
 
 	}
 
@@ -356,8 +355,9 @@ class ProductController extends Controller
 	}
 
 	public function ProductEditExport(Request $request){
+		$currentTime = Carbon::now();
 
-		 return Excel::download(new ProductEditExport($request->input()),'test.xlsx');
+		 return Excel::download(new ProductEditExport($request->input()),$currentTime.'.xlsx');
 
 	}
 

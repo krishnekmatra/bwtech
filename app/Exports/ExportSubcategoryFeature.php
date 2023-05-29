@@ -38,9 +38,10 @@ class ExportSubcategoryFeature implements FromCollection,WithHeadings,WithEvents
                     $feature_array [] = $feature['name'];
                 }
                 $selects [] = ['columns_name' => $current_column , 'options' => $feature_array];
+               
             }
             $current_column++;
-           
+
         }
       
       
@@ -62,12 +63,7 @@ class ExportSubcategoryFeature implements FromCollection,WithHeadings,WithEvents
             'Model Imag2',
             'Model Imag3',
             'Supplier Model',
-            'BW Model',
             'Price',
-            'Mrp',
-            'MOQ',
-            'Warrenty',
-            'Description'
         ];
         foreach($SubCategoryFeature as $value){
           $this->array[] = $value['featureName']['name'];
@@ -127,12 +123,7 @@ class ExportSubcategoryFeature implements FromCollection,WithHeadings,WithEvents
             "http://127.0.0.1:8000/product/168481889762530.png",
             "http://127.0.0.1:8000/product/168481889762530.png",
             "Supplier1",
-            "Bw1",
             "300",
-            "400",
-            "20",
-            "1",
-            "test"
 
         ]; 
         return collect(
