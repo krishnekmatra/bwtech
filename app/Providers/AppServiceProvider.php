@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 		 */
 		  
 
-		$category = Category::getCategoriesList();
+		$category = Category::where('status',1)->orderBy('sorting','desc')->get();;
 		$allFeature = FeatureAttribute::get();
 		$occasions = Occasions::orderBy('created_at','desc')->get();
 		$contact = ContactUs::pluck('phone')->first();

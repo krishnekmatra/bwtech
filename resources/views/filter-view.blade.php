@@ -24,26 +24,7 @@
 									</ul>
 								</div>
 								@endif
-								@if(@$subCategory)
-								<div class="widget widget-collapsible">
-									<h3 class="widget-title"><label>All Categories</label></h3>
-									<ul class="widget-body filter-items search-ul">
-										@foreach($subCategory as $val)
-											@if(@$subcategory_name)
-												 @if($val['name'] == $subcategory_name)
-												 <?php $color = "style = 'color:#9a2948'"?>
-												 @else
-												 <?php $color ="";?>
-												 @endif
-											@else
-											<?php $color ="";?>
-										   	@endif
-											<li class="active"><a href="{{url('shop/'.$cat_slug.'/'.$val['slug'])}}" <?php echo $color;?>>{{$val['name']}}</a></li>
-											
-										@endforeach
-									</ul>
-								</div>
-								@endif
+								
 								<!-- End of Collapsible Widget -->
 
 								<!-- Start of Collapsible Widget -->

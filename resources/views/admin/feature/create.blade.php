@@ -78,7 +78,7 @@
 										<div class="col-3">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Search Type: <span class="tx-danger">*</span></label>
-												<select class="form-control" name="feature_type" required="required" id="search_type">
+												<select class="form-control" name="search_type" required="required" id="search_type">
 													<option value="">Select Search Type</option>
 													<option value="basic">Basic</option>
 													<option value="advance">Advance</option>

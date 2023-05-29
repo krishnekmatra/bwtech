@@ -19,8 +19,8 @@
 
 							@else
 
-							<select class="form-control" name="multiplefaetures[{{$features['featureName']['id']}}]">
-								<option>Select</option>
+							<select class="form-control" name="multiplefaetures[{{$features['featureName']['id']}}]" >
+								<option value="">Select</option>
 								@foreach($features['featureName']['FeatureAttributes'] as $attribute)
 										@if(in_array($attribute['id'],$product_feature))
 										@php $selected = 'selected';

@@ -54,9 +54,8 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
                 '*.product_id' => 'required',
                  '*.model_name' => 'required',
                  '*.model_image' => ['required',new ImageRule],
-                 '*.warrenty' => 'required|numeric',
                   '*.supplier_model' => 'required',
-                 '*.bw_model' => 'required'
+                
             ];
     }
     
@@ -147,11 +146,6 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
             'image3'    => $image_name3,
             'price'    => $row['price'],
             'supplier_model' => $row['supplier_model'],
-            'bw_model' => $row['bw_model'],
-            'mrp'      => $row['mrp'],
-            'maq'      => $row['moq'],
-            'warrenty' => $row['warrenty'],
-            'description' => $row['description'],
         ]);
         
         foreach($this->SubCategoryFeature as $value){
@@ -196,17 +190,7 @@ class ImportEditProducts implements OnEachRow, WithValidation,WithHeadingRow, Sk
                     ProductFeture::create($products_feature); 
                 }
             }
-            // $products_feature = [
-            //           'product_id' => $product_id,
-            //           'category_id' => $value['category_id'],
-            //           'sub_category_id' => $value['sub_category_id'],
-            //           'features_id'=> $feature_id['id'],
-
-            //           'feature_attribute_id' => ($feature_attibut_id ? $feature_attibut_id : NULL),
-            //           'value' => ($feature_attibut_id ? NULL : $row[$str]),
-            //           'type' => $feature_id['feature_type']
-            // ];
-            // ProductFeture::Create($products_feature);
+           
             
         }
             
