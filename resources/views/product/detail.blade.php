@@ -55,16 +55,14 @@
 												<div class="product-sku">
 													SubCategory: <span>{{$product['subCategory']['name']}}</span>
 												</div>
-												<div class="product-sku mt-2">
-													Brand: <span>{{$product['feature_attributes']['name']}}</span>
-												</div>
+												
 											</div>
 										</div>
 
 										<hr class="product-divider">
 
 										<div class="product-price">
-												<ins class="new-price">MRP : {{$product['mrp']}}</ins>
+												<ins class="new-price">Price : {{$product['price']}}</ins>
 										</div>
 
 										
