@@ -46,27 +46,25 @@ class AppServiceProvider extends ServiceProvider
 		\View::share('contact', $contact);
 
 		Validator::extend('email_valid', function ($attribute, $value, $parameters, $validator){
-			$role_id = getRole('customer');
-			$users = \DB::table('users')->where(['email' => $value, 'role_id' => $role_id])
-					//->where('status', '!=', 'deleted')
-					->first(['id']);
+			$role_id = getRole('admin');
+			$users = \DB::table('users')->where('email', $value)->where('role_id','!=', $role_id)->first(['id']);
 			if (!empty($users)) {
 				return true;
 			} else {
 				return false;
 			}
 		}); 
-		Validator::extend('vendor_email_valid', function ($attribute, $value, $parameters, $validator){
-			$role_id = getRole('Vendor');
-			$users = \DB::table('users')->where(['email' => $value, 'role_id' => $role_id])
-					//->where('status', '!=', 'deleted')
-					->first(['id']);
-			if (!empty($users)) {
-				return true;
-			} else {
-				return false;
-			}
-		}); 
+		// Validator::extend('vendor_email_valid', function ($attribute, $value, $parameters, $validator){
+		// 	$role_id = getRole('Vendor');
+		// 	$users = \DB::table('users')->where(['email' => $value, 'role_id' => $role_id])
+		// 			//->where('status', '!=', 'deleted')
+		// 			->first(['id']);
+		// 	if (!empty($users)) {
+		// 		return true;
+		// 	} else {
+		// 		return false;
+		// 	}
+		// }); 
 		Validator::extend('admin_email_valid', function ($attribute, $value, $parameters, $validator) {
 			$role_id = getRole('admin');
 			$users = \DB::table('users')->where(['email' => $value, 'role_id' => $role_id])
@@ -80,3 +78,4 @@ class AppServiceProvider extends ServiceProvider
 		}); 
 	}
 }
+

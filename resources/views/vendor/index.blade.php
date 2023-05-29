@@ -117,11 +117,9 @@ input:checked + .slider:before {
         				return meta.row + meta.settings._iDisplayStart + 1;
         			}
       },
-		 	{data: 'image', name: 'image' ,'title' : 'Image'},
 			{data: 'name', name: 'name','title' : 'Name'},
             {data: 'email', name: 'email' ,'title' : 'Email'},
             {data: 'phone', name: 'phone' ,'title' : 'Phone'},
-            {data: 'company_name', name: 'company_name',title:'company Name'},
             {data: 'action', name: 'action', orderable: false, searchable: false,title:'action'},
             {data: 'statusaction', name: 'statusaction', orderable: false, searchable: false,title:'Status'},
      ]

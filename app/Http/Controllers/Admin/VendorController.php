@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Product;
 use App\Http\Requests\admin\CreateVendorRequest;
 use DataTables;
+use App\Models\Role;
+
 
 class VendorController extends Controller
 {
@@ -21,10 +23,7 @@ class VendorController extends Controller
 				if ($request->ajax()) {
 					$data = User::getVendors($request);
 					return Datatables::of($data)
-						->addColumn('image', function($row){
-					 		$imageval = url('vendor/' . $row->image);
-                    return '<img src="' . $imageval . '" height="30px" width="30px"/>';
-					 })
+						
 					->addColumn('action', function($row){
 					 	$url = url('admin/vendor/edit')."/".$row['id'];
    						$btn = '<a href="'.$url.'" class="edit btn btn-primary btn-sm">Edit</a>';
@@ -42,7 +41,7 @@ class VendorController extends Controller
 					 })
 					
 					->skipTotalRecords()
-					->rawColumns(['action', 'image','statusaction'])
+					->rawColumns(['action','statusaction'])
 					->make(true);
 				}
 	  
@@ -73,7 +72,8 @@ class VendorController extends Controller
 	public function create()
 	{
 		//
-		return view('vendor.create');
+		$role = Role::where('name','!=','admin')->get();
+		return view('vendor.create',compact('role'));
 	}
 
 	/**

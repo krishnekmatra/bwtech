@@ -33,14 +33,14 @@
 											</div>
 										</div>
 
-										<div class="col-6">
+									<!-- 	<div class="col-6">
 											<div class="form-group">
 												<label class="form-label">Company Name: <span class="tx-danger">*</span></label>
 												<input class="form-control" name="company_name" placeholder="Enter company name" required="" type="text" data-parsley-required-message="Please enter company name" value="{{@$vendor['company_name']}}">
 												<span class="text-danger" id="company_name_error"></span>
 											</div>
 										</div>
-
+ -->
 										 <div class="col-6">
 											<div class="form-group">
 												<label class="form-label">Email: <span class="tx-danger">*</span></label>
@@ -59,11 +59,24 @@
 
 										 <div class="col-6">
 											<div class="form-group">
+												<label class="form-label">Role: <span class="tx-danger">*</span></label>
+												<select name="role_id" required class="form-control">
+													<option value="">Select Role</option>
+													@foreach($role as $value)
+														<option value="{{$value->id}}">{{$value['name']}}</option>
+													@endforeach
+												</select>
+												
+											</div>
+										</div>
+
+										<!--  <div class="col-6">
+											<div class="form-group">
 												<label class="form-label">Address</label>
 												<textarea class="form-control" name="address" placeholder="Enter Address" rows="4">{{@$vendor['address']}}</textarea>
 											</div>
-										</div>
-										<div class="col-6">
+										</div> -->
+										<!-- <div class="col-6">
 											<div class="form-group mg-b-0">
 												<label class="form-label">Image: <span class="tx-danger">*</span></label>
 												@if(@$vendor['image'])
@@ -75,7 +88,7 @@
 												</div>
 												<span class="text-danger" id="image_error"></span>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-12"><button type="submit" class="btn btn-main-primary pd-x-20 mg-t-10 addvendor"><span class="submit">Submit </span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
 										</div>
 									</div>

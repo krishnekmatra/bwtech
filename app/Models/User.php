@@ -74,7 +74,6 @@ class User extends Authenticatable
     //save vendor
     public static function saveVendor($request){
        
-        $role_id = getRole('vendor');
 
         if(@$request['id']){
 
@@ -88,10 +87,7 @@ class User extends Authenticatable
             'email' => $request['email'],
             'phone' => $request['phone'],
             'password' => bcrypt($pass),
-            'address' => $request['address'],
-            'company_name' => $request['company_name'],
-            'role_id' => $role_id,
-            'image' => $request['image'],
+            'role_id' => $request['role_id'],
             'status' => 1,
         	]);
         	event(new Registered($user));   
@@ -115,8 +111,8 @@ class User extends Authenticatable
     //get vendors
     public static function getVendors($request){
 
-    	$role_id = getRole('vendor');
-    	$vendor = User::where('role_id',$role_id)->orderBy('created_at','desc');
+    	$role_id = getRole('admin');
+    	$vendor = User::where('role_id','!=',$role_id)->orderBy('created_at','desc');
     	return $vendor;
     }
 
