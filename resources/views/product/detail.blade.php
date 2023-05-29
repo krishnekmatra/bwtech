@@ -13,7 +13,7 @@
 			<div class="page-content">
 				<div class="container">
 					<div class="row gutter-lg">
-						<div class="main-content">
+						<div class="">
 							<div class="product product-single row">
 								<div class="col-md-6 mb-6">
 									<div class="product-gallery product-gallery-sticky">
@@ -199,52 +199,7 @@
 							
 							
 						</div>
-						<!-- End of Main Content -->
-						<aside class="sidebar product-sidebar sidebar-fixed right-sidebar sticky-sidebar-wrapper">
-							<div class="sidebar-overlay"></div>
-							<a class="sidebar-close" href="#"><i class="close-icon"></i></a>
-							<a href="#" class="sidebar-toggle d-flex d-lg-none"><i class="fas fa-chevron-left"></i></a>
-							<div class="sidebar-content scrollable">
-								<div class="sticky-sidebar">
-									<div class="widget widget-icon-box mb-6">
-										<div class="icon-box icon-box-side">
-											<span class="icon-box-icon text-dark">
-												<i class="w-icon-truck"></i>
-											</span>
-											<div class="icon-box-content">
-												<h4 class="icon-box-title">Free Shipping & Returns</h4>
-												<p>For all orders over $99</p>
-											</div>
-										</div>
-										<div class="icon-box icon-box-side">
-											<span class="icon-box-icon text-dark">
-												<i class="w-icon-bag"></i>
-											</span>
-											<div class="icon-box-content">
-												<h4 class="icon-box-title">Secure Payment</h4>
-												<p>We ensure secure payment</p>
-											</div>
-										</div>
-										<div class="icon-box icon-box-side">
-											<span class="icon-box-icon text-dark">
-												<i class="w-icon-money"></i>
-											</span>
-											<div class="icon-box-content">
-												<h4 class="icon-box-title">Money Back Guarantee</h4>
-												<p>Any back within 30 days</p>
-											</div>
-										</div>
-									</div>
-									<!-- End of Widget Icon Box -->
-
-									
-									<!-- End of Widget Banner -->
-
-									
-								</div>
-							</div>
-						</aside>
-						<!-- End of Sidebar -->
+						
 					</div>
 				</div>
 			</div>
