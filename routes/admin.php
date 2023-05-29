@@ -36,14 +36,14 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::get('customers',[VendorController::class,'customerList'])->name('customer.customerList');
 
-		Route::get('vendors',[VendorController::class,'index'])->name('vendor.index');
+		Route::get('users',[VendorController::class,'index'])->name('vendor.index');
 
-		Route::get('vendor/add',[VendorController::class,'create'])->name('vendor.create');
+		Route::get('user/add',[VendorController::class,'create'])->name('vendor.create');
 
-		Route::post('vendor/store',[VendorController::class,'store'])->name('vendor.store');
-		Route::get('vendor/edit/{id}',[VendorController::class,'edit'])->name('vendor.edit');
-		Route::post('vendor/status-change',[VendorController::class,'statusChange'])->name('vendorstatus-change');
-		Route::post('vendor/product-status-change',[VendorController::class,'productStatusChange'])->name('vendor-product-status-change');
+		Route::post('user/store',[VendorController::class,'store'])->name('vendor.store');
+		Route::get('user/edit/{id}',[VendorController::class,'edit'])->name('vendor.edit');
+		Route::post('user/status-change',[VendorController::class,'statusChange'])->name('vendorstatus-change');
+		Route::post('user/product-status-change',[VendorController::class,'productStatusChange'])->name('vendor-product-status-change');
 
 
 		//feature

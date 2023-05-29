@@ -60,7 +60,7 @@
 										 <div class="col-6">
 											<div class="form-group">
 												<label class="form-label">Role: <span class="tx-danger">*</span></label>
-												<select name="role_id" required class="form-control">
+												<select name="role_id" required class="form-control" id="role_id">
 													<option value="">Select Role</option>
 													@foreach($role as $value)
 														<option value="{{$value->id}}">{{$value['name']}}</option>
@@ -106,6 +106,10 @@
 	$(document).ready(function() {
 	$('.users').addClass('is-expanded');
 	$('.vendors').addClass('active');
+	var role_id = '{{@$vendor["role_id"]}}';
+	if(role_id){
+		$("#role_id").val(role_id);
+	}
      window.ParsleyValidator
         .addValidator('fileextension', function (value, requirement) {
         		var tagslistarr = requirement.split(',');
@@ -133,7 +137,7 @@
 				 $(".addvendor").prop('disabled',true);
 				 $.ajax({
             type: "post",
-            url: '{{ url("admin/vendor/store") }}',
+            url: '{{ url("admin/user/store") }}',
             data: formValue,
             cache: false,
             contentType: false,
@@ -144,7 +148,7 @@
                     
                     setTimeout(function(){
                     	 $(".addvendor").prop('disabled',false);
-                        window.location.href ='{{ url("admin/vendors") }}';
+                        window.location.href ='{{ url("admin/users") }}';
                     },2000);
                 } else {
                     notifyMsg(response.message,'error');

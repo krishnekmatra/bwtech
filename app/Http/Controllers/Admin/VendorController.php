@@ -25,7 +25,7 @@ class VendorController extends Controller
 					return Datatables::of($data)
 						
 					->addColumn('action', function($row){
-					 	$url = url('admin/vendor/edit')."/".$row['id'];
+					 	$url = url('admin/user/edit')."/".$row['id'];
    						$btn = '<a href="'.$url.'" class="edit btn btn-primary btn-sm">Edit</a>';
    						
 						
@@ -36,7 +36,7 @@ class VendorController extends Controller
 						$checked = ($row['status']== 1) ? 'checked' : '';
 						$btn='<label class="switch"><input  type="checkbox" '.$checked.' value='.$value.'><span class="slider round"></span></label>&nbsp;';
 
-						$btn.= '<a href="javascript:void(0)" class="productactive btn btn-primary btn-sm">product Active</a>';
+						// $btn.= '<a href="javascript:void(0)" class="productactive btn btn-primary btn-sm">product Active</a>';
 						return $btn;
 					 })
 					
@@ -99,7 +99,7 @@ class VendorController extends Controller
 			}
 			User::saveVendor($request->input());
 			return response()->json(['success' => true,
-				'message' => 'Vendor has been '.($request['id'] ? 'updated' : 'added')  .' successfully.'
+				'message' => 'User has been '.($request['id'] ? 'updated' : 'added')  .' successfully.'
 		  ], 200);
 			
 
@@ -131,8 +131,9 @@ class VendorController extends Controller
 	 */
 	public function edit($id)
 	{
+		$role = Role::where('name','!=','admin')->get();
 		$vendor = User::find($id);
-		return view('vendor.create',compact('vendor'));
+		return view('vendor.create',compact('vendor','role'));
 	}
 
 	/**

@@ -83,7 +83,7 @@ $url = getAuthGaurd();
 					<li class="slide users">
 						<a class="side-menu__item " data-toggle="slide" href="javascript:void(0)"><i class="side-menu__icon  fe fe-user menu-icons"></i><span class="side-menu__label">Users</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item vendors" href="{{url("$url/vendors")}}">User</a></li>
+							<li><a class="slide-item vendors" href="{{url("$url/users")}}">User</a></li>
 							<!-- <li><a class="slide-item" href='{{url("$url/customers")}}'>Customers </a></li> -->
 							
 						</ul>

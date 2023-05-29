@@ -1,5 +1,5 @@
-@section('breadcumb','Vendors')
-@section('pageTitle','vendors')
+@section('breadcumb','Users')
+@section('pageTitle','Users')
 @include('layouts.datatable-css')
 @php
 $url = getAuthGaurd();
@@ -73,9 +73,9 @@ input:checked + .slider:before {
 						<div class="card mg-b-20">
 							<div class="card-header pb-0">
 								<div class="d-flex justify-content-between">
-									<h4 class="card-title mg-b-0 mt-2 mb-2">Vendors</h4>
+									<h4 class="card-title mg-b-0 mt-2 mb-2">Users</h4>
 									<i class="mdi mdi-dots-horizontal text-gray"></i>
-									<a href='{{url("$url/vendor/add")}}' class="btn btn-primary">Add Vendor</a>
+									<a href='{{url("$url/user/add")}}' class="btn btn-primary">Add User</a>
 								</div>
 								
 							</div>
@@ -106,7 +106,7 @@ input:checked + .slider:before {
 
 	
 		ajax: {
-				url: '{{ url("$url/vendors") }}', // need to change here url
+				url: '{{ url("$url/users") }}', // need to change here url
 				type: "GET",
 				async:false,
 		},
@@ -140,7 +140,7 @@ $("#vendor-list").on('change',"input[type='checkbox']",function(e){
 	 if (confirm("Are you sure you want to " + message +' ?')){
 				$.ajax({
 				
-        url: "{{url('admin/vendor/status-change')}}",
+        url: "{{url('admin/user/status-change')}}",
         type: "Post",
         data: {
             "id": id,
@@ -160,29 +160,6 @@ $("#vendor-list").on('change',"input[type='checkbox']",function(e){
 		}
 	
 });
-	$("#vendor-list").on('click',".productactive",function(e){
-	 var id = $(this).val();
-	 if (confirm("Are you sure you want to change ?")){
-				$.ajax({
-				
-        url: "{{url('admin/vendor/product-status-change')}}",
-        type: "Post",
-        data: {
-            "id": id,
-            "_token": "{{ csrf_token() }}",
-        },
-
-        success: function(response) {
-	        if (response.success) {
-	        	notifyMsg(response.message,'success');
-	           table.ajax.reload(null, false);
-	        } else {
-	        	notifyMsg(response.message,'error');
-	        }
-        }
-      });
-		}
 	
-});
 
 </script>
