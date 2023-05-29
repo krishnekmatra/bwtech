@@ -123,6 +123,7 @@
  $("#filterBy").change(function(){
         var id = $("#filterBy").val();
         $('.features').removeClass('active');
+        brand_array = [];
 		page_count = 1;
 
         if(id == 'advance'){
