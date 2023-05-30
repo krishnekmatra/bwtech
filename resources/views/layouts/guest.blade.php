@@ -228,7 +228,7 @@
 									</div>
 									
 
-									<button type="submit" class="btn btn-main-primary btn-block forgotbtn" onClick="forgotPassword()"><span class="submit">{{ __('Sign In') }} </span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
+									<button type="submit" class="btn btn-main-primary btn-block forgotbtn" onClick="forgotPassword()"><span class="submit">Submit</span><span class="spinner-border spinner-border-sm loading" role="status" aria-hidden="true" style="display:none"></span></button>
 		</form>
 	</div>
 

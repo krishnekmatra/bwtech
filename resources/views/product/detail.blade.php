@@ -17,60 +17,84 @@
 							<div class="product product-single row">
 								<div class="col-md-6 mb-6">
 									<div class="product-gallery product-gallery-sticky">
-										<div class="swiper-container product-single-swiper swiper-theme nav-inner" data-swiper-options="{
-											'navigation': {
-												'nextEl': '.swiper-button-next',
-												'prevEl': '.swiper-button-prev'
-											}
-										}">
-											<div class="swiper-wrapper row cols-1 gutter-no">
-												<div class="swiper-slide">
-													<figure class="product-image">
-														<img src="{{url('product/'.$product['image'])}}"
-															data-zoom-image="{{url('product/'.$product['image'])}}"
-															alt="Electronics Black Wrist Watch" width="800" height="900">
-													</figure>
-												</div>
-												@if(@$product['image2'])
-												<div class="swiper-slide">
-													<figure class="product-image">
-														<img src="{{url('product/'.$product['image2'])}}"
-															data-zoom-image="{{url('product/'.$product['image2'])}}"
-															alt="Electronics Black Wrist Watch" width="800" height="900">
-													</figure>
-												</div>
-												@endif
+                                        <div class="swiper-container product-single-swiper swiper-theme nav-inner" data-swiper-options="{
+                                            'navigation': {
+                                                'nextEl': '.swiper-button-next',
+                                                'prevEl': '.swiper-button-prev'
+                                            }
+                                        }">
+                                            <div class="swiper-wrapper row cols-1 gutter-no">
+                                                <div class="swiper-slide">
+                                                    <figure class="product-image">
+                                                        <img src="{{url('product/'.$product['image'])}}"
+                                                            data-zoom-image="{{url('product/'.$product['image'])}}"
+                                                            alt="Electronics Black Wrist Watch" width="800" height="900">
+                                                    </figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure class="product-image">
+                                                        <img src="{{url('product/'.$product['image1'])}}"
+                                                            data-zoom-image="{{url('product/'.$product['image1'])}}"
+                                                            alt="Electronics Black Wrist Watch" width="488" height="549">
+                                                    </figure>
+                                                </div>
+                                                <div class="swiper-slide">
+                                                    <figure class="product-image">
+                                                        <img src="{{url('product/'.$product['image2'])}}"
+                                                            data-zoom-image="{{url('product/'.$product['image2'])}}"
+                                                            alt="Electronics Black Wrist Watch" width="800" height="900">
+                                                    </figure>
+                                                </div>
 
-												@if(@$product['image3'])
-												<div class="swiper-slide">
-													<figure class="product-image">
-														<img src="{{url('product/'.$product['image3'])}}"
-															data-zoom-image="{{url('product/'.$product['image3'])}}"
-															alt="Electronics Black Wrist Watch" width="800" height="900">
-													</figure>
-												</div>
-												@endif
-
-												@if(@$product['image4'])
-												<div class="swiper-slide">
-													<figure class="product-image">
-														<img src="{{url('product/'.$product['image4'])}}"
-															data-zoom-image="{{url('product/'.$product['image4'])}}"
-															alt="Electronics Black Wrist Watch" width="800" height="900">
-													</figure>
-												</div>
-												@endif
-												
-												
-											
-												
-												
-											</div>
-											
-											
-										</div>
-										
-									</div>
+                                                <div class="swiper-slide">
+                                                    <figure class="product-image">
+                                                        <img src="{{url('product/'.$product['image3'])}}"
+                                                            data-zoom-image="{{url('product/'.$product['image3'])}}"
+                                                            alt="Electronics Black Wrist Watch" width="800" height="900">
+                                                    </figure>
+                                                </div>
+                                               
+                                                
+                                            </div>
+                                            <button class="swiper-button-next"></button>
+                                            <button class="swiper-button-prev"></button>
+                                            <a href="#" class="product-gallery-btn product-image-full"><i class="w-icon-zoom"></i></a>
+                                        </div>
+                                        <div class="product-thumbs-wrap swiper-container" data-swiper-options="{
+                                            'navigation': {
+                                                'nextEl': '.swiper-button-next',
+                                                'prevEl': '.swiper-button-prev'
+                                            }
+                                        }">
+                                            <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
+                                                <div class="product-thumb swiper-slide">
+                                                    <img src="{{url('product/'.$product['image'])}}"
+                                                        alt="Product Thumb" width="800" height="900">
+                                                </div>
+                                                @if(@$product['image1'])
+                                                <div class="product-thumb swiper-slide">
+                                                    <img src="{{url('product/'.$product['image1'])}}"
+                                                        alt="Product Thumb" width="800" height="900">
+                                                </div>
+                                                @endif
+                                                @if(@$product['image2'])
+                                                <div class="product-thumb swiper-slide">
+                                                    <img src="{{url('product/'.$product['image2'])}}"
+                                                        alt="Product Thumb" width="800" height="900">
+                                                </div>
+                                                @endif
+                                                @if(@$product['image3'])
+                                                <div class="product-thumb swiper-slide">
+                                                    <img src="{{url('product/'.$product['image3'])}}"
+                                                        alt="Product Thumb" width="800" height="900">
+                                                </div>
+                                                @endif
+                                                
+                                            </div>
+                                            <button class="swiper-button-next"></button>
+                                            <button class="swiper-button-prev"></button>
+                                        </div>
+                                    </div>
 								</div>
 								<div class="col-md-6 mb-4 mb-md-6">
 									<div class="product-details" data-sticky-options="{'minWidth': 767}">
