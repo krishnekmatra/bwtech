@@ -1,4 +1,28 @@
 <x-guest-layout>
+	<style>
+		.wislistDetail {
+    width: 100%;
+    display: flex;
+}
+
+.wislistDetail select.form-control {
+    max-width: 200px;
+    width: 100%;
+}
+
+.wislistDetail  input#margin {
+    max-width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.margintype {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+	</style>
 	<nav class="breadcrumb-nav">
 				<div class="container">
 					<ul class="breadcrumb bb-no">
@@ -30,14 +54,14 @@
 													
 												</div>
                     </div>
-                    	<div class="col-4 col-md-5 col-lg-5">
+                    	<div class="col-4 col-md-5 col-lg-5 margintype">
                     			<select class="form-control ml-2">
-														<option value="">Select Margin Type</option>
+														<option value="">Margin Type</option>
 														<option value="percent">%</option>
 														<option value="rs">₹</option>
 													</select>
 
-													<input type="text" class="form-control" name="margin" id="margin">
+													<input type="text" class="form-control" name="margin" id="margin" placeholder="Margin for all">
 
 													<button class=" btn btn-dark">Apply</button>
                     	</div>
