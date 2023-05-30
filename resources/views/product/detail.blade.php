@@ -24,13 +24,16 @@
                                             }
                                         }">
                                             <div class="swiper-wrapper row cols-1 gutter-no">
+                                            	 @if(@$product['image'])
                                                 <div class="swiper-slide">
                                                     <figure class="product-image">
                                                         <img src="{{url('product/'.$product['image'])}}"
-                                                            data-zoom-image="{{url('product/'.$product['image'])}}"
+                                                            data-zoom-image="http://localhost/wolmart/assets/images/products/default/6-800x900.jpg"
                                                             alt="Electronics Black Wrist Watch" width="800" height="900">
                                                     </figure>
                                                 </div>
+                                                @endif
+                                                @if(@$product['image1'])
                                                 <div class="swiper-slide">
                                                     <figure class="product-image">
                                                         <img src="{{url('product/'.$product['image1'])}}"
@@ -38,6 +41,8 @@
                                                             alt="Electronics Black Wrist Watch" width="488" height="549">
                                                     </figure>
                                                 </div>
+                                                @endif
+                                                @if(@$product['image2'])
                                                 <div class="swiper-slide">
                                                     <figure class="product-image">
                                                         <img src="{{url('product/'.$product['image2'])}}"
@@ -45,7 +50,9 @@
                                                             alt="Electronics Black Wrist Watch" width="800" height="900">
                                                     </figure>
                                                 </div>
+                                                @endif
 
+                                                @if(@$product['image3'])
                                                 <div class="swiper-slide">
                                                     <figure class="product-image">
                                                         <img src="{{url('product/'.$product['image3'])}}"
@@ -53,6 +60,7 @@
                                                             alt="Electronics Black Wrist Watch" width="800" height="900">
                                                     </figure>
                                                 </div>
+                                                @endif
                                                
                                                 
                                             </div>
