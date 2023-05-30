@@ -26,11 +26,11 @@ class PasswordResetLinkController extends Controller
     
  public function store(Request $request){
           
-          $role =getRole('customer');
+          $role =getRole('admin');
         
           $user = User::where('email',$request['email'])->first();
           
-          if($user['role_id'] != $role){
+          if($user['role_id'] == $role){
              return response()->json(['success' => false,
                 'message' => 'The email is not valid for this account.'
             ], 200);

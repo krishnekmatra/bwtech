@@ -13,6 +13,7 @@
 						<div class="tab-pane active" id="sign-in">
 								<form  name="loginForm" method="POST" id="loginForm" autocomplete="off" action="">
 									@csrf
+									<input type="hidden" class="form-control" name="status" id="status" value="1">
 									<div class="form-group">
 											<label>Email address *</label>
 											<input type="text" class="form-control" name="email" id="email" required  autocomplete="none">
