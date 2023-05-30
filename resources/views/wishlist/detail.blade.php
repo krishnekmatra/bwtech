@@ -113,9 +113,8 @@
 												<div class="product-wrap" id="product{{$prod_val['id']}}">
 													<div class="product product-image-gap product-simple">
 														<figure class="product-media">
-															<a href="{{url('product')}}">
+															<a href="{{url('product-detail/'.$prod_val['getProduct']['slug'])}}">
 																<img src='{{url("product/".$prod_val['getProduct']['image'])}}' alt="Product" width="195" height="135" />
-																 <img src='{{url("product/".$prod_val['getProduct']['image'])}}' alt="Product" width="195" height="135" />
 															</a>
 														   
 															<div class="product-action">
@@ -125,14 +124,14 @@
 														<div class="product-details">
 															
 															<h4 class="product-name">
-																<a href="{{url('product-detail/'.$prod_val['id'])}}">{{$prod_val['getProduct']['name']}}</a>
+																<a href="{{url('product-detail/'.$prod_val['slug'])}}">{{$prod_val['getProduct']['name']}}</a>
 															</h4>
 														   
 															<div class="product-pa-wrapper">
 																<div class="product-price">
 																	<ins class="new-price">Price : {{$prod_val['getProduct']['price']}}</ins>
 																	<br/>
-																	<ins class="new-price">Selles Price : {{$prod_val['margin_price']}}</ins>
+																	<ins class="new-price" style="color:#c40000 !important;">Selles Price : {{$prod_val['margin_price']}}</ins>
 																</div>
 																<div class="product-action">
 																	<a href="javascript:void(0)" class="btn-cart btn-product btn btn-link btn-underline remove
@@ -174,6 +173,7 @@
             "_token": "{{ csrf_token() }}",
         	},
           success: function(response) {
+          	 notifyMsg('Margin Applied Successfully','success');
           	$(".wishlistDiv").html(response.html);
           	
           },
