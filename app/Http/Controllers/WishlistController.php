@@ -10,6 +10,29 @@ use PDF;
 class WishlistController extends Controller
 {
 	//
+	public function setMargin(Request $request){
+		$wishlist_id = $request->wishlist_id;
+		$margin_type = $request->margin_type;
+		$margin_price = $request->margin;
+
+		$product = ProductWishList::where('wishlist_id',$wishlist_id)->get();
+		foreach($product as $value){
+			if($margin_type == 'rs'){
+				$price = $value['price'] + $margin_price;
+			}else{
+				$calculate_price = ($margin_price / 100) * $value['price'];
+				$price  = $value['price'] + $calculate_price;
+
+			}
+			ProductWishList::where('id',$value['id'])->update(['margin_price'=>$price]);
+		}
+		$result = ProductWishList::with('getProduct')->where('wishlist_id',$wishlist_id)->get();
+		$html = view('wishlist.wishlist-margin')->with('result',$result)->render();
+		return response()->json(['success' => true,
+				'html' => $html,
+		  ], 200);
+
+	}
 	public function store(Request $request){
 		$client_id = \Auth::user()->id;
 		$product_price = $request['product_price'];

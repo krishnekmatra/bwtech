@@ -87,7 +87,6 @@
 													</select>
 
 													<input type="text" class="form-control" name="margin" id="margin" placeholder="Margin for all">
-
 													<button class="btn btn-dark apply">Apply</button>
                     	</div>
                   </div>
@@ -109,7 +108,7 @@
                     <!-- End of Vendor Map -->
 
 
-                   <div class="product-wrapper row cols-lg-5 cols-md-4 cols-sm-3 cols-2">
+                   <div class="product-wrapper row cols-lg-5 cols-md-4 cols-sm-3 cols-2 wishlistDiv">
 											@foreach($wishlist['ProductWishList'] as $prod_val)
 												<div class="product-wrap" id="product{{$prod_val['id']}}">
 													<div class="product product-image-gap product-simple">
@@ -133,7 +132,7 @@
 																<div class="product-price">
 																	<ins class="new-price">Price : {{$prod_val['getProduct']['price']}}</ins>
 																	<br/>
-																	<ins class="new-price">Min Qty : {{$prod_val['getProduct']['maq']}}</ins>
+																	<ins class="new-price">Selles Price : {{$prod_val['margin_price']}}</ins>
 																</div>
 																<div class="product-action">
 																	<a href="javascript:void(0)" class="btn-cart btn-product btn btn-link btn-underline remove
@@ -155,9 +154,31 @@
 
 	$('.apply').click(function(){
 		var margin_type = $("#margin_type").val();
+		var margin = $("#margin").val();
+
 		if(margin_type == ''){
 			 notifyMsg('Select Margin Type','error');
+			 return false;
 		}
+		if(margin == ''){
+			notifyMsg('Select Margin','error');
+			return false;
+		}
+			$.ajax({
+       		type: "post",
+          url: '{{ url("wishlist/margin") }}',
+          data: {
+            "wishlist_id": "{{$wishlist['id']}}",
+            "margin_type": margin_type,
+            "margin" : margin,
+            "_token": "{{ csrf_token() }}",
+        	},
+          success: function(response) {
+          	$(".wishlistDiv").html(response.html);
+          	
+          },
+          
+       });
 	});
 	$(document).on('click', ".editwishlist", function() {
 		$('.wislistEditDetail').show();

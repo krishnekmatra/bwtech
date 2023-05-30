@@ -74,6 +74,8 @@ Route::post('savesubmitanenquiry',[InquiryController::class,'savesubmitanenquiry
 });
 Route::post('wishlist/store',[WishlistController::class,'store'])->name('wishlist.store');
 
+Route::post('wishlist/margin',[WishlistController::class,'setMargin'])->name('setMargin');
+
 Route::post('product/subcategory',[ProductController::class,'getSubCategoryById'])->name('product.subCategory');
 
 Route::post('product/brand',[ProductController::class,'getBrand'])->name('product.brand');

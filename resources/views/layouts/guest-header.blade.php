@@ -138,14 +138,7 @@
 													
 												</ul>
 											</li>
-											<li>
-												<h4 class="menu-title">Brand</h4>
-												<ul>
-													@foreach($allFeature as $feature)
-													<li><a href="{{url('shop-by/brand/'.$feature['name'])}}">{{$feature['name']}}</a></li>
-												  @endforeach 
-												</ul>
-											</li>
+											
 										   
 										</ul>
 										<!-- End of Megamenu -->

@@ -36,12 +36,12 @@ class AppServiceProvider extends ServiceProvider
 		  
 
 		$category = Category::where('status',1)->orderBy('sorting','desc')->get();;
-		$allFeature = FeatureAttribute::get();
+		//$allFeature = FeatureAttribute::get();
 		$occasions = Occasions::orderBy('created_at','desc')->get();
 		$contact = ContactUs::pluck('phone')->first();
 		
 		\View::share('category', $category);
-		\View::share('allFeature', $allFeature);
+		//\View::share('allFeature', $allFeature);
 		\View::share('occasions', $occasions);
 		\View::share('contact', $contact);
 

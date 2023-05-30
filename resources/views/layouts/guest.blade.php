@@ -122,14 +122,7 @@
 													
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="#">Brand</a>
-                                    <ul>
-                                        @foreach($allFeature as $feature)
-																					<li><a href="{{url('shop-by/brand/'.$feature['name'])}}">{{$feature['name']}}</a></li>
-												 							 @endforeach 
-                                    </ul>
-                                </li>
+                               
                                 
                             </ul>
                         </li>
