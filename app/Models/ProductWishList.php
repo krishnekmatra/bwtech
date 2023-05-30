@@ -11,7 +11,9 @@ class ProductWishList extends Model
     protected $fillable = [
         'product_id',
         'client_id',
-        'wishlist_id'
+        'wishlist_id',
+        'price',
+        'margin_price'
     ];
      public function getProduct(){
          return $this->belongsTo('App\Models\Product', 'product_id','id');

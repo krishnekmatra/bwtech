@@ -10,7 +10,7 @@
 							
 							<div class="product-action-vertical">
 								@auth
-								 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$prod_val['id']}}"
+								 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$prod_val['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"
                                                 title="Add to wishlist"></a>
                                 @else
                                 <a href="{{url('login')}}" class="btn-product-icon btn-wishlist w-icon-heart  sign-in"></a>

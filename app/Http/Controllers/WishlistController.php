@@ -12,6 +12,7 @@ class WishlistController extends Controller
 	//
 	public function store(Request $request){
 		$client_id = \Auth::user()->id;
+		$product_price = $request['product_price'];
 		$wishlist = Wishlist::create([
 			'name' => $request['name'],
 			'client_id' => $client_id
@@ -19,7 +20,9 @@ class WishlistController extends Controller
 		ProductWishList::create([
 			'client_id' => $client_id,
 			'product_id' => $request->product_id,
-			'wishlist_id' => $wishlist->id
+			'wishlist_id' => $wishlist->id,
+			'price' => $product_price,
+			'margin_price' => $product_price
 		]);
 		 $count = ProductWishList::where('client_id',$client_id)->count();
         \Session::put('wishlistCount',$count);
@@ -67,6 +70,8 @@ class WishlistController extends Controller
 		if($productWishList){
 			$productWishList->delete();
 		}else{
+			$matchThese['price'] = $request['product_price'];
+			$matchThese['margin_price'] = $request['product_price'];
 			ProductWishList::create($matchThese);
 		}
         $count = ProductWishList::where('client_id',$client_id)->count();

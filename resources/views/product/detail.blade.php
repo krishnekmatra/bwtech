@@ -140,10 +140,10 @@
 											<div class="product-form container ">
 												@auth
 												<a href="javascript:void(0)"
-													class="addwishlist btn btn-dark btn-rounded mb-2 mb-lg-0" data-id="{{$product['id']}}">Add To Wishlist&nbsp;&nbsp;</a>
+													class="addwishlist btn btn-dark btn-rounded mb-2 mb-lg-0" data-id="{{$product['id']}}" data-price="{{$product['price']}}">Add To Catalogue &nbsp;&nbsp;</a>
 												@else
 														<a href="{{url('login')}}"
-													class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0" data-id="{{$product['id']}}">Add To Wishlist&nbsp;&nbsp;</a>
+													class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0" data-id="{{$product['id']}}">Add To Catalogue &nbsp;&nbsp;</a>
 												@endauth
 												@auth
 												 <div class="dropdown cart-dropdown cart-offcanvas mr-13 mr-lg-2 ml-lg-2">

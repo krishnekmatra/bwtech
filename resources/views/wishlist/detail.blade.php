@@ -14,34 +14,46 @@
 			   <div class="page-content mb-8">
                 <div class="container">
                 	<div class="row mb-5 align-items-center wislistDetail">
-                		<div class="col-8 col-md-5 col-lg-3"><h4 class="product-name wishlist-title"><a href="javascript:void(0)">{{$wishlist['name']}}</a></h4></div>
+                		<div class="col-5 col-md-5 col-lg-3"><h4 class="product-name wishlist-title"><a href="javascript:void(0)">{{$wishlist['name']}}</a></h4></div>
 
-                		<div class="col-4 col-md-5 col-lg-3">
-						<div class="wishlistbtns">
-							<button class=" removewishlist">
-								<img src="{{url('front/images/close-icon.png')}}" alt="remove"/>
-							</button>
-							<button class="edit editwishlist">
-								<img src="{{url('front/images/edit.png')}}" alt="close"/>
-							</button>
-							<a href="{{url('shop/product')}}"><button class="edit">
-								<img src="{{url('front/images/icons/add.png')}}" alt="add"/>
-							</button>
-						</a>
-						</div>
-                         </div>
+                		<div class="col-4 col-md-4 col-lg-2">
+												<div class="wishlistbtns">
+														<button class=" removewishlist">
+															<img src="{{url('front/images/close-icon.png')}}" alt="remove"/>
+														</button>
+														<button class="edit editwishlist">
+															<img src="{{url('front/images/edit.png')}}" alt="close"/>
+														</button>
+														<a href="{{url('shop/product')}}"><button class="edit">
+															<img src="{{url('front/images/icons/add.png')}}" alt="add"/>
+														</button></a>
+													
+												</div>
+                    </div>
+                    	<div class="col-4 col-md-5 col-lg-5">
+                    			<select class="form-control ml-2">
+														<option value="">Select Margin Type</option>
+														<option value="percent">%</option>
+														<option value="rs">₹</option>
+													</select>
+
+													<input type="text" class="form-control" name="margin" id="margin">
+
+													<button class=" btn btn-dark">Apply</button>
+                    	</div>
                   </div>
                   <div class="row mb-5 align-items-center wislistEditDetail">
                 		<div class="col-8 col-md-5 col-lg-3">
-							<input type="text" class="form-control" name="wishlist_name" id="wishlist_name" value="{{$wishlist['name']}}">
-						</div>
+												<input type="text" class="form-control" name="wishlist_name" id="wishlist_name" value="{{$wishlist['name']}}">
+										</div>
+										<div class="col-4 col-md-5 col-lg-3">
+											<div class="wishlistbtns">
+													<button class="save"><img src="{{url('front/images/correct.png')}}" alt="save"/></button>
+													<button class="close"><img src="{{url('front/images/close-icon.png')}}" alt="close"/></button>
+													
+                     </div>
+										</div>
 
-                		<div class="col-4 col-md-5 col-lg-3">
-						<div class="wishlistbtns">
-							<button class="save"><img src="{{url('front/images/correct.png')}}" alt="save"/></button>
-						<button class="close"><img src="{{url('front/images/close-icon.png')}}" alt="close"/></button>
-                         </div>
-						</div>
                   </div>
                     <!-- Start of Vendor Map -->
                    

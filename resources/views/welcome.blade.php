@@ -125,7 +125,7 @@
                                         <div class="product-action-vertical">
                                           
                                             @auth
-								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_val['id']}}"
+								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_val['id']}}" data-price="{{$product_val['price']}}"
                                                 title="Add to wishlist"></a>
                                 					 @else
                                 						<a href="{{url('login')}}" class="btn-product-icon btn-wishlist w-icon-heart  sign-in"></a>
@@ -136,9 +136,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-name"><a href="{{url('product-detail/'.$product_val['slug'])}}">{{$product_val['name']}}</a></h4>
-                                         <div class="ratings-container">
-                       										 <a href="#" class="rating-reviews">Min Qty : {{$product_val['maq'] ? $product_val['maq'] :  $product_val['maq']}}</a>
-               													 </div>
+                                        
                                         <div class="product-price">
                                             <ins class="new-price">Price : {{$product_val['price']}}</ins>
                                         </div>
@@ -245,7 +243,7 @@
                                         <div class="product-action-vertical">
                                           
                                             @auth
-								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_deals['getProduct']['id']}}"
+								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}"
                                                 title="Add to wishlist"></a>
                                 					 @else
                                 						<a href="{{url('login')}}" class="btn-product-icon btn-wishlist w-icon-heart  sign-in"></a>
@@ -257,9 +255,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-name"><a href="{{url('product-detail/'.$product_deals['getProduct']['slug'])}}">{{$product_deals['getProduct']['name']}}</a></h4>
-                                        <div class="ratings-container">
-                       										 <a href="#" class="rating-reviews">Min Qty : {{$product_deals['getProduct']['maq'] ? $product_deals['getProduct']['maq'] :  $product_deals['getProduct']['maq']}}</a>
-               													 </div>
+                                       
                                         <div class="product-price">
                                             <ins class="new-price">Price : {{$product_deals['getProduct']['price']}}</ins>
                                         </div>

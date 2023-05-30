@@ -196,6 +196,7 @@
 			
 
 			<input type="hidden" name="product_id" id="product_id">
+				<input type="hidden" name="product_price" id="product_price">
 			<p class="text-light ls-10"></p>
 			
 			<div class="form-checkbox d-flex align-items-center">
@@ -270,16 +271,18 @@
 					type: type
 				});
 			}
-				function wishList(id){
+				function wishList(id,price){
     			var id = id;
+    			var price = price;
     		
 	    		$.ajax({
 	       		type: "get",
-	          url: '{{ url("userWishlist/") }}'+'/'+id,
-	          
+	            url: '{{ url("userWishlist/") }}'+'/'+id,
+	           
 	          success: function(response) {
 	          		 $(".form-checkbox ul").html(response);
 	          		 $("#product_id").val(id);
+	          		 $("#product_price").val(price);
 	          },
 	          error: function(response) {
 	          	let error = response.responseJSON;
@@ -321,14 +324,16 @@
 			});
 			$(document).on('click', "a.addwishlist", function() {
     		var id = $(this).attr('data-id');
-    		wishList(id);
+    		var price = $(this).attr('data-price');
+    		wishList(id,price);
        });
 				
   
 			
 			$(document).on('click', "a.wishlist", function() {
     		var id = $(this).attr('data-id');
-    		wishList(id);
+    		var price = $(this).attr('data-price');
+    		wishList(id,price);
        });
 
 		
@@ -340,12 +345,14 @@
 			$(document).on('click','.saveWishlist',function(){
 				var name  = $("#name").val();
 				var product_id = $("#product_id").val();
+				var product_price = $("#product_price").val();
 				 $.ajax({
        		type: "Post",
           url: '{{ url("wishlist/store") }}',
           data: {
             "name": name,
             "product_id" : product_id,
+            "product_price" : product_price,
             "_token": "{{ csrf_token() }}",
         	},
           success: function(response) {
@@ -382,6 +389,7 @@
           data: {
             "wishlist_id": $(this).val(),
             "product_id" : $("#product_id").val(),
+            'product_price' : $("#product_price").val(),
             "_token": "{{ csrf_token() }}",
         	},
           success: function(response) {
