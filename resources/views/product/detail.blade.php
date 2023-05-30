@@ -31,6 +31,35 @@
 															alt="Electronics Black Wrist Watch" width="800" height="900">
 													</figure>
 												</div>
+												@if(@$product['image2'])
+												<div class="swiper-slide">
+													<figure class="product-image">
+														<img src="{{url('product/'.$product['image2'])}}"
+															data-zoom-image="{{url('product/'.$product['image2'])}}"
+															alt="Electronics Black Wrist Watch" width="800" height="900">
+													</figure>
+												</div>
+												@endif
+
+												@if(@$product['image3'])
+												<div class="swiper-slide">
+													<figure class="product-image">
+														<img src="{{url('product/'.$product['image3'])}}"
+															data-zoom-image="{{url('product/'.$product['image3'])}}"
+															alt="Electronics Black Wrist Watch" width="800" height="900">
+													</figure>
+												</div>
+												@endif
+
+												@if(@$product['image4'])
+												<div class="swiper-slide">
+													<figure class="product-image">
+														<img src="{{url('product/'.$product['image4'])}}"
+															data-zoom-image="{{url('product/'.$product['image4'])}}"
+															alt="Electronics Black Wrist Watch" width="800" height="900">
+													</figure>
+												</div>
+												@endif
 												
 												
 											
