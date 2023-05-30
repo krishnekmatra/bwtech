@@ -22,6 +22,31 @@
     width: 100%;
     justify-content: space-between;
 }
+@media screen and (max-width: 767px){
+.wishlistbtns {
+   justify-content: end;
+}
+
+.wislistDetail select.form-control {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0 !important;
+}
+.wislistDetail  input#margin {
+    max-width: 100%;
+    margin-left: 0rem;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+.margintype {
+    display: block;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+}
 	</style>
 	<nav class="breadcrumb-nav">
 				<div class="container">
