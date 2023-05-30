@@ -38,9 +38,9 @@
 			   <div class="page-content mb-8">
                 <div class="container">
                 	<div class="row mb-5 align-items-center wislistDetail">
-                		<div class="col-5 col-md-5 col-lg-3"><h4 class="product-name wishlist-title"><a href="javascript:void(0)">{{$wishlist['name']}}</a></h4></div>
+                		<div class="col-6 col-md-5 col-lg-3"><h4 class="product-name wishlist-title"><a href="javascript:void(0)">{{$wishlist['name']}}</a></h4></div>
 
-                		<div class="col-4 col-md-4 col-lg-2">
+                		<div class="col-6 col-md-4 col-lg-2">
 												<div class="wishlistbtns">
 														<button class=" removewishlist">
 															<img src="{{url('front/images/close-icon.png')}}" alt="remove"/>
@@ -54,8 +54,8 @@
 													
 												</div>
                     </div>
-                    	<div class="col-4 col-md-5 col-lg-5 margintype">
-                    			<select class="form-control ml-2">
+                    	<div class="col-12 col-md-5 col-lg-5 margintype">
+                    			<select class="form-control" name="margin_type" id="margin_type">
 														<option value="">Margin Type</option>
 														<option value="percent">%</option>
 														<option value="rs">₹</option>
@@ -63,7 +63,7 @@
 
 													<input type="text" class="form-control" name="margin" id="margin" placeholder="Margin for all">
 
-													<button class=" btn btn-dark">Apply</button>
+													<button class="btn btn-dark apply">Apply</button>
                     	</div>
                   </div>
                   <div class="row mb-5 align-items-center wislistEditDetail">
@@ -127,6 +127,13 @@
 <script type="text/javascript">
 	
 	$('.wislistEditDetail').hide();
+
+	$('.apply').click(function(){
+		var margin_type = $("#margin_type").val();
+		if(margin_type == ''){
+			 notifyMsg('Select Margin Type','error');
+		}
+	});
 	$(document).on('click', ".editwishlist", function() {
 		$('.wislistEditDetail').show();
 		$('.wislistDetail').hide();
