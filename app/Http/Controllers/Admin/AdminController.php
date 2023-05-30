@@ -20,8 +20,8 @@ class AdminController extends Controller
         $inquiry_rfq = Inquiry::where('type','rfq')->count();
         $inquiry = Inquiry::where('type','enquiry')->count();
 
-        $vendor = getRole('vendor');
-        $customer = getRole('customer');
+        $vendor = getRole('Sales Team');
+        $customer = getRole('Management');
 
         $total_vendor = User::where('role_id',$vendor)->count();
         $total_customer = User::where('role_id',$customer)->count();

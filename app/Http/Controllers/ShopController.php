@@ -15,9 +15,8 @@ class ShopController extends Controller
 {
 	//
 	public function productList(Request $request){
-		 $brand = Product::with('feature_attributes')->where('status',1)->groupBy('feature_attribute_id')->get();
-
-    $allcategory = 1;
+		 $brand = Product::with('feature_attributes')->where('status',1)->get();
+		 $allcategory = 1;
 		$product = Product::where('status',1);
 		$product=$product->orderBy('created_at','desc')->paginate(12);
 		 return view ('allproduct',compact('brand','product','allcategory'));
@@ -42,12 +41,7 @@ class ShopController extends Controller
 		}
 		
 		$subCategory = $category['subCategory'];
-		//$brand = $category['brands'];
-
 		
-		// $features = SubCategoryFeature::with('featureName.FeatureAttributes')->whereHas('featureName',function($q){
-		// 	$q->where('search_type','basic');
-		// })
 		$features = SubCategoryFeature::with('featureName.FeatureAttributes')->where('category_id',$cat_id)->groupBy('feature_id')->get();
 		
 
@@ -156,29 +150,29 @@ class ShopController extends Controller
 		->orWhere(function($q) use($search_txt) {
 			$q->whereHas('category', function ($query) use ($search_txt) {
 				$query->where('name','like', '%'. $search_txt .'%');
-			 })
-			->orWhereHas('feature_attributes',function($query) use( $search_txt){
-		 	     $query->where('name','like', '%'. $search_txt .'%');
-
-		 	 })->orWhereHas('productFeatures',function($query) use( $search_txt){
-			    $query->where('name','like', '%'. $search_txt .'%');
 			 });
+			// ->orWhereHas('feature_attributes',function($query) use( $search_txt){
+		 	//      $query->where('name','like', '%'. $search_txt .'%');
+
+		 	//  })->orWhereHas('productFeatures',function($query) use( $search_txt){
+			//     $query->where('name','like', '%'. $search_txt .'%');
+			//  });
 		})
 		
-		 ->where('status',1)->groupBy('feature_attribute_id')->get();
+		 ->where('status',1)->get();
 
     	
 		$product = Product::where('products.name', 'LIKE','%'. $search_txt .'%')
 		->orWhere(function($q) use($search_txt) {
 			$q->whereHas('category', function ($query) use ($search_txt) {
 				 $query->where('name','like', '%'. $search_txt .'%');
-			 })
-			->orWhereHas('feature_attributes',function($query) use( $search_txt){
-		 	     $query->where('name','like', '%'. $search_txt .'%');
-
-		 	 })->orWhereHas('productFeatures',function($query) use( $search_txt){
-			    $query->where('name','like', '%'. $search_txt .'%');
 			 });
+			// ->orWhereHas('feature_attributes',function($query) use( $search_txt){
+		 	//      $query->where('name','like', '%'. $search_txt .'%');
+
+		 	//  })->orWhereHas('productFeatures',function($query) use( $search_txt){
+			//     $query->where('name','like', '%'. $search_txt .'%');
+			//  });
 		})
 		->where('status',1);
 		
@@ -208,7 +202,7 @@ class ShopController extends Controller
 		->where('status',1);
 		
 		if($request['brand_array']){
-    		$product->whereIn('feature_attribute_id',$request['brand_array']);
+    		//$product->whereIn('feature_attribute_id',$request['brand_array']);
     	}
 
     	if($request['warranty']){

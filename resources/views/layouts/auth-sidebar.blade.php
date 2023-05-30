@@ -42,7 +42,7 @@ $url = getAuthGaurd();
 						<a class="side-menu__item" href='{{url("$url/dashboard")}}'><i class="side-menu__icon fe fe-airplay"></i><span class="side-menu__label">Dashboard</span></a>
 					</li>
 					<li class="slide products">
-						<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="side-menu__icon fe fe-gift menu-icons"></i><span class="side-menu__label">Products</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="javascript:void(0)"><i class="side-menu__icon fe fe-briefcase menu-icons"></i><span class="side-menu__label">Products</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
 						
 							@if($url == 'admin')
