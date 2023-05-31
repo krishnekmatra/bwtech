@@ -22,6 +22,8 @@
 								<ins class="new-price">Price : {{$prod_val['getProduct']['price']}}</ins>
 								<br/>
 								<ins class="new-price" style="color:#c40000 !important;">Selling Price Rs. : {{$prod_val['margin_price']}}</ins>
+								<br/>
+								<ins class="new-price mt-2">Applied Margin : {{$margin_price}} {{($margin_type == 'percent') ? '%' : 'Rs'}}</ins>
 							</div>
 							<div class="product-action">
 								<a href="javascript:void(0)" class="btn-cart btn-product btn btn-link btn-underline remove

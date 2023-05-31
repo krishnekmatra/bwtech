@@ -26,8 +26,13 @@ class WishlistController extends Controller
 			}
 			ProductWishList::where('id',$value['id'])->update(['margin_price'=>$price]);
 		}
+		$Wishlist = Wishlist::where('id',$wishlist_id)->update([
+			'margin_type' => $margin_type,
+			'margin_value' => $margin_price
+		]);		
 		$result = ProductWishList::with('getProduct')->where('wishlist_id',$wishlist_id)->get();
-		$html = view('wishlist.wishlist-margin')->with('result',$result)->render();
+	
+		$html = view('wishlist.wishlist-margin')->with(compact('result','margin_price','margin_type'))->render();
 		return response()->json(['success' => true,
 				'html' => $html,
 		  ], 200);
@@ -84,6 +89,7 @@ class WishlistController extends Controller
 		$wishlist_id =  $request->wishlist_id;
 		$product_id =  $request->product_id;
 		$client_id = \Auth()->user()->id;
+		$wishlist = Wishlist::where('id',$wishlist_id)->first();
 		$matchThese = [
 			'wishlist_id' => $wishlist_id,
 			'product_id' => $product_id,
@@ -94,7 +100,16 @@ class WishlistController extends Controller
 			$productWishList->delete();
 		}else{
 			$matchThese['price'] = $request['product_price'];
-			$matchThese['margin_price'] = $request['product_price'];
+			if(@$wishlist['margin_type']){
+				if($wishlist['margin_type'] == 'percent'){
+					$calculate = ($request['product_price'] / 100) * $wishlist['margin_value'];
+					$matchThese['margin_price'] = $request['product_price'] + $calculate;
+				}else{
+					$matchThese['margin_price'] = $request['product_price'] + $wishlist['margin_value'];
+				}
+			}
+			
+
 			ProductWishList::create($matchThese);
 		}
         $count = ProductWishList::where('client_id',$client_id)->count();
