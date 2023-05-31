@@ -23,7 +23,7 @@
 					<div class="main-content">
 						<!-- Start of Collapsible Widget -->
 								<div class="widget widget-collapsible">
-									<h3 class="widget-title"><label>Price</label></h3>
+									
 									<div class="widget-body">
 									
 
