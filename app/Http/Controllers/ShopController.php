@@ -64,7 +64,22 @@ class ShopController extends Controller
     		$array = $request['brand_array'];
     		$product->where(function($q) use($array) {
 				$q->whereHas('productFeatures', function ($query) use ($array) {
-					$query->whereIn('feature_attribute_id',$array);
+					if(sizeof($array) > 1){
+						$where = '';
+						$last = array_key_last ( $array );
+						foreach($array as $key=>$value){
+							if($last == $key){
+								$where.= $value;
+							}else{
+								$where.= $value . 'and';
+							}
+							
+							//echo $where;
+						}
+					} else{
+						$where = $array[0];
+					}
+					$query->where('feature_attribute_id',$where);
 				 });
 			});
 		
@@ -93,10 +108,7 @@ class ShopController extends Controller
     	}else{
     		 $product->orderBy('created_at','desc');
 		}
-
     	$product= $product->paginate($page_limit);
-    
-  
 
 		if ($request->ajax()) {
 			return view('presult', compact('product'));
