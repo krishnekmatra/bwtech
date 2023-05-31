@@ -64,22 +64,17 @@ class ShopController extends Controller
     		$array = $request['brand_array'];
     		$product->where(function($q) use($array) {
 				$q->whereHas('productFeatures', function ($query) use ($array) {
-					if(sizeof($array) > 1){
-						$where = '';
-						$last = array_key_last ( $array );
-						foreach($array as $key=>$value){
-							if($last == $key){
-								$where.= $value;
-							}else{
-								$where.= $value . 'and';
-							}
-							
-							//echo $where;
-						}
-					} else{
-						$where = $array[0];
-					}
-					$query->where('feature_attribute_id',$where);
+				$array1 = collect($array)->sortBy('count')->reverse()->toArray();
+
+					 $string = implode(' and ', $array1);
+					//$query->where('feature_attribute_id','`'.$string.'`');
+					 $query->whereRaw('feature_attribute_id = "'.$string.'"');
+
+
+
+
+
+
 				 });
 			});
 		
@@ -109,11 +104,14 @@ class ShopController extends Controller
     		 $product->orderBy('created_at','desc');
 		}
     	$product= $product->paginate($page_limit);
-
+  
 		if ($request->ajax()) {
 			return view('presult', compact('product'));
 		}
     }
+    public function sortById($x, $y) {
+    return $x - $y;
+}
 	public function subCategoryList($category_name,$subcategory_name){
 		
 		$cat_slug = $category_name;
