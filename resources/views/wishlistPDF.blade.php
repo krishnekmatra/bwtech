@@ -29,7 +29,7 @@ header {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="images p-3">
-                            <div class="text-center p-4"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="250" /> </div>
+                            <div class="text-center p-4"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="225" /> </div>
                           
                         </div>
                     </div>
