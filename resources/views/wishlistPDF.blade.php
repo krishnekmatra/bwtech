@@ -9,7 +9,7 @@
 		font-size: 15px !important;
 	}
 	@page {
-    margin: 90px 25px 100px 25px;
+    margin: 100px 25px 100px 25px;
 }
 
 header {
@@ -19,7 +19,7 @@ header {
 </style>
 </head>
 <body>
-	<p><center><img src="{{public_path().'/logo.png'}}" style="max-width:25%"></center></p><br/>
+	<p><center><img src="{{public_path().'/logo.png'}}" style="max-width:25%;margin-top:-30px;"></center></p><br/>
 	<div class="container mt-5 mb-5">
 
 	@foreach($wishlists['ProductWishList'] as $wishlist)
