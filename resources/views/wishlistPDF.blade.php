@@ -7,9 +7,10 @@
 <style type="text/css">
 	p,h6{
 		font-size: 15px !important;
+		line-height: 15px;
 	}
 	@page {
-	margin: 140px 25px 100px 25px;
+	margin: 100px 25px 100px 25px;
 }
 
 header {
@@ -19,18 +20,18 @@ header {
 </style>
 </head>
 <body>
-	<p><center><img src="{{public_path().'/logo.png'}}" style="max-width:25%;margin-top:-60px;"></center></p><br/>
+	<p><center><img src="{{public_path().'/logo.png'}}" style="max-width:25%;margin-top:-10px;"></center></p><br/>
 	<div class="container mt-5 mb-5">
 
 	@foreach($wishlists['ProductWishList'] as $wishlist)
-		<div class="row mt-10">
-		<div class="col-md-12">
+		<div class="row">
+		<div class="col-md-12"  style="height:100%;margin-bottom:10px;">
 			<div class="card">
 				<div class="row">
-					<h5 class="text-uppercase text-left mt-1  col-12 p-4">{{$wishlist['getProduct']['name']}}</h5>
+					<h5 class="text-uppercase text-left mt-2  col-12 p-4">{{$wishlist['getProduct']['name']}}</h5>
 					<div class="col-md-6">
-						<div class="images">
-							<div class="text-center"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="225" /> </div>
+						<div class="images p-4">
+							<div class="text-center p-3"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="235" /> </div>
 						  
 						</div>
 					</div>
@@ -38,7 +39,7 @@ header {
 			</div>
 			 <div class="row m-0">
 				<div class="mt-1  col-12"> 
-								<h6 class="text-uppercase">Specification</h6>
+								<h6 class="text-uppercase mb-10">Specification</h6>
 							   
 			  </div>
 
@@ -49,13 +50,13 @@ header {
 											?>
 							 @if($re)
 
-								 <table style="width: 100%;border-collapse: collapse;border-spacing: 0;margin-bottom: 10px;padding: 5px 1rem;">
+								 <table style="width: 100%;border-collapse: collapse;border-spacing: 0;margin-bottom:20px;padding: 5px 1rem;">
 		  
 									<tbody>
 			 
 
 										@foreach($re->chunk(2) as $key=>$pro_values)
-												<tr style="margin-top:2px;">
+												<tr>
 												 @foreach($pro_values as $product)
 												 <?php $feature_name = explode('-',$product['feature_name']['name']); ?>
 												   <td><h6>{{( $feature_name[0]) ?  $feature_name[1] :  $feature_name[0]}}</h6> 
@@ -73,14 +74,14 @@ header {
 		  					</table>
 	  					@endif
 						 </div>
-						  <div class="price d-flex flex-row text-right mb-1 mr-2"> 
+
+						  <div class="text-right mb-10 mr-2"> 
                                 	<h5 class="act-price" style="color:#c40000 !important;">Price : {{$wishlist['margin_price']}} /- </h5>
                                </div>
 			 </div>
 				</div>
 		</div>
 	</div>
-	<br/>
 	@endforeach
 	</div>
 </body>
