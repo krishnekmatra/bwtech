@@ -18,4 +18,7 @@ class ProductWishList extends Model
      public function getProduct(){
          return $this->belongsTo('App\Models\Product', 'product_id','id');
     }
+     public function productFeatures() {
+        return $this->hasMany('App\Models\ProductFeture','product_id','product_id');
+    }
 }
