@@ -15,8 +15,9 @@
                                 @else
                                 <a href="{{url('login')}}" class="btn-product-icon btn-wishlist w-icon-heart  sign-in"></a>
                                 @endif
-                                  <a href="{{url('product-detail/'.$prod_val['slug'])}}" class="btn-product-icon  w-icon-search mt-2"
+                                <a href="{{url('product-detail/'.$prod_val['slug'])}}" class="btn-product-icon  w-icon-search mt-2"
                                                 title="Quickview"></a>
+                                <input type="checkbox" class="multipleProduct btn mt-2" name="multipleProduct" value="{{$prod_val['id'] ? $prod_val['id'] : $prod_val['getProduct']['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"/>
 							</div>
 						
 						</figure>

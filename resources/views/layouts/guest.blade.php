@@ -329,7 +329,9 @@
     		wishList(id,price);
        });
 
-		
+			$(document).on('click',".addmultipleProduct",function(){
+				alert("calll");
+			})
 
 			$(document).on('click','span.addlist',function(){
 				$('.addListDiv').show();
