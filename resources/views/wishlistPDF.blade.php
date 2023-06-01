@@ -29,24 +29,8 @@ header {
                 <div class="row">
                     <div class="col-md-6">
                         <div class="images p-3">
-                            <div class="text-center p-4"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="150" /> </div>
-                           <!--  <div class="thumbnail text-center"> 
-                            	@if(@$wishlist->getProduct->image1)
-                            	<img src="{{public_path().'/product/'.$wishlist->getProduct->image1}}" width="70">
-                            	@else
-                            	<img src="{{public_path().'/product/'.$wishlist->getProduct->image}}" width="70">
-                            	@endif 
-                            	@if(@$wishlist->getProduct->image2)
-                            	<img src="{{public_path().'/product/'.$wishlist->getProduct->image2}}" width="70">
-                            	@else
-                            		<img src="{{public_path().'/product/'.$wishlist->getProduct->image}}" width="70">
-                            	@endif 
-                            	@if(@$wishlist->getProduct->image3)
-                            	<img src="{{public_path().'/product/'.$wishlist->getProduct->image3}}" width="70">
-                            	@else
-                            		<img src="{{public_path().'/product/'.$wishlist->getProduct->image}}" width="70">
-                            	@endif 
-                          </div> -->
+                            <div class="text-center p-4"> <img id="main-image" src="{{public_path().'/product/'.$wishlist->getProduct->image }}" width="250" /> </div>
+                          
                         </div>
                     </div>
                    
