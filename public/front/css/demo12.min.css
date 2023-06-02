@@ -17345,6 +17345,7 @@ body .product-popup {
 .Catalogue-btn {
     height: 40px;
     line-height: 10px;
+    color:#fff !important;
 }
 .multipproductcheckbox{
   border-radius:50%;display: flex;
