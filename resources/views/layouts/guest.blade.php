@@ -245,6 +245,7 @@
 	
 	</body>
 	<script type="text/javascript">
+		var multipleProduct = [];
 		  $('.searchbtn').click(function(){
 		  	$('#searchMobileViewForm').submit();
 		  })
@@ -329,8 +330,21 @@
     		wishList(id,price);
        });
 
+		
+			
 			$(document).on('click',".addmultipleProduct",function(){
-				alert("calll");
+				multipleProduct = [];
+		    $.each($(".multipleProduct:checked"), function(){
+		      multipleProduct.push({
+		      	'product_id' : $(this).val(),
+		      	'price' : $(this).attr('data-price')
+		      });
+		    });
+		    if(multipleProduct.length == 0){
+		    		notifyMsg('Please Select At least product','error');
+		    		return false;
+		    }
+		    wishList(0,0);
 			})
 
 			$(document).on('click','span.addlist',function(){
@@ -348,6 +362,7 @@
             "name": name,
             "product_id" : product_id,
             "product_price" : product_price,
+            "multipleProduct" : multipleProduct,
             "_token": "{{ csrf_token() }}",
         	},
           success: function(response) {
@@ -355,6 +370,11 @@
           	notifyMsg('Prodct has been sent in wishlist','success');
           	$('.cart-count').text(response.count);
           	$(".form-checkbox ul").append(response.html);
+          	multipleProduct = [];
+          	 $('.mfp-close').trigger('click');
+          	 $('.multipleProduct').prop('checked', false);
+
+
           },
           error: function(response) {
           	let error = response.responseJSON;
@@ -385,11 +405,17 @@
             "wishlist_id": $(this).val(),
             "product_id" : $("#product_id").val(),
             'product_price' : $("#product_price").val(),
+            "multipleProduct" : multipleProduct,
             "_token": "{{ csrf_token() }}",
         	},
           success: function(response) {
           	notifyMsg(msg,status);
           	$('.cart-count').text(response);
+          	multipleProduct = [];
+          	 $('.mfp-close').trigger('click');
+          	           	 $('.multipleProduct').prop('checked', false);
+
+
           },
           
        });
