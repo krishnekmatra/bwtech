@@ -96,7 +96,7 @@ Route::get('userWishlist/{product_id}',[WishlistController::class,'getUserWishLi
 
 Route::post('wishlist-assignProduct',[WishlistController::class,'assignProduct'])->name('userassignProduct');
 
-Route::get('wishlist-download/{id}',[WishlistController::class,'wishlistDownload'])->name('wishlist.download');
+Route::post('wishlist-download',[WishlistController::class,'wishlistDownload'])->name('wishlist.download');
 
 Route::post('removeProductWishlist',[WishlistController::class,'removeProductWishlist'])->name('removeProductWishlist');
 

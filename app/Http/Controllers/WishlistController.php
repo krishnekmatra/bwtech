@@ -171,17 +171,20 @@ class WishlistController extends Controller
 		return view('wishlist.index',compact('wishlist'));
 	}
 
-	public function wishlistDownload($id){
-	$wishlist = Wishlist::with('ProductWishList.getProduct','ProductWishList.getProduct.category')->where('id',$id)->first();
+	public function wishlistDownload(Request $request){
+
+		$id = $request->download_id;
+
+		$wishlist = Wishlist::with('ProductWishList.getProduct','ProductWishList.getProduct.category')->where('id',$id)->first();
 
 		 $data = [
-            'wishlists' => $wishlist
+            'wishlists' => $wishlist,
+            'priceshow' => $request->priceShow
         ]; 
            $customPaper = array(0,0,720,1440);
 
 
         $pdf = PDF::loadView('wishlistPDF', $data)->setPaper('A4');;
-     	//return view('wishlistPDF',compact('wishlist'));
         return $pdf->download($wishlist['name'].'.pdf');
 	}
 

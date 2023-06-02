@@ -240,7 +240,7 @@ h6.nothing {
 	@if(count($wishlist) > 0)
 	<div class="page-content mb-10">
 								<div class="container">
-										<h3 class="wishlist-title">My wishlist</h3>
+										<h3 class="wishlist-title">My Catalogue</h3>
 										<div class="row cols-sm-3 cart-table">
 															 
 																@foreach($wishlist as $value)
@@ -271,7 +271,7 @@ h6.nothing {
 																			 
 																				<div class="store-footer">
 																					 @if($value['product_wish_list_count'] > 0)
-																						<a href="{{url('wishlist-download/'.$value['id'])}}"><figure class="seller-brand">
+																						<a href="#" data-id="{{$value['id']}}" class="download"><figure class="seller-brand">
 																								<div class="icon-box text-center">
 																								<span class="icon-box-icon icon-download">
 																										<i class="w-icon-download"></i>
@@ -281,7 +281,7 @@ h6.nothing {
 
 																						</figure></a>
 																						@endif
-																						<a href="{{url('wishlist/view/'.$value['id'])}}" class="btn btn-inquiry btn-rounded btn-icon-left">View Wishlist</a>
+																						<a href="{{url('wishlist/view/'.$value['id'])}}" class="btn btn-inquiry btn-rounded btn-icon-left">View Catalogue</a>
 																						<a href="#" class="btn btn-rounded btn-visit removecart" data-id="{{$value['id']}}">Remove</a>
 																				</div>
 																				<!-- End of Store Footer -->
@@ -448,4 +448,24 @@ h6.nothing {
 				$(".show").show();
 		}
 	}
+	$('.download').click(function(){
+			var id = $(this).attr('data-id');
+			$('#download_id').val(id);
+			 Wolmart.popup({
+						items:{
+							src:'.productPrice-popup'
+							},
+							type:'inline',
+							mainClass:'mfp-productPrice mfp-fadein-popup',
+							callbacks:{
+								beforeClose:function(){
+									
+								}
+							}
+					});
+	});
+	$('.productPriceClose').click(function(){
+			 $('.mfp-close').trigger('click');
+	});
+
 </script>

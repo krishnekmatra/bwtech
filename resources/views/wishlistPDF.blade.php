@@ -77,10 +77,11 @@ header {
 		  					</table>
 	  					@endif
 						 </div>
-
+						 @if($priceshow == 1)
 						  <div class="text-right mb-10 mr-2"> 
                                 	<h5 class="act-price" style="color:#c40000 !important;">Price : {{$wishlist['margin_price']}} /- </h5>
                                </div>
+                        @endif
 			 </div>
 				</div>
 		</div>

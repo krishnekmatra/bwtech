@@ -171,6 +171,22 @@
 	<!-- End of Mobile Menu -->
 
 	<!-- Start of Newsletter popup -->
+	<div class="productPrice-popup mfp-hide product-single login-popup">
+		
+		
+				<p>Are you want to show price in pdf?	</p>
+				<form method="post" action="{{url('wishlist-download')}}">
+					@csrf
+					<input type="hidden" value="" id="download_id" name="download_id">
+					<div class="row">
+					<button type="submit" class="btn btn-dark btn-block col-3 text-center productPriceClose" name="priceShow" value="1"><span class="submit" >Yes</span></button>
+					
+					<button type="submit" class="btn btn-dark btn-block col-3 ml-lg-3 productPriceClose"   name="priceShow" value="0"><span class="submit">No</span></button>
+				</div>
+						</form>
+	</div>
+		
+	</div>
 
 	<div class="newsletter-popup mfp-hide newsletterdiv">
 		<div class="newsletter-content">
@@ -341,7 +357,7 @@
 		      });
 		    });
 		    if(multipleProduct.length == 0){
-		    		notifyMsg('Please Select At least product','error');
+		    		notifyMsg('Please Select at least one product','error');
 		    		return false;
 		    }
 		    wishList(0,0);

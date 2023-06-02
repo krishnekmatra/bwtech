@@ -52,7 +52,7 @@
 				<div class="container">
 					<ul class="breadcrumb bb-no">
 						<li><a href="{{url('/')}}">Home</a></li>
-						<li><a href="{{url('wishlist')}}">Wishlist</a></li>
+						<li><a href="{{url('wishlist')}}">Catalogue</a></li>
 						<li>{{$wishlist['name']}}</li>
 					</ul>
 				</div>
