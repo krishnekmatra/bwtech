@@ -21485,6 +21485,7 @@ b.bold-wishlist-font {
 .Catalogue-btn {
     height: 40px;
     line-height: 10px;
+    color:#fff;
 }
 .productPrice-popup button.mfp-close {
     top: 10px;
