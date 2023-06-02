@@ -17342,3 +17342,31 @@ body .product-popup {
     max-width: 38rem;
   }
 }
+.Catalogue-btn {
+    height: 40px;
+    line-height: 10px;
+}
+.multipproductcheckbox{
+  border-radius:50%;display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+    border: 1px solid #eee;
+    color: #999;
+}
+.more-product {
+    justify-content: end;
+    display: flex;
+    align-items: center;
+}
+
+.more-product i.w-icon-long-arrow-right {
+    padding-left: 5px;
+}

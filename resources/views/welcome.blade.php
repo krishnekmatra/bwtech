@@ -108,10 +108,18 @@
 
 								<div class="title-link-wrapper title-select after-none appear-animate">
 										<h2 class="title font-secondary font-weight-bolder">Latest Products</h2>
+										 @auth
+                                                <a href="javascript:void(0)"
+                                                    class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                @else
+                                                        <a href="{{url('login')}}"
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                @endauth
 										<a href="{{url('shop/product')}}" class="font-weight-bold ls-25">
 												More Products
 												<i class="w-icon-long-arrow-right"></i>
 										</a>
+
 								</div>
 								 <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2 latestProduct">
                         	 @foreach($product as $product_val)
@@ -123,7 +131,9 @@
                                                 width="300" height="338" />
                                         </a>
                                         <div class="product-action-vertical">
-                                          
+                                          	 <a class="mt-2 multipproductcheckbox">
+								 																<input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$product_val['id']}}" data-price="{{$product_val['price']}}"/>
+																						</a>
                                             @auth
 								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_val['id']}}" data-price="{{$product_val['price']}}"
                                                 title="Add to wishlist"></a>
@@ -225,7 +235,14 @@
                 </div>
                 <!-- End of Tab -->
                 <div class="tab-content product-wrapper appear-animate">
-                	<a href="{{url('deals/product')}}" class="font-weight-bold ls-25 text-right">
+                	 @auth
+                                                <a href="javascript:void(0)"
+                                                    class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                @else
+                                                        <a href="{{url('login')}}"
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                @endauth
+                	<a href="{{url('deals/product')}}" class="font-weight-bold ls-25 text-right more-product">
 												More Products
 												<i class="w-icon-long-arrow-right"></i>
 										</a>
@@ -241,7 +258,9 @@
                                                 width="300" height="338" />
                                         </a>
                                         <div class="product-action-vertical">
-                                          
+                                          <a class="mt-2 multipproductcheckbox">
+								 																<input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}"/>
+																						</a>
                                             @auth
 								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}"
                                                 title="Add to wishlist"></a>

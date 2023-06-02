@@ -178,7 +178,7 @@
 				<form method="post" action="{{url('wishlist-download')}}">
 					@csrf
 					<input type="hidden" value="" id="download_id" name="download_id">
-					<div class="row">
+					<div class="row justify-content-center">
 					<button type="submit" class="btn btn-dark btn-block col-3 text-center productPriceClose" name="priceShow" value="1"><span class="submit" >Yes</span></button>
 					
 					<button type="submit" class="btn btn-dark btn-block col-3 ml-lg-3 productPriceClose"   name="priceShow" value="0"><span class="submit">No</span></button>
@@ -271,6 +271,8 @@
 		  	window.requestforquotation = 1;
 		  	window.redirectPage = "{{url('submitanenquiry')}}"
 		  });
+
+
 		   $('.wishlistAuth').click(function(){
 		   	window.redirectPage = "{{url('wishlist')}}"
 		  	window.requestforquotation = 1;

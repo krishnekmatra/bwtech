@@ -9,7 +9,9 @@
 							</a>
 							
 							<div class="product-action-vertical">
-								
+								  <a class="mt-2 multipproductcheckbox">
+								 <input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$prod_val['id'] ? $prod_val['id'] : $prod_val['getProduct']['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"/>
+								</a>
 								@auth
 								 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$prod_val['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"
                                                 title="Add to wishlist"></a>
@@ -18,21 +20,7 @@
                                 @endif
                                 <a href="{{url('product-detail/'.$prod_val['slug'])}}" class="btn-product-icon  w-icon-search mt-2"
                                                 title="Quickview"></a>
-                                 <a class="mt-2" style="border-radius:50%;display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    width: 3.6rem;
-    height: 3.6rem;
-    margin-bottom: 0.5rem;
-    background-color: #fff;
-    border: 1px solid #eee;
-    color: #999;">
-								 <input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$prod_val['id'] ? $prod_val['id'] : $prod_val['getProduct']['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"/>
-								</a>
+                               
                                
 							</div>
 						

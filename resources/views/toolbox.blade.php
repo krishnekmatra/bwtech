@@ -25,10 +25,10 @@
                                  <div class="toolbox-item toolbox-show select-box mr-0">
                                     @auth
                                                 <a href="javascript:void(0)"
-                                                    class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @else
                                                         <a href="{{url('login')}}"
-                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
                                 </div>
                                 <div class="toolbox-item toolbox-show select-box   ml-2">
