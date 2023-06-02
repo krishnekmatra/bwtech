@@ -132,7 +132,7 @@ class WishlistController extends Controller
            $customPaper = array(0,0,720,1440);
 
 
-        $pdf = PDF::loadView('wishlistPDF', $data);
+        $pdf = PDF::loadView('wishlistPDF', $data)->setPaper('A4');;
      	//return view('wishlistPDF',compact('wishlist'));
         return $pdf->download($wishlist['name'].'.pdf');
 	}

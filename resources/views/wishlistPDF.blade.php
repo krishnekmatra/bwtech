@@ -58,8 +58,11 @@ header {
 										@foreach($re->chunk(2) as $key=>$pro_values)
 												<tr>
 												 @foreach($pro_values as $product)
-												 <?php $feature_name = explode('-',$product['feature_name']['name']); ?>
-												   <td><h6>{{( $feature_name[0]) ?  $feature_name[1] :  $feature_name[0]}}</h6> 
+												 <?php $feature_name = explode('-',$product['feature_name']['name'],2); 
+
+												
+												 ?>
+												   <td><h6>{{($feature_name[0]) ? $feature_name[1] : $feature_name[0]}}</h6> 
 																
 																	@if($product['feature_attribute_name'])
 																		<p>{{$product['feature_attribute_name']['name']}}</p>
@@ -83,6 +86,7 @@ header {
 		</div>
 	</div>
 	@endforeach
+
 	</div>
 </body>
 </html>
