@@ -174,7 +174,7 @@
 	<div class="productPrice-popup mfp-hide product-single login-popup">
 		
 		
-				<p>Are you want to show price in pdf?	</p>
+				<p>Are you want to show price in catalogue?	</p>
 				<form method="post" action="{{url('wishlist-download')}}">
 					@csrf
 					<input type="hidden" value="" id="download_id" name="download_id">
