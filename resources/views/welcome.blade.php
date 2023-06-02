@@ -106,20 +106,21 @@
                 </div>
                 <!-- End of Iocn Box Wrapper -->
 
-								<div class="title-link-wrapper title-select after-none appear-animate">
+								<div class="title-link-wrapper title-select after-none appear-animate d-flex justify-content-between align-items-center">
 										<h2 class="title font-secondary font-weight-bolder">Latest Products</h2>
+										 <div class="d-flex justify-content-end align-items-center">
 										 @auth
                                                 <a href="javascript:void(0)"
-                                                    class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="addmultipleProduct text-white btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @else
                                                         <a href="{{url('login')}}"
                                                     class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
-										<a href="{{url('shop/product')}}" class="font-weight-bold ls-25">
+										<a href="{{url('shop/product')}}" class="font-weight-bold ls-25 mt-1 ml-1">
 												More Products
-												<i class="w-icon-long-arrow-right"></i>
+												<i class="w-icon-long-arrow-right line-height-inherit"></i>
 										</a>
-
+                  </div>
 								</div>
 								 <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2 latestProduct">
                         	 @foreach($product as $product_val)
@@ -235,6 +236,7 @@
                 </div>
                 <!-- End of Tab -->
                 <div class="tab-content product-wrapper appear-animate">
+                	 <div class="d-flex justify-content-end">
                 	 @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
@@ -242,10 +244,11 @@
                                                         <a href="{{url('login')}}"
                                                     class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
-                	<a href="{{url('deals/product')}}" class="font-weight-bold ls-25 text-right more-product">
+                	<a href="{{url('deals/product')}}" class="font-weight-bold ls-25 text-right ml-1 more-product">
 												More Products
 												<i class="w-icon-long-arrow-right"></i>
 										</a>
+									</div>
                 	   @foreach($deal as $key=>$deal_value)
                     <div class="tab-pane {{($loop->iteration == 1) ? 'active' :'' }} pt-4 dealProduct" id="tab1-{{ $loop->iteration }}">
                         <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
