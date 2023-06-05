@@ -52,7 +52,7 @@
                                     @if($val['featureName']['FeatureAttributes'])
                                     <ul class="widget-body filter-items item-check mt-1 feature-item">
                                             @foreach($val['featureName']['FeatureAttributes'] as $attribute)
-                                            <li class="{{$val['featureName']['slug']}}" data-id="{{$attribute['id']}}" id=" {{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            <li class="{{$val['featureName']['slug']}}" data-id="{{$attribute['id']}}" id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
                                             @endforeach
                                     </ul>
                                     @endif
@@ -72,7 +72,7 @@
                                     @if($val['featureName']['FeatureAttributes'])
                                     <ul class="widget-body filter-items item-check mt-1 feature-item">
                                             @foreach($val['featureName']['FeatureAttributes'] as $attribute)
-                                            <li data-id="{{$attribute['id']}}" id=" {{$attribute['id']}}" class="{{$val['featureName']['slug']}}" ><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                        <li data-id="{{$attribute['id']}}" id="{{$attribute['id']}}" class="{{$val['featureName']['slug']}}" ><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
                                             @endforeach
                                     </ul>
                                     @endif
