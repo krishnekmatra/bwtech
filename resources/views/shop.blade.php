@@ -28,6 +28,7 @@
 									
 
 						  @include('toolbox')
+						  
 						<div id="tag_container">
 							@include('presult')
 						</div>
@@ -60,13 +61,31 @@
   var order_by = 'desc';
   var cat_id  = $("#cat_id").val();
 	$('.feature-item li').click(function(e){
+		prev_id = '';
 		event.preventDefault();
-      
 		var id = $(this).attr('data-id');
 		page_count = 1;
+	 	// remove_id  = $(this).prevAll('.active').attr('data-id');
+	 	// next_id =  $(this).next('.active').attr('data-id');
+	 	// console.log(remove_id+"n"+":"+next_id);
+	 	// if( typeof remove_id !== "undefined"){
+	 	// 	console.log("c");
+	 	// 	removeBrand(remove_id);
+	 	// }
+	 	// if( typeof next_id !== "undefined"){
+	 	// 	console.log("c");
+	 	// 	removeBrand(next_id);
+	 	// }
 	
 		var getClass = this.className;
-		if(getClass == 'active'){
+
+		//if check 1 checkbox previous inactive
+    	$('.'+this.className).removeClass('active');
+     	$('#'+id).addClass('active');
+		var explode = getClass.split('active');
+		var match = getClass.includes("active");
+
+		if(match == true){
 			removeBrand(id);
 		}else{
 				brand_array.push(id);		

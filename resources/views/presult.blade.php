@@ -5,7 +5,7 @@
 					<div class="product text-center">
 						<figure class="product-media">
 							<a href="{{url('product-detail/'.$prod_val['slug'])}}">
-								<img src='{{url("product/".$prod_val['image'])}}' alt="Product" width="195" height="135" />
+								<img src='{{url("product/".$prod_val['image'])}}' alt="Product" width="195" height="135"/>
 							</a>
 							
 							<div class="product-action-vertical">

@@ -41,16 +41,18 @@
                                 
                             </div>
                         </nav>
+
                         <div class="row mb-4 basicDiv" style="display:none">
+                            
                             @if(@$features)
                                 @foreach($features as $val)
                                 @if($val['featureName']['search_type'] == 'basic')
-                                <div class="col-md-3">
-                                    <h6>{{$val['featureName']['name']}}</h6>
+                                <div class="col-md-4 widget widget-collapsible mt-2">
+                                    <h6 class="widget-title collapsed">{{$val['featureName']['name']}}</h6>
                                     @if($val['featureName']['FeatureAttributes'])
                                     <ul class="widget-body filter-items item-check mt-1 feature-item">
                                             @foreach($val['featureName']['FeatureAttributes'] as $attribute)
-                                            <li class="features" data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            <li class="{{$val['featureName']['slug']}}" data-id="{{$attribute['id']}}" id=" {{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
                                             @endforeach
                                     </ul>
                                     @endif
@@ -62,14 +64,15 @@
                         </div>
                         <div class="row mt-3 advanceDiv" style="display:none">
                             @if(@$features)
+
                                 @foreach($features as $val)
                                 @if($val['featureName']['search_type'] == 'advance')
-                                <div class="col-md-3">
-                                    <h6>{{$val['featureName']['name']}}</h6>
+                                <div class="col-md-4 widget widget-collapsible mt-2">
+                                    <h6 class="widget-title collapsed">{{$val['featureName']['name']}}</h6>
                                     @if($val['featureName']['FeatureAttributes'])
                                     <ul class="widget-body filter-items item-check mt-1 feature-item">
                                             @foreach($val['featureName']['FeatureAttributes'] as $attribute)
-                                            <li data-id="{{$attribute['id']}}"><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
+                                            <li data-id="{{$attribute['id']}}" id=" {{$attribute['id']}}" class="{{$val['featureName']['slug']}}" ><a href="javascript:void(0)">{{$attribute['name']}}</a></li>
                                             @endforeach
                                     </ul>
                                     @endif
@@ -80,6 +83,3 @@
 
                         </div>
                         <hr/>
-<script type="text/javascript">
-   
-</script>

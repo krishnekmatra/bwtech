@@ -236,6 +236,7 @@
 										<div class="row mb-4">
 											@if($product['productFeatures'])
 											@foreach($product['productFeatures'] as $pro_value)
+											@if($pro_value['feature_name']['search_type'] != 'dontshow')
 												<div class="col-md-3 col-3 mb-2">
 													{{$pro_value['feature_name']['name']}} : 
 												
@@ -247,6 +248,7 @@
 													 	 		@endif
 												
 												</div>
+											@endif
 											@endforeach
 											@endif
 											

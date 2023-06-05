@@ -60,30 +60,15 @@ class ShopController extends Controller
     		$product->where('category_id',$request['cat_id']);
     	}
     	
+
     	if($request['brand_array']){
     		$array = $request['brand_array'];
-    		$product->where(function($q) use($array) {
-				$q->whereHas('productFeatures', function ($query) use ($array) {
-				$array1 = collect($array)->sortBy('count')->reverse()->toArray();
-
-					 $string = implode(' and ', $array1);
-					//$query->where('feature_attribute_id','`'.$string.'`');
-					 $query->whereRaw('feature_attribute_id = "'.$string.'"');
-
-
-
-
-
-
-				 });
-			});
-		
+    		 $product->whereHas('productFeatures', function ($q) use($array) {
+    			 $q->whereIn('feature_attribute_id', $array);
+			}, '=', count($array));
+    			
     	}
-
-
-    
-
-    	if($request['min_price'] > 0 && $request['max_price']  > 0)
+		if($request['min_price'] > 0 && $request['max_price']  > 0)
         {
             $product->whereBetween('price', [$request['min_price'] , $request['max_price'] ]);
         }
@@ -109,9 +94,7 @@ class ShopController extends Controller
 			return view('presult', compact('product'));
 		}
     }
-    public function sortById($x, $y) {
-    return $x - $y;
-}
+
 	public function subCategoryList($category_name,$subcategory_name){
 		
 		$cat_slug = $category_name;
