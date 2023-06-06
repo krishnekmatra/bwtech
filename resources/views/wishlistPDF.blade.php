@@ -17,6 +17,19 @@ header {
 	position: fixed;
 	width: 100%;
 }
+footer {
+  position: fixed; 
+  bottom: -60px; 
+  left: 0px; 
+  right: 0px;
+  height: 50px; 
+  font-size: 20px !important;
+  background-color: #000;
+  color: white;
+  text-align: center;
+  line-height: 35px;
+}
+
 </style>
 </head>
 <body>
@@ -24,6 +37,7 @@ header {
 	<div class="container mt-5 mb-5">
 
 	@foreach($wishlists['ProductWishList'] as $wishlist)
+
 		<div class="row">
 		<div class="col-md-12"  style="height:100%;margin-bottom:10px;">
 			<div class="card">
@@ -86,6 +100,9 @@ header {
 				</div>
 		</div>
 	</div>
+	 <footer>
+            brandworks technologies pvt ltd
+          </footer>
 	@endforeach
 
 	</div>

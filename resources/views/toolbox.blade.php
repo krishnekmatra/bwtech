@@ -12,6 +12,7 @@
                                         <option value="mrp" data-order="desc">Sort by price: high to low</option>
                                     </select>
                                 </div>
+                                @if($filter == true)
                                 <div class="toolbox-item toolbox-sort select-box text-dark ml-2">
                                     <select name="filterBy" class="form-control" id="filterBy">
                                         <option value="" selected>Select Filter</option>
@@ -20,10 +21,11 @@
                                         
                                     </select>
                                 </div>
+                                @endif
                             </div>
                             <div class="toolbox-right">
                                  <div class="toolbox-item toolbox-show select-box mr-0">
-                                        <a><input type="checkbox" name="selectmultipleproduct" class="selectmultipleproduct"><label>Select All</label></a>
+                                        <a class="select-allhref"><input type="checkbox" name="selectmultipleproduct" class="selectmultipleproduct"><label>Select All</label></a>
                                     @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>

@@ -21519,3 +21519,22 @@ b.bold-wishlist-font {
 .productPriceClose {
     margin-left: 10px;
 }
+.select-allhref {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.select-allhref label {
+    color: #333;
+    margin-left: 10px;
+}
+
+.select-allhref input.selectmultipleproduct {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    border-radius: 3px;
+    padding-top: 3px;
+    font-weight: 600;
+ }

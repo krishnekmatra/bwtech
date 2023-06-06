@@ -19,7 +19,8 @@ class ShopController extends Controller
 		 $allcategory = 1;
 		$product = Product::where('status',1);
 		$product=$product->orderBy('created_at','desc')->paginate(12);
-		 return view ('allproduct',compact('brand','product','allcategory'));
+		$filter = false;
+		 return view ('allproduct',compact('brand','product','allcategory','filter'));
 		
 	}
 	public function dealsProduct(Request $request){
@@ -45,12 +46,12 @@ class ShopController extends Controller
 		$features = SubCategoryFeature::with('featureName.FeatureAttributes')->where('category_id',$cat_id)->groupBy('feature_id')->get();
 		
 
-    	
+    	$filter = true;
 		$product = Product::where('category_id',$cat_id)->where('status',1);
 		$product=$product->orderBy('created_at','desc')->paginate(12);
 		
 		
-		return view ('shop',compact('cat_id','subCategory','features','cat_name','product','cat_slug','select_cat_id'));
+		return view ('shop',compact('cat_id','subCategory','features','cat_name','product','cat_slug','select_cat_id','filter'));
 	}
     
     public function filterResult(Request $request){
@@ -169,9 +170,9 @@ class ShopController extends Controller
 		})
 		->where('status',1);
 		
-		
+		$filter = false;
 		$product = $product->orderBy('created_at','desc')->paginate(12);
-		return view ('search',compact('brand','product','search_txt','subCategory','cat_name','cat_slug','select_cat_id'));
+		return view ('search',compact('brand','product','search_txt','subCategory','cat_name','cat_slug','select_cat_id','filter'));
 
 		
 	}

@@ -109,7 +109,7 @@
 								<div class="title-link-wrapper title-select after-none appear-animate d-flex justify-content-between align-items-center">
 										<h2 class="title font-secondary font-weight-bolder">Latest Products</h2>
 										 <div class="d-flex justify-content-end align-items-center">
-										 	<a><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='latest'><label>Select All</label></a>
+										 	<a class="select-allhref"><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='latest'><label>Select All</label></a>
 										 @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct text-white btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
@@ -231,7 +231,7 @@
                 <!-- End of Tab -->
                 <div class="tab-content product-wrapper appear-animate">
                 	 <div class="d-flex justify-content-end">
-                	 		<a><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='deal'><label>Select All</label></a>
+                	 		<a class="select-allhref"><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='deal'><label>Select All</label></a>
                 	 @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
