@@ -123,7 +123,7 @@
 				</div>
 				<div class="footer-bottom">
 					<div class="footer-left">
-						<p class="copyright">Copyright © <?php echo date('Y') ?> Ekmatra. All Rights Reserved.</p>
+						<p class="copyright">Copyright © <?php echo date('Y') ?> Bwtech. All Rights Reserved.</p>
 					</div>
 					<div class="footer-right">
 						<span class="payment-label mr-lg-8">We're using safe payment for</span>
