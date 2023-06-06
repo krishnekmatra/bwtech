@@ -20,7 +20,7 @@ header {
 </style>
 </head>
 <body>
-	<p><center><img src="{{public_path().'/logo.png'}}" style="max-width:25%;margin-top:-10px;"></center></p><br/>
+	
 	<div class="container mt-5 mb-5">
 
 	@foreach($wishlists['ProductWishList'] as $wishlist)

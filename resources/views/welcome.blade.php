@@ -115,7 +115,7 @@
                                                     class="addmultipleProduct text-white btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @else
                                                         <a href="{{url('login')}}"
-                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0  Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
 										<a href="{{url('shop/product')}}" class="font-weight-bold ls-25 mt-1 ml-1">
 												More Products
@@ -237,7 +237,7 @@
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @else
                                                         <a href="{{url('login')}}"
-                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
                 	<a href="{{url('deals/product')}}" class="font-weight-bold ls-25 text-right ml-1 more-product">
 												More Products

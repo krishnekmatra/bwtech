@@ -47,20 +47,19 @@
 <script type="text/javascript">
 	var select_cat_id = '{{$select_cat_id}}';
 	if(select_cat_id != ''){
-			$("#category").val(select_cat_id);
-  }
-  var brand_array = [];
-  var page_count = 1;
-  var warranty = '';
-  var max_price = '';
-  var min_price = '';
-  var min_qty = '';
-  var max_qty = '';
-  var page_limit = '';
-  var sort_by = 'created_at';
-  var order_by = 'desc';
-  var cat_id  = $("#cat_id").val();
-  var brand_multi = [];
+		$("#category").val(select_cat_id);
+   }
+   var brand_array = [];
+   var page_count = 1;
+   var warranty = '';
+   var max_price = '';
+   var min_price = '';
+   var min_qty = '';
+   var max_qty = '';
+   var page_limit = '';
+   var sort_by = 'created_at';
+   var order_by = 'desc';
+   var cat_id  = $("#cat_id").val();
 	$('.feature-item li').click(function(e){
 		prev_id = '';
 		event.preventDefault();
@@ -130,23 +129,23 @@
     page_limit = $('#page_limit').val();
     sort_by = 'created_at';
     order_by = 'desc';
+   $('.feature-item li').removeClass('active');
     getData(page_count);
 	});
  $("#filterBy").change(function(){
-        var id = $("#filterBy").val();
-        $('.features').removeClass('active');
-        brand_array = [];
-		page_count = 1;
-
-        if(id == 'advance'){
-            $(".advanceDiv").show();
-             $(".basicDiv").hide();
-        }else{
-             $(".advanceDiv").hide();
-             $(".basicDiv").show();
-        }
-        getData(page_count);
-    })
+ 	var id = $("#filterBy").val();
+  $('.feature-item li').removeClass('active');
+  brand_array = [];
+	page_count = 1;
+	if(id == 'advance'){
+     $(".advanceDiv").show();
+     $(".basicDiv").hide();
+  }else{
+     $(".advanceDiv").hide();
+     $(".basicDiv").show();
+  }
+    getData(page_count);
+  })
 	$('.qty-item li').click(function(){
 		page_count = 1;
 
@@ -227,7 +226,6 @@
 				datatype: "html"
 		}).done(function(data){
 				$("#tag_container").html(data);
-				brand_multi = [];
 				 setTimeout(function () {
                 $('html, body').animate({
                     scrollTop: $("#tag_container").offset().top - 500
