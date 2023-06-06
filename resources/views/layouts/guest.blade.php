@@ -348,7 +348,9 @@
     		wishList(id,price);
        });
 
-		
+		  $('.selectmultipleproduct').change(function(){
+		  	$(".multipleProduct").attr('checked',this.checked);
+		  });
 			
 			$(document).on('click',".addmultipleProduct",function(){
 				multipleProduct = [];

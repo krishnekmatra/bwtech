@@ -23,6 +23,7 @@
                             </div>
                             <div class="toolbox-right">
                                  <div class="toolbox-item toolbox-show select-box mr-0">
+                                        <a><input type="checkbox" name="selectmultipleproduct" class="selectmultipleproduct"><label>Select All</label></a>
                                     @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>

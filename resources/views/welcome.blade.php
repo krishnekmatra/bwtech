@@ -109,12 +109,13 @@
 								<div class="title-link-wrapper title-select after-none appear-animate d-flex justify-content-between align-items-center">
 										<h2 class="title font-secondary font-weight-bolder">Latest Products</h2>
 										 <div class="d-flex justify-content-end align-items-center">
+										 	<a><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='latest'><label>Select All</label></a>
 										 @auth
                                                 <a href="javascript:void(0)"
-                                                    class="addmultipleProduct text-white btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="addmultipleProduct text-white btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @else
                                                         <a href="{{url('login')}}"
-                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
+                                                    class="btn btn-dark btn-rounded sign-in mb-2 mb-lg-0 addmultipleProduct Catalogue-btn ml-1">Add To Catalogue &nbsp;&nbsp;</a>
                                                 @endauth
 										<a href="{{url('shop/product')}}" class="font-weight-bold ls-25 mt-1 ml-1">
 												More Products
@@ -133,7 +134,7 @@
                                         </a>
                                         <div class="product-action-vertical">
                                           	 <a class="mt-2 multipproductcheckbox">
-								 																<input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$product_val['id']}}" data-price="{{$product_val['price']}}"/>
+								 																<input type="checkbox" class="multipleProduct latestproductCheck" name="multipleProduct" value="{{$product_val['id']}}" data-price="{{$product_val['price']}}"/>
 																						</a>
                                             @auth
 								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_val['id']}}" data-price="{{$product_val['price']}}"
@@ -173,13 +174,6 @@
 																height="180" style="background-color: #565960;" />
 												</figure>
 												<div class="banner-content y-50">
-														<!-- <h4 class="banner-price-info text-lighter font-secondary font-weight-normal mb-0">
-																Flash Sale
-																<span class="text-primary font-weight-bolder">50% OFF</span>
-														</h4> -->
-														<!-- <h2 class="banner-title text-white font-secondary">Wireless HeadPhone</h2> -->
-													<!-- 	<h3 class="banner-subtitle text-lighter font-weight-normal">Only until the end of this Week
-														</h3> -->
 														<a href="{{$banner_value['shop_link']}}"
 																class="btn btn-sm btn-outline btn-white btn-rounded btn-icon-right slide-animate">
 																Explore Now
@@ -237,6 +231,7 @@
                 <!-- End of Tab -->
                 <div class="tab-content product-wrapper appear-animate">
                 	 <div class="d-flex justify-content-end">
+                	 		<a><input type="checkbox" name="selectallproduct" class="selectalllatestproduct" data-type='deal'><label>Select All</label></a>
                 	 @auth
                                                 <a href="javascript:void(0)"
                                                     class="addmultipleProduct btn btn-dark btn-rounded mb-2 mb-lg-0  Catalogue-btn">Add To Catalogue &nbsp;&nbsp;</a>
@@ -262,7 +257,7 @@
                                         </a>
                                         <div class="product-action-vertical">
                                           <a class="mt-2 multipproductcheckbox">
-								 																<input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}"/>
+								 																<input type="checkbox" class="multipleProduct selectdealproduct" name="multipleProduct" value="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}" />
 																						</a>
                                             @auth
 								 																<a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$product_deals['getProduct']['id']}}" data-price="{{$product_deals['getProduct']['price']}}"
@@ -336,4 +331,13 @@
 			}
 		},"login");     
 	}
+	$('.selectalllatestproduct').change(function(){
+		var type = $(this).attr('data-type');
+		if(type === 'deal'){
+			$(".selectdealproduct").attr('checked',this.checked);
+		}else{
+			$(".latestproductCheck").attr('checked', this.checked);
+		}
+		
+	});
 </script>

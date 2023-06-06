@@ -202,6 +202,8 @@
 	});
 
 	function getData(page){
+		$('.selectmultipleproduct').prop('checked', false); // Unchecks it
+
 		$.ajax(
 		{
 				url:"{{route('filterResult')}}",
