@@ -19,6 +19,7 @@ class GiftController extends Controller
 			$occasion_id =$occasion['id'];
 			$main_name = $occasion['name'];
 			$feature_attribute_id = '';
+			$filter = false;
 			$product = ProductOccasion::join('products','products.id','=','product_occasions.product_id')
 			->where('occasion_id',$occasion_id)
 			->where('products.status',1);
@@ -46,7 +47,9 @@ class GiftController extends Controller
 		}
 		 $product->orderBy('products.created_at','desc');
 		$product = $product->paginate(12);
-		return view('gift', compact('product','occasion_id','feature_attribute_id','type','value','main_name'));
+					$filter = false;
+
+		return view('gift', compact('product','occasion_id','feature_attribute_id','type','value','main_name','filter'));
 	}
 
 	public function shopByFilter(Request $request){
