@@ -78,7 +78,7 @@
 									@auth
 									<li>
 										
-											<a href="{{url('wishlist')}}">My Wishlist</a>
+											<a href="{{url('catalogue')}}">My Wishlist</a>
 										
 									</li>
 									@endauth

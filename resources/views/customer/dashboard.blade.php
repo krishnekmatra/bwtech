@@ -145,6 +145,6 @@
 	
 	
 	$('.wishlistLink').click(function(){
-		window.location.href = "{{url('wishlist')}}";
+		window.location.href = "{{url('catalogue')}}";
 	})
 </script>
