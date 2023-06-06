@@ -281,7 +281,7 @@ h6.nothing {
 
 																						</figure></a>
 																						@endif
-																						<a href="{{url('wishlist/view/'.$value['id'])}}" class="btn btn-inquiry btn-rounded btn-icon-left">View Catalogue</a>
+																						<a href="{{url('catalogue/view/'.$value['id'])}}" class="btn btn-inquiry btn-rounded btn-icon-left">View Catalogue</a>
 																						<a href="#" class="btn btn-rounded btn-visit removecart" data-id="{{$value['id']}}">Remove</a>
 																				</div>
 																				<!-- End of Store Footer -->

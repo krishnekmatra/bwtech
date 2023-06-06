@@ -49,6 +49,7 @@
                             
                             @if(@$features)
                                 @foreach($features as $val)
+                                 @if(count($val['featureName']['FeatureAttributes'])>0)
                                 @if($val['featureName']['search_type'] == 'basic')
                                 <div class="col-md-4 widget widget-collapsible mt-2">
                                     <h6 class="widget-title collapsed">{{$val['featureName']['name']}}</h6>
@@ -60,6 +61,7 @@
                                     </ul>
                                     @endif
                                 </div>
+                                @endif
                                 @endif
                                 @endforeach
                                 @endif

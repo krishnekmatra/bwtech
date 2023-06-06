@@ -248,7 +248,7 @@
 	            "_token": "{{ csrf_token() }}",
 	        	},
 	          success: function(response) {
-	          	window.location.href ='{{ url("wishlist") }}';
+	          	window.location.href ='{{ url("/catalogue") }}';
 	          },
 	          
 	       });

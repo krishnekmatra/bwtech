@@ -17375,18 +17375,23 @@ body .product-popup {
     display: flex;
     align-items: center;
     position: relative;
+    margin-bottom: 0 !important;
+    line-height: normal;
 }
 
 .select-allhref label {
     color: #333;
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 10px;
+    font-weight: 600;
 }
 
-.select-allhref input.selectmultipleproduct {
+input.selectalllatestproduct {
     width: 20px;
     height: 20px;
     color: #fff;
     border-radius: 3px;
-    padding-top: 3px;
+    padding-top: 0;
     font-weight: 600;
- }
+}

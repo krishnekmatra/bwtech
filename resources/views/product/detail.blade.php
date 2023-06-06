@@ -236,7 +236,7 @@
 										<div class="row mb-4">
 											@if($product['productFeatures'])
 											@foreach($product['productFeatures'] as $pro_value)
-											@if($pro_value['feature_name']['search_type'] != 'dontshow')
+											@if($pro_value['feature_name']['search_type'] == 'basic')
 												<div class="col-md-3 col-3 mb-2">
 													{{$pro_value['feature_name']['name']}} : 
 												
