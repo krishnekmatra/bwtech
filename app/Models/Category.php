@@ -51,6 +51,9 @@ class Category extends Model
         return $this->hasMany('App\Models\SubCategory');
     }
 
+   /*
+        * Fetch Features based on category id 
+    */
     public  function brands() {
         return $this->hasMany('App\Models\SubCategoryFeature','category_id','id');
     }

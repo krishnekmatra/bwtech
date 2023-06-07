@@ -98,28 +98,13 @@
 					</div>
 				</div>
 				<div class="footer-middle">
-					@foreach($category as $cat)
 					<div class="widget widget-category">
-					
-						
-
-							<div class="category-box mt-2">
-								@if(count($cat['subCategory']) > 0)
-									<h6 class="category-name">{{$cat['name']}}:</h6>
-								
-									@foreach(@$cat['subCategory'] as $val)
-										<a href="{{url('shop/'.$cat['slug'].'/'.$val["slug"])}}">{{$val['name']}}</a>
-
-									@endforeach
-								@endif
-
-							</div>
-							
-						
-						
+						<div class="category-box">
+								@foreach($category as $cat)
+									<a  href="{{url('shop/'.$cat['slug'])}}" class="category-name" href="">{{$cat['name']}}</a>
+								@endforeach
+						</div>
 					</div>
-					@endforeach
-					
 				</div>
 				<div class="footer-bottom">
 					<div class="footer-left">
