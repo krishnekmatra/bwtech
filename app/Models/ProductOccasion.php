@@ -13,6 +13,7 @@ class ProductOccasion extends Model
         'occasion_id'
     ];
 
+    /* get product deatil */
      public function getProduct(){
          return $this->belongsTo('App\Models\Product', 'product_id','id');
     }

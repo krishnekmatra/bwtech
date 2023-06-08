@@ -9,59 +9,69 @@ use Illuminate\Support\Str;
 
 class Feature extends Model
 {
-    use HasFactory;
-    protected $fillable = [
-        'name',
-        'feature_type',
-        'slug',
-        'search_type'
+	use HasFactory;
+	protected $fillable = [
+		'name',
+		'feature_type',
+		'slug',
+		'search_type'
 
-    ];
-    public function setNameAttribute($value){
-     $trimmed = trim($value); // Trims both ends
+	];
+	/* 
+		* slug will be automatic genrate
+	*/
+	public function setNameAttribute($value){
+	 $trimmed = trim($value); // Trims both ends
 
-        $res =  str_replace('', '_', $trimmed);
-      $this->attributes['name'] = $value;
-      $this->attributes['slug'] = Str::slug($res);
-    }
+		$res =  str_replace('', '_', $trimmed);
+	  $this->attributes['name'] = $value;
+	  $this->attributes['slug'] = Str::slug($res);
+	}
 
-    //save feature
-    public static function saveFeature($request) {
-        
-        if(isset($request['id'])){
-            $id = $request['id'];
-        }else{
-            $id = 0;
-        }
-        $feature = Feature::create([
-            'name' => $request['name'],
-            'feature_type' => $request['feature_type'],
-            'search_type' => $request['search_type']
-        ]);
-        if($request['feature_value']){
-            foreach($request['feature_value'] as $key=>$value){
-                $decode = json_decode($value,true);
-                $array = (array)$decode;
-                foreach($array as $array_value){
-                    FeatureAttribute::create([
-                        'name' => $array_value['value'],
-                        'feature_id' => $feature->id
-                    ]);
-                }
-                
-            }
-        }
-        return $feature;
-    }
+	//save feature
+	public static function saveFeature($request) {
+		
+		if(isset($request['id'])){
+			$id = $request['id'];
+		}else{
+			$id = 0;
+		}
+		$feature = Feature::create([
+			'name' => $request['name'],
+			'feature_type' => $request['feature_type'],
+			'search_type' => $request['search_type']
+		]);
+		if($request['feature_value']){
+			foreach($request['feature_value'] as $key=>$value){
+				$decode = json_decode($value,true);
+				$array = (array)$decode;
+				foreach($array as $array_value){
 
-    //get features
-    public static function getFeatures() {
+					/* save value in features table */
+					
+					FeatureAttribute::create([
+						'name' => $array_value['value'],
+						'feature_id' => $feature->id
+					]);
+				}
+				
+			}
+		}
+		return $feature;
+	}
 
-         $feature = Feature::orderBy('created_at','desc')->get();
-         return $feature;
-    }
+	//get features
+	public static function getFeatures() {
 
-    public function FeatureAttributes(){
-          return $this->hasMany('App\Models\FeatureAttribute');
-    }
+		 $feature = Feature::orderBy('created_at','desc')->get();
+		 return $feature;
+	}
+
+  /*
+  	 * use many realationship
+  	 * get all feature attribute based on feature_id
+  */
+	public function FeatureAttributes(){
+		  return $this->hasMany('App\Models\FeatureAttribute');
+	}
 }

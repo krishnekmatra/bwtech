@@ -13,11 +13,17 @@ class Faq extends Model
         'description'
 
     ];
+    /* get all faq */
      public static function getFaq() {
 
          $feature = Faq::orderBy('created_at','desc');
          return $feature;
     }
+
+    /* save faq
+        * crete if id not avilable
+        * if id avilable then update 
+    */
      public static function saveFaq($request){
          if(isset($request['id'])){
             $id = $request['id'];

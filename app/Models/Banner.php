@@ -15,13 +15,19 @@ class Banner extends Model
         'sorting'
     ];
 
+    /* 
+        get list of banner 
+    */
     public static function getBanners() {
 
          $banner = Banner::orderBy('created_at','desc')->get();
          return $banner;
     }
 
-    //save banner
+    /*
+        * save banner use updateOrCreate
+        *  match id if availble then update
+    */
     public static function saveBanner($request){
          if(isset($request['id'])){
             $id = $request['id'];

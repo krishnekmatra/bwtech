@@ -14,7 +14,12 @@ use Mail;
 
 class ContactUsController extends Controller
 {
-		//
+		/*
+			* Show all leads
+			* Table : contact_us_inquiries
+			* From contact use user submit form 
+			  get data  in contact_us_inquiries
+		*/
 		public function leads(Request $request){
        		if ($request->ajax()) {
                     $data = contactUsInquiry::get();
@@ -23,13 +28,21 @@ class ContactUsController extends Controller
             }
             return view('admin.contact-us.index');
     	}
-    
+    	
+    	/*
+    		* show dynamic information in contactus page
+    		* Faq will be show dynamic in contact us page
+    	*/
 		public function index(){
 			$contact = ContactUs::first();
 			$faq = Faq::orderBy('created_at','desc')->get();
 			return view('contact-us',compact('contact','faq'));
 		}
 
+		/*
+			* show data wearehiring
+			* Table : we_are_hirings 
+		*/
 		public function weAreHiring(){
 			$we_are_hiring = WeAreHiring::get();
 			return view('pages.we-are-hiring',compact('we_are_hiring'));
@@ -71,6 +84,9 @@ class ContactUsController extends Controller
 					}
 			}
 		
+		/* 
+		  save data in contact_us_inquiries 
+		*/ 
 		public function inquiry(CreateContactRequest $request){
 			try {
 			

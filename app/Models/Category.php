@@ -17,6 +17,7 @@ class Category extends Model
         'sorting'
     ];
 
+    /* set slug daynamic based on name value*/
     public function setNameAttribute($value){
       $res = str_replace( array( '\'', '"',
       ',' , ';', '<', '>','/'), '-', $value);
@@ -36,12 +37,20 @@ class Category extends Model
         return $Category;
     }
 
+    /*
+        all get category list
+    */
     public static function getCategories() {
 
          $category = Category::orderBy('created_at','desc')->get();
          return $category;
     }
 
+    /* 
+        * get all category
+        * used in product List
+
+    */
     public static function getCategoriesList(){
          $category = Category::with('subCategory')->where('status',1)->orderBy('sorting','desc')->get();
          return $category;
@@ -58,6 +67,7 @@ class Category extends Model
         return $this->hasMany('App\Models\SubCategoryFeature','category_id','id');
     }
 
+    /* dont use */
     public function getDeals() {
        return Deal::get();
     }

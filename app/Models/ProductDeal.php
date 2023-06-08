@@ -13,6 +13,7 @@ class ProductDeal extends Model
         'deal_id'
     ];
 
+    /* get product detail */
      public function getProduct(){
          return $this->belongsTo('App\Models\Product', 'product_id','id');
     }

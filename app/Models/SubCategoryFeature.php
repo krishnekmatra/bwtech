@@ -16,13 +16,23 @@ class SubCategoryFeature extends Model
 				'feature_id'
 		];
 
+     /* 
+     	* get feature name
+     */
 	 public function featureName(){
 			return $this->belongsTo('App\Models\Feature', 'feature_id','id');
 	 }
 
+	 /*
+	 	* get subcategory details * 
+	 */
 	 public function subCategory(){
 			return $this->belongsTo('App\Models\SubCategory', 'sub_category_id','id');
 	 }
+
+	  /*
+	 	* get all features * 
+	 */
 	  public function featuresAttribute(){
 			return $this->hasMany('App\Models\FeatureAttribute');
 	 }

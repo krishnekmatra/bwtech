@@ -16,7 +16,9 @@ class SubCategory extends Model
 		'category_id',
 		'slug'
 	];
-
+	/*
+		* slug will be saves
+	*/
 	public function setNameAttribute($value){
       $res = str_replace( array( '\'', '"',
       ',' , ';', '<', '>','/'), '-', $value);
@@ -66,11 +68,12 @@ class SubCategory extends Model
     
     
 	
-
+	/* get category detail */
 	public function category(){
 	  return $this->belongsTo('App\Models\Category', 'category_id','id');
    }
 
+   /* get subcategory features */
    public function features(){
    	        return $this->hasMany('App\Models\SubCategoryFeature');
 	}

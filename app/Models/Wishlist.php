@@ -15,6 +15,7 @@ class Wishlist extends Model
         'margin_value',
     ];
 
+    /* get all product wishlist */
     public function ProductWishList(){
         return $this->hasMany('App\Models\ProductWishList');
     }

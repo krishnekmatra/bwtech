@@ -52,11 +52,13 @@ class User extends Authenticatable
 		'email_verified_at' => 'datetime',
 	];
 
+	/* get roles */
 	public function roles()
-  {
-    return $this->belongsToMany(Role::class);
-  }
-
+    {
+    	return $this->belongsToMany(Role::class);
+    }
+    
+    /* assign role */
 	public static function assignRole($role) {
 		$role =Role::where('name',$role)->first();
 		return $role['id']; //Crashes here
@@ -123,7 +125,7 @@ class User extends Authenticatable
     	$customer = User::where('role_id',$role_id)->orderBy('created_at','desc');
     	return $customer;
     }
-
+    /* get latest vendor */
     public static function getLatestVendor(){
     	$role_id = getRole('vendor');
     	$vendor = User::with(['getVendorTopProducts' => function($q){
@@ -131,13 +133,17 @@ class User extends Authenticatable
     	}])->withCount('products')->where('role_id',$role_id)->latest()->take(4)->get();
     	return $vendor;
     }
+    /* get all products*/
 	public function products(){
  		return $this->hasMany('App\Models\Product','created_by','id');
  	}
+
+ 	/* get all vendor top product */
  	public function getVendorTopProducts(){
  		return $this->hasMany('App\Models\Product','created_by','id')->latest();
  	}
 
+ 	/* get all product wishlist*/
  	public function getProductWishList(){
  		return $this->hasMany('App\Models\ProductWishList','client_id','id')->latest();
  	}

@@ -22,10 +22,17 @@ class Inquiry extends Model
         'type'
     ];
 
+   /* * get product deatil
+      * based on product id
+   */
    public function product(){
      return $this->belongsTo('App\Models\Product', 'product_id','id');
    }
 
+    /*
+        * get customer detail
+        * based on client_id
+    */
     public function customer(){
      return $this->belongsTo('App\Models\User', 'client_id','id');
    }

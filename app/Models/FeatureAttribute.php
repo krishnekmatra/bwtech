@@ -12,6 +12,9 @@ class FeatureAttribute extends Model
         'name',
         'feature_id'
     ];
+    /* * use one to one relationship
+       * get feature name 
+    */
      public function featuresName(){
         return $this->belongsTo('App\Models\Feature', 'feature_id','id');
     }

@@ -12,6 +12,7 @@ class Deal extends Model
         'name',
     ];
 
+    /* save deal into deals table */
     public static function saveDeal($request) {
         
         if(isset($request['id'])){
@@ -27,10 +28,17 @@ class Deal extends Model
         return $deal;
     }
 
+    /*
+        * fetch all deals
+    */
     public static function getDeals(){
         return Deal::orderBy('created_at','desc')->get();
     }
 
+    /*
+        * use manay relationship
+        * get product based on deal id
+    */
     public function productDeals(){
         return $this->hasMany('App\Models\ProductDeal');
     }

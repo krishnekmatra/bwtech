@@ -8,7 +8,13 @@ use DataTables;
 
 class BannerController extends Controller
 {
-	//
+	/*
+		* List : bannerList
+		* Table: Banners
+		* Method: get
+		* Description : fetch all recoreds
+
+	*/
 	public function index(Request $request){
 		if ($request->ajax()) {
 					$data = Banner::getBanners();
@@ -33,6 +39,12 @@ class BannerController extends Controller
 			}
 			return view('admin.banner.index');
 	}
+
+
+	/*
+		* Add : view for create banner
+		* type for section
+	*/
 	public function create()
 	{
 		//
@@ -46,6 +58,11 @@ class BannerController extends Controller
 		return view('admin.banner.create',compact('type'));
 
 	}
+
+	/* 
+		* recored will be save in  banners tabel
+		* also check limit based on type
+	*/
 	public function store(Request $request)
 	{
 		try {
@@ -85,6 +102,9 @@ class BannerController extends Controller
 				'message' => 'something went wrong'], 200);
 		}  
 	}
+	/* edit view for banner 
+	   * view same for both add  & edit only pass id
+	*/
 	public function edit($id)
 	{
 		//
@@ -99,6 +119,9 @@ class BannerController extends Controller
 		return view('admin.banner.create',compact('banner','type'));
 	}
 
+	/* remove recoed from databse
+		*  with remove image from folder
+	*/
 	public function destroy($id)
 	{
 	   try {
