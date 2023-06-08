@@ -2,7 +2,7 @@
 			<div class="header-top">
 				<div class="container">
 					<div class="header-left">
-						<p class="welcome-msg">Welcome to Ekmatra Store!</p>
+						<p class="welcome-msg">Welcome to Bwtech Store!</p>
 					</div>
 					<div class="header-right">
 					   
@@ -10,7 +10,7 @@
 
 					  
 						<span class="divider d-lg-show"></span>
-							<a href="{{url('vendor/login')}}" class="d-lg-show">Sell on Ekmatra</a>
+							<a href="{{url('vendor/login')}}" class="d-lg-show">Sell on Bwtech</a>
 						@auth
 								<a href="{{url('myaccount')}}" class="d-lg-show">My Account</a>
 							
