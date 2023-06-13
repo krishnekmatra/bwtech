@@ -274,7 +274,7 @@
 
 
 		   $('.wishlistAuth').click(function(){
-		   	window.redirectPage = "{{url('wishlist')}}"
+		   	window.redirectPage = "{{url('catalogue')}}"
 		  	window.requestforquotation = 1;
 		  });
 			function notifyMsg(msg,type) {

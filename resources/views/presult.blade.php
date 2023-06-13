@@ -10,15 +10,15 @@
 							
 							<div class="product-action-vertical">
 								  <a class="mt-2 multipproductcheckbox">
-								 <input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{$prod_val['id'] ? $prod_val['id'] : $prod_val['getProduct']['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"/>
+								 <input type="checkbox" class="multipleProduct" name="multipleProduct" value="{{@$prod_val['id'] ? $prod_val['id'] : @$prod_val['getProduct']['id']}}" data-price="{{@$prod_val['price'] ? @$prod_val['price'] : @$prod_val['getProduct']['price']}}"/>
 								</a>
 								@auth
-								 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{$prod_val['id']}}" data-price="{{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}"
+								 <a href="#" class="btn-product-icon btn-wishlist w-icon-heart wishlist" data-id="{{@$prod_val['id']}}" data-price="{{@$prod_val['price'] ? @$prod_val['price'] : @$prod_val['getProduct']['price']}}"
                                                 title="Add to wishlist"></a>
                                 @else
                                 <a href="{{url('login')}}" class="btn-product-icon btn-wishlist w-icon-heart  sign-in"></a>
                                 @endif
-                                <a href="{{url('product-detail/'.$prod_val['slug'])}}" class="btn-product-icon  w-icon-search mt-2"
+                                <a href="{{url('product-detail/'.@$prod_val['slug'])}}" class="btn-product-icon  w-icon-search mt-2"
                                                 title="Quickview"></a>
                                
                                
@@ -32,7 +32,7 @@
 							</h4>
 						    
 								<div class="product-price">
-									<ins class="new-price">Price : {{$prod_val['price'] ? $prod_val['price'] : $prod_val['getProduct']['price']}}</ins>
+									<ins class="new-price">Price : {{@$prod_val['price'] ? @$prod_val['price'] : @$prod_val['getProduct']['price']}}</ins>
 								</div>
 								
 								

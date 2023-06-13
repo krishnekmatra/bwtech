@@ -24,8 +24,8 @@ footer {
   right: 0px;
   height: 50px; 
   font-size: 20px !important;
-  background-color: #000;
-  color: white;
+  background-color: #FFA500;
+  color: black;
   text-align: center;
   line-height: 35px;
 }
@@ -101,7 +101,7 @@ footer {
 		</div>
 	</div>
 	 <footer>
-            brandworks technologies pvt ltd
+            Brandworks Technologies Pvt Ltd
           </footer>
 	@endforeach
 
