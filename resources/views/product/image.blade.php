@@ -66,7 +66,7 @@
 		params : {
  			_token : "{{ csrf_token() }}",
  		},
-		maxfilesize : 1000000,
+		maxfilesize : 10000000,
 
 		startupload : function(SubmitUpload, e, data) {
 			
