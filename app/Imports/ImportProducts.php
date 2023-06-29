@@ -81,8 +81,8 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 
 		$explode_image = explode('product/',$row['model_image']);
 		if(isset($explode_image[1])){
-		  if (file_exists(public_path('product',$explode_image[1]))){
-			$image_name =  $explode_image[1];
+		  if (file_exists(public_path('product',@$explode_image[1]))){
+			$image_name = @$explode_image[1];
 		   
 		  }else{
 			$image_name = '';
@@ -91,8 +91,8 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 
 		$explode_image1 = explode('product/',$row['model_imag1']);
         if(isset($explode_image1[1])){
-          if (file_exists(public_path('product',$explode_image1[1]))){
-            $image_name1 =  $explode_image1[1];
+          if (file_exists(public_path('product',@$explode_image1[1]))){
+            $image_name1 =@$explode_image1[1];
            
           }else{
             $image_name1 = '';
@@ -103,8 +103,8 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 
         $explode_image2 = explode('product/',$row['model_imag2']);
         if(isset($explode_image1[1])){
-          if (file_exists(public_path('product',$explode_image2[1]))){
-            $image_name2 =  $explode_image2[1];
+          if (file_exists(public_path('product',@$explode_image2[1]))){
+            $image_name2 = @$explode_image2[1];
            
           }else{
             $image_name2 = '';
@@ -115,8 +115,8 @@ class ImportProducts implements OnEachRow, WithValidation,WithHeadingRow, SkipsO
 
         $explode_image3 = explode('product/',$row['model_imag3']);
         if(isset($explode_image3[1])){
-          if (file_exists(public_path('product',$explode_image3[1]))){
-            $image_name3 =  $explode_image3[1];
+          if (file_exists(public_path('product',@$explode_image3[1]))){
+            $image_name3 = @$explode_image3[1];
            
           }else{
             $image_name3 = '';
